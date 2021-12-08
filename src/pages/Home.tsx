@@ -1,21 +1,11 @@
-import React from 'react';
+import Navbar from '../elements/Navbar'
 
 const Home = () => {
-    return (<div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>)
+    return (
+      <div className="bg-gray-900 min-h-screen">
+        <Navbar />
+      </div>
+    )
 }
 
 export default Home;
