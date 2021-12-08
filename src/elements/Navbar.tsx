@@ -55,9 +55,10 @@ const Navbar = () => {
             </button>
           </div>
           <div className="items-center hidden lg:flex">
-            <Button text="Create note" size="sm" />
+            <Button onClick={() => navigate("/create_note")} text="Create note" size="sm" />
             <FontAwesomeIcon
               icon={faGithub}
+              onClick={ () => window.location.replace("https://github.com/ahornyai/study-wizard/") }
               className="ml-6 text-2xl cursor-pointer"
             />
             <Avatar
@@ -74,33 +75,34 @@ const Navbar = () => {
             <div className="bg-gray-700 absolute top-full left-0 flex flex-col w-full pb-8 lg:hidden">
               <div className="flex-1 flex flex-col items-center text-xl">
                 <button
-                  onClick={() => navigate("/")}
+                  onClick={() => {navigate("/"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
                 >
                   Home
                 </button>
                 <button
-                  onClick={() => navigate("/notes")}
+                  onClick={() => {navigate("/notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
                   My notes
                 </button>
                 <button
-                  onClick={() => navigate("/shared_notes")}
+                  onClick={() => {navigate("/shared_notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
                   Shared notes
                 </button>
                 <button
-                  onClick={() => navigate("/settings")}
+                  onClick={() => {navigate("/settings"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
                 >
                   Settings
                 </button>
-                <Button text="Create note" size="sm" className="my-2" />
+                <Button onClick={() => {navigate("/create_note"); setMobileOpen(false)}} text="Create note" size="sm" className="my-2" />
                 <div className="my-2 flex justify-center">
                   <FontAwesomeIcon
                     icon={faGithub}
+                    onClick={ () => window.location.replace("https://github.com/ahornyai/study-wizard/") }
                     className="text-2xl mx-2 cursor-pointer"
                   />
                 </div>
