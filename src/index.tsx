@@ -6,6 +6,7 @@ import './index.css';
 import Navbar from './elements/Navbar'
 
 import Home from './pages/Home';
+import Notes from './pages/Notes';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,6 +15,7 @@ ReactDOM.render(
       
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/notes" element={<Notes />} />
       </Routes>
     </div>
   </BrowserRouter>,

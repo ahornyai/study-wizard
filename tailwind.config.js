@@ -24,6 +24,9 @@ module.exports = {
       "10xl": "8rem"
     },
     extend: {
+      outline: {
+        thickblue: ['5px solid #1e3a8a'],
+      },
       spacing: {
         "72": "18rem",
         "84": "21rem",
