@@ -1,4 +1,4 @@
-import Avatar from "./components/Avatar"
+import Avatar from "../components/Avatar"
 
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-jdenticon-sprites';

@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    color-scheme: dark;
+}
+
+@layer components {
+    
+    body {
+        @apply bg-gray-900
+    }
+
+    .text-input {
+        box-shadow: none !important;
+
+        @apply rounded-lg border-none focus:outline-thickblue 
+            outline-zerowidth transition-all duration-200 bg-gray-900
+            text-gray-200;
+    }
+
+}

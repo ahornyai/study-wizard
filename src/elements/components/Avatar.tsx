@@ -43,7 +43,7 @@ const Avatar = ({
         <img
           src={image}
           alt="avatar"
-          className="absolute left-0 top-0 w-full h-full rounded-full object-cover"
+          className="absolute left-0 top-0 w-full h-full rounded-full object-cover bg-[#19212C]"
         />
       ) : (
         <FontAwesomeIcon icon={faUser} />

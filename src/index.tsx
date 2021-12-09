@@ -11,16 +11,14 @@ import CreateNote from './pages/CreateNote';
 
 ReactDOM.render(
   <BrowserRouter>
-    <div className="bg-gray-900 h-full">
-      <Navbar />
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/notes" element={<Notes />} />
+    <Navbar />
+    
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/notes" element={<Notes />} />
 
-        <Route path="/create_note" element={<CreateNote />} />
-      </Routes>
-    </div>
+      <Route path="/create_note" element={<CreateNote />} />
+    </Routes>
   </BrowserRouter>,
   document.getElementById('root')
 );

@@ -1,4 +1,4 @@
-import NoteCard from "../elements/NoteCard"
+import NoteCard from "../elements/notes/NoteCard"
 
 const Notes = () => {
     return (
