@@ -16,7 +16,7 @@ const NoteCard = (props:NoteCardProperties) => {
     });
 
     return (
-        <div className="w-72 max-w-full bg-gray-800 rounded-md hover:outline-thickblue hover:transition-all hover:cursor-pointer">
+        <div className="w-72 max-w-full bg-gray-800 rounded-md hover:outline-thickblue outline-zerowidth transition-all ease-in-out duration-200 cursor-pointer">
             <div className="p-6 pb-3 text-gray-200 text-left">
                 <h5 className="text-lg font-bold">{ props.title }</h5>
                 <p className="text-gray-400">{ props.definitions } definitions</p>
