@@ -12,6 +12,10 @@
         @apply bg-gray-900
     }
 
+    .text-input::placeholder {
+        text-transform: capitalize;
+    }
+
     .text-input {
         box-shadow: none !important;
 
