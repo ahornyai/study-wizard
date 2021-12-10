@@ -1,5 +1,18 @@
 import React from "react"
 
+interface ButtonProps {
+  className?:string,
+  text?:string,
+  size?:string,
+  link?:string,
+  type?:string,
+  icon?:any,
+  iconPosition?:string,
+  submit?:boolean,
+  full?:boolean,
+  onClick?:any
+}
+
 const Button = ({
     className = "",
     text = "button",
@@ -10,9 +23,9 @@ const Button = ({
     iconPosition = "left",
     submit = false,
     full = false,
-    ...newProps
-  }:any) => {
-  let finalClass = `${className} inline-block rounded-sm font-medium border border-solid cursor-pointer text-center transition-colors duration-200`
+    onClick,
+  }:ButtonProps) => {
+  let finalClass = `${className} select-none inline-block rounded-sm font-medium border border-solid cursor-pointer text-center transition-colors duration-200`
   if (size === "xs") finalClass += " text-xs py-1 px-2"
   else if (size === "sm") finalClass += " text-sm py-2 px-4"
   else if (size === "base") finalClass += " text-base py-3 px-6"
@@ -67,7 +80,7 @@ const Button = ({
       href={link}
       className={finalClass}
       type={submit ? "submit" : ""}
-      {...newProps}
+      onClick={onClick}
     >
       {content}
     </ButtonTag>

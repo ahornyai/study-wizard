@@ -1,7 +1,9 @@
 import CreateNoteEntry from '../components/CreateNoteEntry';
 
+export type CardType = 'definition' | 'note'
+
 interface CreateNoteCardProps {
-    cardType: 'definition' | 'note'
+    cardType: CardType
     depth?:number
 }
 
