@@ -4,7 +4,7 @@ import AddNoteCard from "../elements/create_note/AddNoteCard";
 import { useEffect, useState } from "react";
 
 const CreateNote = () => {
-  let [entries, setEntries] = useState<CardType[]>([])
+  let [entries, setEntries] = useState<CardType[]>(['note'])
 
   useEffect(() => {
     window.scroll({left: 0, top: document.body.scrollHeight, behavior: "smooth" });
@@ -17,7 +17,9 @@ const CreateNote = () => {
       <div className="grid grid-cols-1 mt-10 gap-3">
         <CreateNoteHeader />
         <div className="grid grid-cols-1 gap-3">
-          {entries.map(type => <CreateNoteCard cardType={ type } />)}
+          {entries.map(type => (
+            <CreateNoteCard cardType={ type } />
+          ))}
         </div>
         <AddNoteCard addNoteElement={ (type) => setEntries([...entries, type]) } />
       </div>

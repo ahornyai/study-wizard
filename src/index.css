@@ -12,6 +12,25 @@
         @apply bg-gray-900
     }
 
+    .dropdown {
+        min-width: 8rem;
+
+        @apply bg-gray-700 text-base z-50 float-left list-none text-left rounded-lg shadow-lg mt-1;
+    }
+
+    .dropdown-link {
+        @apply bg-gray-800 rounded-lg text-sm py-2 px-4 font-medium block whitespace-nowrap m-2
+            text-gray-200 hover:text-blue-400 cursor-pointer select-none;
+    }
+
+    .dropdown-icon {
+        @apply text-green-300;
+    }
+
+    .dropdown-text {
+        @apply ml-1 select-none;
+    }
+
     .text-input::placeholder {
         text-transform: capitalize;
     }
