@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { NoteEntry } from '../../pages/CreateNote'
 
 interface CreateNoteEntryProps {
     type: 'note' | 'term' | 'definition'
+    className?: string
+    entry: NoteEntry
 }
 
 const sizing = {
@@ -10,7 +13,7 @@ const sizing = {
     definition: "w-2/3"
 }
 
-const CreateNoteEntry = (props:CreateNoteEntryProps) => {
+const CreateNoteEntry = ({ type, className = "", entry }:CreateNoteEntryProps) => {
     let [isDone, setDone] = useState(false)
     let input = useRef<HTMLInputElement>(null)
 
@@ -30,8 +33,8 @@ const CreateNoteEntry = (props:CreateNoteEntryProps) => {
             onKeyPress={ e => e.key === 'Enter' ? setDone(true) : null } 
             onBlur={ () => setDone(true) }
             type="text" 
-            placeholder={ props.type } 
-            className={ "item text-input " + (isDone ? "bg-gray-800 " : "") + (sizing[props.type]) }
+            placeholder={ type === "note" && entry.children.length !== 0 ? "title" : type } 
+            className={ "item text-input " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
             ref={ input } />
     )
 }

@@ -39,7 +39,7 @@
         box-shadow: none !important;
 
         @apply rounded-lg border-none focus:outline-thickblue 
-            outline-zerowidth transition-all duration-200 bg-gray-900
+            outline-zerowidth transition-outlinewidth duration-200 bg-gray-900
             text-gray-200;
     }
 

@@ -9,18 +9,23 @@ export class NoteEntry {
   type: EntryType
   depth: number
   children: NoteEntry[]
+  parent?: NoteEntry
 
-  constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = []) {
+  constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = [], parent?: NoteEntry) {
     this.type = type
     this.depth = depth
     this.children = children
     this.id = nanoid()
+    this.parent = parent
   }
 
+  hasChildren(): boolean {
+    return this.children.length > 0
+  }
 }
 
 const CreateNote = () => {
-  let [entries, setEntries] = useState<NoteEntry[]>([new NoteEntry(EntryType.NOTE, 0, [new NoteEntry(EntryType.NOTE, 1, [])])])
+  let [entries, setEntries] = useState<NoteEntry[]>([])
   let [lastModified, setLastModified] = useState<NoteEntry|null>(null)
 
   useEffect(() => {
@@ -41,12 +46,21 @@ const CreateNote = () => {
             <CreateNoteCard key={ entry.id }
               data={ entry }
               addNoteEntry={ (type, depth, parent) => {
-                const newNote = new NoteEntry(type, depth);
+                const newNote = new NoteEntry(type, depth, [], parent);
                 setLastModified(newNote)
 
                 parent.children.push(newNote)
                 setEntries([...entries]) 
-              }
+              } }
+              removeNoteEntry={ (entry) => {
+                if (entry.parent) {
+                  entry.parent.children.splice(entry.parent.children.indexOf(entry), 1)
+                }else {
+                  entries.splice(entries.indexOf(entry), 1)
+                }
+
+                setEntries([...entries]) 
+              } 
             } />
           ))}
         </div>
