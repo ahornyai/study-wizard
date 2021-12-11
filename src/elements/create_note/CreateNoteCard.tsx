@@ -13,11 +13,12 @@ export enum EntryType {
 }
 
 interface CreateNoteCardProps {
+    className?: string
     data: NoteEntry
     addNoteEntry: (type:EntryType, depth:number) => void
 }
 
-export const CreateNoteCard = ({ data, addNoteEntry }:CreateNoteCardProps) => {
+export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardProps) => {
     const { type, depth, children } = data;
     const [dropdownShow, setDropdown] = useState(false)
     const btnDropdownRef = useRef(null)
@@ -45,11 +46,11 @@ export const CreateNoteCard = ({ data, addNoteEntry }:CreateNoteCardProps) => {
     }
 
     return (
-        <div className="lg:w-1/2 lg:mx-auto">
-            <div className="bg-gray-800 p-3 flex rounded-lg space-x-4 w-full">
+        <div className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "") + className } >
+            <div className={ "bg-gray-800 p-3 flex rounded-lg space-x-4 max-w-full" } style={{ marginLeft: depth * 20 }}>
                 <CreateNoteEntry type={ type === EntryType.DEFINITION ? "term" : "note" } />
 
-                { type === EntryType.DEFINITION ? 
+                { depth < 8 && (type === EntryType.DEFINITION ? 
                 <span className="font-bold text-green-500 mt-1">│</span> :
                 <OutsideClickHandler onOutsideClick={ closeDropdown }>
                     <FontAwesomeIcon onClick={ dropdownShow ? closeDropdown : openDropdown } forwardedRef={ btnDropdownRef } className="font-bold text-2xl text-gray-300 hover:text-blue-400 !ml-2 !mr-3 mt-[6px] cursor-pointer" icon={ faPlus } />
@@ -63,14 +64,14 @@ export const CreateNoteCard = ({ data, addNoteEntry }:CreateNoteCardProps) => {
                         </p>
                     </div>
                 </OutsideClickHandler>
-                }
+                )}
                 
                 { type === EntryType.DEFINITION && 
                 <CreateNoteEntry type={ "definition" } />
                 }
             </div>
 
-            { children.map(child => <CreateNoteCard key={ child.id } data={ child } addNoteEntry={ addNoteEntry } /> ) }
+            { children.map(child => <CreateNoteCard className="mt-4" key={ child.id } data={ child } addNoteEntry={ addNoteEntry } /> ) }
         </div>
     )
 }

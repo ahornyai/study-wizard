@@ -1,6 +1,6 @@
 import CreateNoteHeader from "../elements/create_note/CreateNoteHeader"
 import AddNoteCard from "../elements/create_note/AddNoteEntry"
-import { CreateNoteCard, EntryType } from "../elements/create_note/CreateNoteEntry"
+import { CreateNoteCard, EntryType } from "../elements/create_note/CreateNoteCard"
 import { useEffect, useState } from "react"
 import { nanoid } from 'nanoid';
 
