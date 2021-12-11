@@ -1,13 +1,13 @@
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import './index.css';
+import './index.css'
 
 import Navbar from './elements/Navbar'
 
-import Home from './pages/Home';
-import Notes from './pages/Notes';
-import CreateNote from './pages/CreateNote';
+import Home from './pages/Home'
+import Notes from './pages/Notes'
+import CreateNote from './pages/CreateNote'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,4 +21,4 @@ ReactDOM.render(
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
-);
+)
