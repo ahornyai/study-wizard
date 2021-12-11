@@ -36,8 +36,8 @@ const CreateNote = () => {
           {entries.map(entry => (
             <CreateNoteCard key={ entry.id }
               data={ entry }
-              addNoteEntry={ (type, depth) => {
-                entry.children.push(new NoteEntry(type, depth))
+              addNoteEntry={ (type, depth, parent) => {
+                parent.children.push(new NoteEntry(type, depth))
                 setEntries([...entries]) 
               }
             } />

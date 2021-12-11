@@ -15,8 +15,19 @@ export enum EntryType {
 interface CreateNoteCardProps {
     className?: string
     data: NoteEntry
-    addNoteEntry: (type:EntryType, depth:number) => void
+    addNoteEntry: (type:EntryType, depth:number, parent:NoteEntry) => void
 }
+
+const colorDepthArray = [
+    "border-green-300",
+    "border-blue-600",
+    "border-indigo-600",
+    "border-pink-600",
+    "border-yellow-400",
+    "border-purple-600",
+    "border-red-600",
+    "border-gray-600",
+];
 
 export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardProps) => {
     const { type, depth, children } = data;
@@ -46,8 +57,8 @@ export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardP
     }
 
     return (
-        <div className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "") + className } >
-            <div className={ "bg-gray-800 p-3 flex rounded-lg space-x-4 max-w-full" } style={{ marginLeft: depth * 20 }}>
+        <div className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "") + className } style={ depth !== 0 ? { paddingLeft: 10 } : {} } >
+            <div className={ "bg-gray-800 p-3 flex rounded-lg space-x-4" } >
                 <CreateNoteEntry type={ type === EntryType.DEFINITION ? "term" : "note" } />
 
                 { depth < 8 && (type === EntryType.DEFINITION ? 
@@ -56,10 +67,10 @@ export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardP
                     <FontAwesomeIcon onClick={ dropdownShow ? closeDropdown : openDropdown } forwardedRef={ btnDropdownRef } className="font-bold text-2xl text-gray-300 hover:text-blue-400 !ml-2 !mr-3 mt-[6px] cursor-pointer" icon={ faPlus } />
                     
                     <div ref={popoverDropdownRef} className={ (dropdownShow ? "block " : "hidden ") + "dropdown" } >
-                        <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.NOTE, depth+1) } >
+                        <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.NOTE, depth+1, data) } >
                             <FontAwesomeIcon className="text-green-300" icon={ faStickyNote } /> <span className="dropdown-text">Note</span>
                         </p>
-                        <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.DEFINITION, depth+1) } >
+                        <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.DEFINITION, depth+1, data) } >
                             <FontAwesomeIcon className="text-green-300" icon={ faQuoteRight } /> <span className="dropdown-text">Definition</span>
                         </p>
                     </div>
@@ -71,7 +82,9 @@ export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardP
                 }
             </div>
 
-            { children.map(child => <CreateNoteCard className="mt-4" key={ child.id } data={ child } addNoteEntry={ addNoteEntry } /> ) }
+            <div className={ "border-l-2 border-solid " + colorDepthArray[depth] } style={ depth !== 0 ? { marginLeft: 20 } : {} } >
+                { children.map(child => <CreateNoteCard className="mt-4" key={ child.id } data={ child } addNoteEntry={ addNoteEntry } /> ) }
+            </div>
         </div>
     )
 }
