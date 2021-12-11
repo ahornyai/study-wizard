@@ -21,10 +21,14 @@ export class NoteEntry {
 
 const CreateNote = () => {
   let [entries, setEntries] = useState<NoteEntry[]>([new NoteEntry(EntryType.NOTE, 0, [new NoteEntry(EntryType.NOTE, 1, [])])])
+  let [lastModified, setLastModified] = useState<NoteEntry|null>(null)
 
   useEffect(() => {
-    window.scroll({left: 0, top: document.body.scrollHeight, behavior: "smooth" })
-  }, [entries])
+    if (lastModified === null)
+      return
+
+    document.getElementById(lastModified.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [lastModified])
 
   return (
     <div className="text-white container mx-auto py-16 text-center">
@@ -37,13 +41,21 @@ const CreateNote = () => {
             <CreateNoteCard key={ entry.id }
               data={ entry }
               addNoteEntry={ (type, depth, parent) => {
-                parent.children.push(new NoteEntry(type, depth))
+                const newNote = new NoteEntry(type, depth);
+                setLastModified(newNote)
+
+                parent.children.push(newNote)
                 setEntries([...entries]) 
               }
             } />
           ))}
         </div>
-        <AddNoteCard addNoteEntry={ (type) => setEntries([...entries, new NoteEntry(type)]) } />
+        <AddNoteCard addNoteEntry={ (type) => {
+          const newNote = new NoteEntry(type);
+          setLastModified(newNote)
+
+          setEntries([...entries, newNote])
+        } } />
       </div>
     </div>
   )

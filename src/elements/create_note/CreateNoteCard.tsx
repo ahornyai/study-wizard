@@ -30,7 +30,7 @@ const colorDepthArray = [
 ];
 
 export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardProps) => {
-    const { type, depth, children } = data;
+    const { id, type, depth, children } = data;
     const [dropdownShow, setDropdown] = useState(false)
     const btnDropdownRef = useRef(null)
     const popoverDropdownRef = useRef(null)
@@ -57,7 +57,7 @@ export const CreateNoteCard = ({ className, data, addNoteEntry }:CreateNoteCardP
     }
 
     return (
-        <div className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "") + className } style={ depth !== 0 ? { paddingLeft: 10 } : {} } >
+        <div id={ id } className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "") + className } style={ depth !== 0 ? { paddingLeft: 10 } : {} } >
             <div className={ "bg-gray-800 p-3 flex rounded-lg space-x-4" } >
                 <CreateNoteEntry type={ type === EntryType.DEFINITION ? "term" : "note" } />
 
