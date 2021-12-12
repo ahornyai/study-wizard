@@ -2,9 +2,10 @@ import { useRef, useState } from 'react';
 import { createPopper } from '@popperjs/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faStickyNote, faQuoteRight, faTrash, faAngleLeft, faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { NoteEntry } from '../../pages/CreateNote';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { SortableElement } from 'react-sortable-hoc';
 
+import { NoteEntry } from '../../pages/CreateNote';
 import CreateNoteEntry from '../components/CreateNoteEntry';
 
 export enum EntryType {
@@ -30,7 +31,7 @@ const colorDepthArray = [
     "border-gray-600",
 ];
 
-export const CreateNoteCard = ({ className = "", data, addNoteEntry, removeNoteEntry }:CreateNoteCardProps) => {
+export const CreateNoteCard = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry }:CreateNoteCardProps) => {
     const { id, type, depth, children } = data;
     const [dropdownShow, setDropdown] = useState(false)
     const [expanded, setExpanded] = useState(true)
@@ -64,7 +65,7 @@ export const CreateNoteCard = ({ className = "", data, addNoteEntry, removeNoteE
                 <CreateNoteEntry className={ data.hasChildren() ? "mr-2" : "" } entry={ data } type={ type === EntryType.DEFINITION ? "term" : "note" } />
 
                 { (type === EntryType.DEFINITION && !data.hasChildren()) && 
-                <span className="font-bold text-green-500 mt-1">│</span>
+                <span className="font-bold text-green-500 mt-1 select-none">│</span>
                 }
                 
                 { (type === EntryType.DEFINITION && !data.hasChildren()) && 
@@ -79,7 +80,7 @@ export const CreateNoteCard = ({ className = "", data, addNoteEntry, removeNoteE
                     <OutsideClickHandler onOutsideClick={ closeDropdown }>
                         <FontAwesomeIcon onClick={ dropdownShow ? closeDropdown : openDropdown } forwardedRef={ btnDropdownRef } className={ "font-bold text-xl text-gray-300 hover:text-blue-400 !mr-2 mt-2 cursor-pointer" } icon={ faPlus } />
                         
-                        <div ref={popoverDropdownRef} className={ (dropdownShow ? "block " : "hidden ") + "dropdown" } >
+                        <div ref={popoverDropdownRef} className={ (dropdownShow ? "block " : "hidden ") + "dropdown select-none " } >
                             <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.NOTE, depth+1, data) } >
                                 <FontAwesomeIcon className="text-green-300" icon={ faStickyNote } /> <span className="dropdown-text">Note</span>
                             </p>
@@ -95,9 +96,9 @@ export const CreateNoteCard = ({ className = "", data, addNoteEntry, removeNoteE
 
             { expanded &&
             <div className={ "border-l-2 border-solid " + colorDepthArray[depth] } style={ depth !== 0 ? { marginLeft: 20 } : {} } >
-                { children.map(child => <CreateNoteCard className="mt-4" key={ child.id } data={ child } removeNoteEntry={ removeNoteEntry } addNoteEntry={ addNoteEntry } /> ) }
+                { children.map((child, index) => <CreateNoteCard index={ index } className="mt-4" key={ child.id } data={ child } removeNoteEntry={ removeNoteEntry } addNoteEntry={ addNoteEntry } /> ) }
             </div>
             }
         </div>
     )
-}
+})

@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react'
+import { nanoid } from 'nanoid';
+import { arrayMove } from 'react-sortable-hoc';
+
 import CreateNoteHeader from "../elements/create_note/CreateNoteHeader"
 import AddNoteCard from "../elements/create_note/AddNoteEntry"
-import { CreateNoteCard, EntryType } from "../elements/create_note/CreateNoteCard"
-import { useEffect, useState } from "react"
-import { nanoid } from 'nanoid';
+import { EntryType } from "../elements/create_note/CreateNoteCard"
+import NoteEntryList from '../elements/components/NoteEntryList';
 
 export class NoteEntry {
   id: string
@@ -29,10 +32,10 @@ const CreateNote = () => {
   let [lastModified, setLastModified] = useState<NoteEntry|null>(null)
 
   useEffect(() => {
-    if (lastModified === null)
+      if (lastModified === null)
       return
 
-    document.getElementById(lastModified.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      document.getElementById(lastModified.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [lastModified])
 
   return (
@@ -41,29 +44,32 @@ const CreateNote = () => {
 
       <div className="grid grid-cols-1 mt-10 gap-3">
         <CreateNoteHeader />
-        <div className="grid grid-cols-1 gap-3">
-          {entries.map(entry => (
-            <CreateNoteCard key={ entry.id }
-              data={ entry }
-              addNoteEntry={ (type, depth, parent) => {
-                const newNote = new NoteEntry(type, depth, [], parent);
-                setLastModified(newNote)
+        <NoteEntryList children={entries}
+          lockAxis="y"
+          axis="y"
+          shouldCancelStart={ (e: any) => ['input', 'textarea', 'select', 'option', 'button', 'path', 'svg', 'span'].indexOf(e.target.tagName.toLowerCase()) !== -1 || e.target.onclick }
+          addNoteEntry={ (type, depth, parent) => {
+            const newNote = new NoteEntry(type, depth, [], parent);
+            setLastModified(newNote)
 
-                parent.children.push(newNote)
-                setEntries([...entries]) 
-              } }
-              removeNoteEntry={ (entry) => {
-                if (entry.parent) {
+            parent.children.push(newNote)
+            setEntries([...entries]) 
+          } }
+          removeNoteEntry={ (entry) => {
+              if (entry.parent) {
                   entry.parent.children.splice(entry.parent.children.indexOf(entry), 1)
-                }else {
+              }else {
                   entries.splice(entries.indexOf(entry), 1)
-                }
+              }
 
-                setEntries([...entries]) 
-              } 
-            } />
-          ))}
-        </div>
+              setEntries([...entries]) 
+          } }
+          onSortEnd={ ({oldIndex, newIndex}) => 
+            setEntries(arrayMove(
+              entries,
+              oldIndex,
+              newIndex,
+            )) } />
         <AddNoteCard addNoteEntry={ (type) => {
           const newNote = new NoteEntry(type);
           setLastModified(newNote)
