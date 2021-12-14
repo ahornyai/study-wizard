@@ -1,5 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { MouseEventHandler, MutableRefObject } from "react"
+
+interface AvatarProps {
+  className?: string
+  image?: string
+  size?: string
+  status?: string
+  statusBottom?: boolean
+  forwardedRef?: MutableRefObject<any>
+  onClick?: MouseEventHandler<any>
+}
 
 const Avatar = ({
   className = "",
@@ -7,8 +18,9 @@ const Avatar = ({
   size = "base",
   status = "",
   statusBottom = false,
-  ...newProps
-}) => {
+  forwardedRef,
+  onClick,
+}:AvatarProps) => {
   let finalClass = `${className} relative rounded-full`
   if (!image) finalClass += " bg-gray-300 flex items-center justify-center"
   let statusClass = `absolute rounded-full right-0 ${
@@ -37,12 +49,14 @@ const Avatar = ({
   else if (status === "online") statusClass += " bg-green-400"
   else if (status === "busy") statusClass += " bg-red-600"
   return (
-    <div className={finalClass} {...newProps}>
+    <div className={finalClass} >
       {image ? (
         <img
           src={image}
           alt="avatar"
           className="absolute left-0 top-0 w-full h-full rounded-full object-cover bg-[#19212C]"
+          ref={ forwardedRef }
+          onClick={ onClick }
         />
       ) : (
         <FontAwesomeIcon icon={faUser} />
