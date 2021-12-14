@@ -29,14 +29,14 @@ export class NoteEntry {
 
 const CreateNote = () => {
   let [entries, setEntries] = useState<NoteEntry[]>([])
-  let [lastModified, setLastModified] = useState<NoteEntry|null>(null)
+  let [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
 
   useEffect(() => {
-      if (lastModified === null)
-      return
+      if (lastAdded === null)
+        return
 
-      document.getElementById(lastModified.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [lastModified])
+      document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [lastAdded])
 
   return (
     <div className="text-white container mx-auto py-16 text-center">
@@ -50,7 +50,7 @@ const CreateNote = () => {
           shouldCancelStart={ (e: any) => ['input', 'textarea', 'select', 'option', 'button', 'path', 'svg', 'span'].indexOf(e.target.tagName.toLowerCase()) !== -1 || e.target.onclick }
           addNoteEntry={ (type, depth, parent) => {
             const newNote = new NoteEntry(type, depth, [], parent);
-            setLastModified(newNote)
+            setLastAdded(newNote)
 
             parent.children.push(newNote)
             setEntries([...entries]) 
@@ -64,15 +64,27 @@ const CreateNote = () => {
 
               setEntries([...entries]) 
           } }
-          onSortEnd={ ({oldIndex, newIndex}) => 
+          onSortEnd={ ({oldIndex, newIndex}) => {
             setEntries(arrayMove(
               entries,
               oldIndex,
               newIndex,
-            )) } />
+            )) }}
+          onSortChildren={ (oldIndex, newIndex, parent) => {
+            if (!parent)
+              return
+
+            parent.children = arrayMove(
+              parent.children,
+              oldIndex,
+              newIndex,
+            )
+
+            setEntries([...entries]) 
+          }} />
         <AddNoteCard addNoteEntry={ (type) => {
           const newNote = new NoteEntry(type);
-          setLastModified(newNote)
+          setLastAdded(newNote)
 
           setEntries([...entries, newNote])
         } } />
