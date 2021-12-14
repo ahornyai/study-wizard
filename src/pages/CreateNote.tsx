@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid';
-import { arrayMove } from 'react-sortable-hoc';
+import { arrayMoveImmutable } from 'array-move';
 
 import CreateNoteHeader from "../elements/create_note/CreateNoteHeader"
 import AddNoteCard from "../elements/create_note/AddNoteEntry"
@@ -65,7 +65,7 @@ const CreateNote = () => {
               setEntries([...entries]) 
           } }
           onSortEnd={ ({oldIndex, newIndex}) => {
-            setEntries(arrayMove(
+            setEntries(arrayMoveImmutable(
               entries,
               oldIndex,
               newIndex,
@@ -74,7 +74,7 @@ const CreateNote = () => {
             if (!parent)
               return
 
-            parent.children = arrayMove(
+            parent.children = arrayMoveImmutable(
               parent.children,
               oldIndex,
               newIndex,
