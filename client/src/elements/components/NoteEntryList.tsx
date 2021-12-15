@@ -1,6 +1,6 @@
 import { SortableContainer } from "react-sortable-hoc"
 import { NoteEntry } from "../../pages/dashboard/CreateNote"
-import { CreateNoteCard, EntryType } from "../create_note/CreateNoteCard"
+import { CreateNoteEntry, EntryType } from "../create_note/CreateNoteEntry"
 
 const colorDepthArray = [
     "border-green-300",
@@ -24,7 +24,7 @@ interface NoteEntryListProps {
 const NoteEntryList = SortableContainer(({children, addNoteEntry, removeNoteEntry, depth = -1, onSortChildren }:NoteEntryListProps) => {
     return (<div className={ depth !== -1 ? "border-l-2 border-solid " + colorDepthArray[depth] : "grid grid-cols-1 gap-3 w-full cursor-move" } style={ depth !== -1 ? { marginLeft: 20, marginTop: 16 } : {}} >
         {children.map((entry, index) => (
-            <CreateNoteCard key={ entry.id }
+            <CreateNoteEntry key={ entry.id }
                 index={ index }
                 data={ entry }
                 addNoteEntry={ addNoteEntry }

@@ -4,7 +4,7 @@ import { arrayMoveImmutable } from 'array-move';
 
 import CreateNoteHeader from "../../elements/create_note/CreateNoteHeader"
 import AddNoteCard from "../../elements/create_note/AddNoteEntry"
-import { EntryType } from "../../elements/create_note/CreateNoteCard"
+import { EntryType } from "../../elements/create_note/CreateNoteEntry"
 import NoteEntryList from '../../elements/components/NoteEntryList';
 
 export class NoteEntry {

@@ -31,7 +31,7 @@
         @apply ml-1 select-none;
     }
 
-    .text-input::placeholder {
+    .placeholder-capital::placeholder {
         text-transform: capitalize;
     }
 

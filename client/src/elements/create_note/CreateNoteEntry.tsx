@@ -6,7 +6,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { SortableElement } from 'react-sortable-hoc';
 
 import { NoteEntry } from '../../pages/dashboard/CreateNote';
-import CreateNoteEntry from '../components/CreateNoteEntry';
+import CreateNoteInput from '../components/CreateNoteInput';
 import NoteEntryList from '../components/NoteEntryList';
 
 export enum EntryType {
@@ -14,7 +14,7 @@ export enum EntryType {
     DEFINITION
 }
 
-interface CreateNoteCardProps {
+interface CreateNoteEntryProps {
     className?: string
     data: NoteEntry
     addNoteEntry: (type:EntryType, depth:number, parent:NoteEntry) => void
@@ -22,7 +22,7 @@ interface CreateNoteCardProps {
     onSortChildren: (oldIndex:number, newIndex:number, parent?:NoteEntry) => void
 }
 
-export const CreateNoteCard = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }:CreateNoteCardProps) => {
+export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }:CreateNoteEntryProps) => {
     const { id, type, depth, children } = data;
     const [dropdownShow, setDropdown] = useState(false)
     const [expanded, setExpanded] = useState(true)
@@ -53,14 +53,14 @@ export const CreateNoteCard = SortableElement(({ className = "", data, addNoteEn
     return (
         <div id={ id } className={ "lg:mx-auto " + (depth === 0 ? "lg:w-1/2 " : "w-full mt-4 ") + className } style={ depth !== 0 ? { paddingLeft: 10 } : {} } >
             <div className={ "bg-gray-800 p-3 flex rounded-lg space-x-4" } >
-                <CreateNoteEntry className={ data.hasChildren() ? "mr-2" : "" } entry={ data } type={ type === EntryType.DEFINITION ? "term" : "note" } />
+                <CreateNoteInput className={ data.hasChildren() ? "mr-2" : "" } entry={ data } type={ type === EntryType.DEFINITION ? "term" : "note" } />
 
                 { (type === EntryType.DEFINITION && !data.hasChildren()) && 
                 <span className="font-bold text-green-500 mt-1 select-none">│</span>
                 }
                 
                 { (type === EntryType.DEFINITION && !data.hasChildren()) && 
-                <CreateNoteEntry entry={ data } type={ "definition" } />
+                <CreateNoteInput entry={ data } type={ "definition" } />
                 }
 
                 { data.hasChildren() &&

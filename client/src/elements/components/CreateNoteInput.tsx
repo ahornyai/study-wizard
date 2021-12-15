@@ -13,7 +13,7 @@ const sizing = {
     definition: "w-2/3"
 }
 
-const CreateNoteEntry = ({ type, className = "", entry }:CreateNoteEntryProps) => {
+const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) => {
     let [isDone, setDone] = useState(false)
     let input = useRef<HTMLInputElement>(null)
 
@@ -34,9 +34,9 @@ const CreateNoteEntry = ({ type, className = "", entry }:CreateNoteEntryProps) =
             onBlur={ () => setDone(true) }
             type="text" 
             placeholder={ type === "note" && entry.children.length !== 0 ? "title" : type } 
-            className={ "item text-input " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
+            className={ "item text-input placeholder-capital " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
             ref={ input } />
     )
 }
 
-export default CreateNoteEntry;
+export default CreateNoteInput;

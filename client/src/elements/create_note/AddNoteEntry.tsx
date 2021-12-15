@@ -1,5 +1,5 @@
 import Button from "../components/Button"
-import { EntryType } from "./CreateNoteCard"
+import { EntryType } from "./CreateNoteEntry"
 
 interface AddNoteCardProps {
     addNoteEntry: (type:EntryType) => void
