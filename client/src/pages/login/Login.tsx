@@ -20,7 +20,7 @@ const Login = () => {
           <Button text="Login" size="sm" className="!mt-5" />
         </div>
 
-        <div className="w-full space-x-4 text-gray-100">
+        <div className="w-full space-x-4 text-gray-100 select-none">
           <span className="cursor-pointer hover:text-blue-400" onClick={ () => navigate("/register") }>Sign up</span><span className="cursor-pointer hover:text-blue-400" onClick={ () => navigate("/forgot") }>Forgot your password?</span>
         </div>
       </div>

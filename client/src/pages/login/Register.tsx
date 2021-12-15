@@ -29,7 +29,7 @@ const Register = () => {
           <Button text="Register" size="sm" className="!mt-5" />
         </div>
 
-        <div className="w-full space-x-4 text-gray-100">
+        <div className="w-full space-x-4 select-none text-gray-100">
           <span className="cursor-pointer hover:text-blue-400" onClick={ () => navigate("/login") }>Log in</span><span className="cursor-pointer hover:text-blue-400" onClick={ () => navigate("/forgot") }>Forgot your password?</span>
         </div>
       </div>

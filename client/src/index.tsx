@@ -12,6 +12,7 @@ import Notes from './pages/dashboard/Notes'
 import CreateNote from './pages/dashboard/CreateNote'
 import Login from './pages/login/Login'
 import Register from './pages/login/Register'
+import ForgotPassword from './pages/login/ForgotPassword'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render(
         
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
       </Routes>
     </UserContext.Provider>
   </BrowserRouter>,
