@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -14,10 +14,11 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-jdenticon-sprites';
 
 import { createPopper } from "@popperjs/core";
+import OutsideClickHandler from "react-outside-click-handler";
 
 import Avatar from "./components/Avatar"
 import Button from "./components/Button"
-import OutsideClickHandler from "react-outside-click-handler";
+import { UserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
@@ -25,6 +26,7 @@ const Navbar = () => {
     const avatarDropdownRef = useRef(null)
     const popoverDropdownRef = useRef(null)
     const navigate = useNavigate();
+    const user = useContext(UserContext)
 
     let dropdownInited = false
 
@@ -79,12 +81,13 @@ const Navbar = () => {
             </button>
           </div>
           <div className="items-center hidden lg:flex">
-            <Button onClick={() => navigate("/create_note")} text="Create note" size="sm" />
+            { user.loggedIn && <Button onClick={() => navigate("/create_note")} text="Create note" size="sm" /> }
             <FontAwesomeIcon
               icon={ faGithub }
               onClick={ () => window.location.replace("https://github.com/ahornyai/study-wizard/") }
               className="ml-6 text-2xl cursor-pointer"
             />
+            { user.loggedIn ?
             <OutsideClickHandler onOutsideClick={ closeDropdown }>
               <Avatar
                 onClick={ dropdownOpen ? closeDropdown : openDropdown } 
@@ -101,7 +104,12 @@ const Navbar = () => {
                       <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">Sign out</span>
                   </p>
               </div>
-            </OutsideClickHandler>
+            </OutsideClickHandler> :
+            <div>
+              <Button onClick={() => navigate("/login")} text="Log in" size="sm" className="ml-5" />
+              <Button onClick={() => navigate("/register")} text="Register" size="sm" className="ml-5" />
+            </div>
+            }
           </div>
           <FontAwesomeIcon
             icon={mobileOpen ? faTimes : faBars}
@@ -137,6 +145,7 @@ const Navbar = () => {
                     className="text-2xl mx-2 cursor-pointer"
                   />
                 </div>
+                { user.loggedIn ?
                 <OutsideClickHandler onOutsideClick={ closeDropdown }>
                   <Avatar
                     onClick={ dropdownOpen ? closeDropdown : openDropdown } 
@@ -153,7 +162,12 @@ const Navbar = () => {
                           <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">Sign out</span>
                       </p>
                   </div>
-                </OutsideClickHandler>
+                </OutsideClickHandler> :
+                <div>
+                  <Button onClick={() => {navigate("/login"); setMobileOpen(false)}} text="Log in" size="sm" className="mt-5 mr-5" />
+                  <Button onClick={() => {navigate("/register"); setMobileOpen(false)}} text="Register" size="sm" className="mt-5" />
+                </div> 
+                }
               </div>
             </div>
           )}
