@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { NoteEntry } from '../../pages/CreateNote'
+import { NoteEntry } from '../../pages/dashboard/CreateNote'
 
 interface CreateNoteEntryProps {
     type: 'note' | 'term' | 'definition'

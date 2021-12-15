@@ -5,7 +5,7 @@ import { faPlus, faStickyNote, faQuoteRight, faTrash, faAngleLeft, faAngleDown }
 import OutsideClickHandler from 'react-outside-click-handler';
 import { SortableElement } from 'react-sortable-hoc';
 
-import { NoteEntry } from '../../pages/CreateNote';
+import { NoteEntry } from '../../pages/dashboard/CreateNote';
 import CreateNoteEntry from '../components/CreateNoteEntry';
 import NoteEntryList from '../components/NoteEntryList';
 

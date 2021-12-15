@@ -1,5 +1,5 @@
 import { SortableContainer } from "react-sortable-hoc"
-import { NoteEntry } from "../../pages/CreateNote"
+import { NoteEntry } from "../../pages/dashboard/CreateNote"
 import { CreateNoteCard, EntryType } from "../create_note/CreateNoteCard"
 
 const colorDepthArray = [

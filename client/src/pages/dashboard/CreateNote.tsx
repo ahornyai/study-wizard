@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid';
 import { arrayMoveImmutable } from 'array-move';
 
-import CreateNoteHeader from "../elements/create_note/CreateNoteHeader"
-import AddNoteCard from "../elements/create_note/AddNoteEntry"
-import { EntryType } from "../elements/create_note/CreateNoteCard"
-import NoteEntryList from '../elements/components/NoteEntryList';
+import CreateNoteHeader from "../../elements/create_note/CreateNoteHeader"
+import AddNoteCard from "../../elements/create_note/AddNoteEntry"
+import { EntryType } from "../../elements/create_note/CreateNoteCard"
+import NoteEntryList from '../../elements/components/NoteEntryList';
 
 export class NoteEntry {
   id: string
