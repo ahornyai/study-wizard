@@ -56,9 +56,9 @@ const Navbar = () => {
     return (
         <div className="flex items-center h-20 px-6 justify-between bg-gray-800 text-gray-100 relative z-50">
           <div className="items-center">
-            <h1 className="font-bold text-2xl">StudyWizard</h1>
+            <h1 className="font-bold text-2xl select-none cursor-pointer" onClick={() => navigate("/")}>StudyWizard</h1>
           </div>
-          <div className="flex-1 ml-10 items-center hidden lg:flex">
+          <div className="flex-1 ml-5 items-center hidden lg:flex">
             <button
               onClick={() => navigate("/")}
               className="no-underline px-2 mr-3 text-gray-200 font-medium hover:text-blue-400"
