@@ -27,7 +27,14 @@ const Register = () => {
         email: email.current?.value,
         password: password.current?.value,
         passwordAgain: passwordAgain.current?.value
-      })
+      }).catch(err => {
+        if (err.response?.data?.message) {
+          setErrorMessage(err.response.data.message);
+        }
+      }).then(res => {
+        if (res?.data?.success)
+          navigate("/login")
+      });
     }
 
     return (
