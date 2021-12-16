@@ -43,4 +43,8 @@
             text-gray-200;
     }
 
+    .text-input:invalid:focus {
+        @apply outline-thickred;
+    }
+
 }

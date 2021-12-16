@@ -1,7 +1,7 @@
 import { Controller } from "../../api"
 
 const RegisterController = {
-    path: "/auth/register",
+    path: "auth/register",
     handler: (req, res) => {
         res.json({ message: "hello world" })
     }

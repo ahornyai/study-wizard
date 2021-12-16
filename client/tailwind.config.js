@@ -26,6 +26,7 @@ module.exports = {
     extend: {
       outline: {
         thickblue: ['5px solid #1e3a8a'],
+        thickred: ['5px solid #B91C1C'],
         zerowidth: ['0px solid #1e3a8a'],
       },
       spacing: {

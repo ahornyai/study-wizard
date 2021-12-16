@@ -55,31 +55,31 @@ export class API {
         // yanderedev reference???
 
         controllers.get?.forEach(controller => {
-            this.app.get(controller.path, controller.handler)
+            this.app.get("/api/" + controller.path, controller.handler)
         })
 
         controllers.post?.forEach(controller => {
-            this.app.post(controller.path, controller.handler)
+            this.app.post("/api/" + controller.path, controller.handler)
         })
 
         controllers.put?.forEach(controller => {
-            this.app.put(controller.path, controller.handler)
+            this.app.put("/api/" + controller.path, controller.handler)
         })
 
         controllers.delete?.forEach(controller => {
-            this.app.delete(controller.path, controller.handler)
+            this.app.delete("/api/" + controller.path, controller.handler)
         })
 
         controllers.options?.forEach(controller => {
-            this.app.options(controller.path, controller.handler)
+            this.app.options("/api/" + controller.path, controller.handler)
         })
 
         controllers.patch?.forEach(controller => {
-            this.app.patch(controller.path, controller.handler)
+            this.app.patch("/api/" + controller.path, controller.handler)
         })
 
         controllers.head?.forEach(controller => {
-            this.app.head(controller.path, controller.handler)
+            this.app.head("/api/" + controller.path, controller.handler)
         })
     }
 }
