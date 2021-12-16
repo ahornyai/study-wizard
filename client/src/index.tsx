@@ -10,9 +10,9 @@ import Navbar from './elements/Navbar'
 import Home from './pages/Home'
 import Notes from './pages/dashboard/Notes'
 import CreateNote from './pages/dashboard/CreateNote'
-import Login from './pages/login/Login'
-import Register from './pages/login/Register'
-import ForgotPassword from './pages/login/ForgotPassword'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
+import ForgotPassword from './pages/auth/ForgotPassword'
 
 ReactDOM.render(
   <BrowserRouter>

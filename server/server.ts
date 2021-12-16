@@ -1,20 +1,16 @@
 import express from "express";
-import path from "path";
+import { API } from "./api";
 
-const PORT = process.env.PORT || 5000;
-const app = express();
+import RegisterController from "./controllers/auth/register";
 
-app.use(express.json());
-app.use(express.static("../client/build"));
-
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
-
-app.get("/api/hello", (req, res) => {
-  res.send({ message: "Hello World!" });
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+new API({
+    port: parseInt(process.env.PORT || "5000"),
+    controllers: {
+        post: [
+          RegisterController
+        ]
+    },
+    middlewares: [
+      express.json(),
+    ]
+})
