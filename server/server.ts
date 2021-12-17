@@ -5,6 +5,7 @@ import { API } from "./api"
 import dbInit from "./db/init"
 
 import RegisterController from "./controllers/auth/register"
+import LoginController from "./controllers/auth/login"
 
 dbInit()
 
@@ -14,6 +15,7 @@ new API({
         post: [
           //auth
           RegisterController,
+          LoginController
         ]
     },
     middlewares: [

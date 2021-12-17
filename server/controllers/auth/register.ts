@@ -1,6 +1,5 @@
 import UserModel from "../../db/models/UserModel";
 import { Controller } from "../../api"
-import { Op } from "sequelize";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const alphaNumerical = /^[a-zA-Z0-9]+$/
@@ -66,18 +65,16 @@ const RegisterController = {
             return
         }
 
-        const user = await UserModel.create({
+        await UserModel.create({
             username,
             email,
             password
         })
 
-        console.log(user)
-
         res.send({
             success: true
         })
     }
-} as Controller;
+} as Controller
 
 export default RegisterController

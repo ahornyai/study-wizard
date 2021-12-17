@@ -10,7 +10,7 @@ const Register = () => {
     const form = useRef<HTMLFormElement>(null)
     const username = useRef<HTMLInputElement>(null)
     const email = useRef<HTMLInputElement>(null)
-    const password = useRef<HTMLInputElement>(null);
+    const password = useRef<HTMLInputElement>(null)
     const passwordAgain = useRef<HTMLInputElement>(null)
 
     const handleRegister = () => {
@@ -43,7 +43,7 @@ const Register = () => {
       <div className="pt-40 text-white container space-y-4 text-center">
         <ToastContainer theme="dark" style={ { marginTop: 80 } } />
 
-        <form ref={ form } onSubmit={ (e) => e.preventDefault() } className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 mb-4">
+        <form ref={ form } onSubmit={ (e) => e.preventDefault() } className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 !mb-4">
           <h1 className={ "text-2xl font-bold mb-5" }>Register</h1>
           <input type="text" 
             placeholder="Username" 
