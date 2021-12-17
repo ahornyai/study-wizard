@@ -31,20 +31,22 @@ const RegisterController = {
 
         if (mailFormat.test(email) === false) {
             res.status(400).send({
-                message: "Invalid email"
+                error: "Invalid email"
             })
             return
         }
 
         if (password.length < 6) {
             res.status(400).send({
-                message: "Password must be at least 6 characters long"
+                error: "Password must be at least 6 characters long"
             })
             return
         }
 
         if (password !== passwordAgain) {
-            res.status(400).send({ error: "Passwords do not match" })
+            res.status(400).send({
+                error: "Passwords do not match" 
+            })
             return
         }
 
