@@ -1,11 +1,13 @@
+import UserModel from "../../db/models/UserModel";
 import { Controller } from "../../api"
+import { Op } from "sequelize";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const alphaNumerical = /^[a-zA-Z0-9]+$/
 
 const RegisterController = {
     path: "auth/register",
-    handler: (req, res) => {
+    handler: async (req, res) => {
         const { username, email, password, passwordAgain } = req.body
 
         if (!username || !email || !password || !passwordAgain) {
@@ -49,6 +51,28 @@ const RegisterController = {
             })
             return
         }
+
+        if (await UserModel.findOne({ where: { username } })) {
+            res.status(400).send({
+                error: "Username already taken"
+            })
+            return
+        }
+
+        if (await UserModel.findOne({ where: { email } })) {
+            res.status(400).send({
+                error: "Email already taken"
+            })
+            return
+        }
+
+        const user = await UserModel.create({
+            username,
+            email,
+            password
+        })
+
+        console.log(user)
 
         res.send({
             success: true

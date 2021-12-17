@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import connection from '../connection'
+import bcrypt from 'bcrypt'
 
 interface UserAttributes {
   id: number
@@ -17,8 +18,8 @@ class UserModel extends Model<UserAttributes, UserInput> implements UserAttribut
     public username!: string
     public password!: string
 
-    public readonly lastLogin!: Date
-    public readonly regDate!: Date
+    public readonly createdAt!: Date
+    public readonly updatedAt!: Date
 }
 
 UserModel.init({
@@ -42,9 +43,35 @@ UserModel.init({
         allowNull: false
     }
 }, {
+    tableName: 'users',
     timestamps: true,
     sequelize: connection
 })
+
+//from https://gist.github.com/JesusMurF/9d206738aa54131a6e7ac88ab2d9084e
+
+UserModel.beforeCreate((user, options) => {
+    return cryptPassword(user.password)
+      .then(success => {
+        user.password = success as string
+      })
+      .catch(err => {
+        if (err) console.log(err)
+      });
+  });
+
+function cryptPassword(password: string) {
+    return new Promise((resolve, reject) => {
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) return reject(err)
+
+            bcrypt.hash(password, salt, (err, hash) => {
+                if (err) return reject(err)
+                resolve(hash)
+            });
+        });
+    });
+}
 
 
 export interface UserInput extends Optional<UserAttributes, 'id' | 'lastLogin' | 'regDate'> {}

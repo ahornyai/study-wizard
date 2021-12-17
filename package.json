@@ -8,7 +8,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project .",
     "build-prod": "cd client && npm install && npm run build && cd .. && npm install && npm run build",
-    "server": "nodemon --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node server/server.ts",
+    "server": "nodemon -r dotenv/config --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node server/server.ts",
     "client": "cd client && npm start && cd ..",
     "dev": "concurrently \"npm run client\" \"npm run server\""
   },
@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/ahornyai/study-wizard#readme",
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/mysql": "^2.15.19",
     "@types/sequelize": "^4.28.10",
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mysql2": "^2.3.3",
