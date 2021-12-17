@@ -19,6 +19,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Avatar from "./components/Avatar"
 import Button from "./components/Button"
 import { UserContext } from "../contexts/UserContext";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
@@ -27,6 +28,7 @@ const Navbar = () => {
     const popoverDropdownRef = useRef(null)
     const navigate = useNavigate();
     const user = useContext(UserContext)
+    const { t } = useTranslation()
 
     let dropdownInited = false
 
@@ -65,23 +67,23 @@ const Navbar = () => {
               onClick={() => navigate("/")}
               className="no-underline px-2 mr-3 text-gray-200 font-medium hover:text-blue-400"
             >
-              Home
+              { t("home") }
             </button>
             <button
               onClick={() => navigate("/notes")}
               className="no-underline px-2 mr-3 font-medium hover:text-blue-400"
             >
-              My notes
+              { t("my-notes") }
             </button>
             <button
               onClick={() => navigate("/shared_notes")}
               className="no-underline px-2 mr-3 font-medium hover:text-blue-400"
             >
-              Shared notes
+              { t("shared-notes") }
             </button>
           </div>
           <div className="items-center hidden lg:flex">
-            { user.loggedIn && <Button onClick={() => navigate("/create_note")} text="Create note" size="sm" /> }
+            { user.loggedIn && <Button onClick={() => navigate("/create_note")} text={ t("create-note") } size="sm" /> }
             <FontAwesomeIcon
               icon={ faGithub }
               onClick={ () => window.location.replace("https://github.com/ahornyai/study-wizard/") }
@@ -98,16 +100,16 @@ const Navbar = () => {
 
               <div ref={popoverDropdownRef} className={ (dropdownOpen ? "block " : "hidden ") + "dropdown select-none " } >
                   <p className="dropdown-link" >
-                      <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">Settings</span>
+                      <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">{ t("settings") }</span>
                   </p>
                   <p className="dropdown-link" >
-                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">Sign out</span>
+                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">{ t("sign-out") }</span>
                   </p>
               </div>
             </OutsideClickHandler> :
             <div>
-              <Button onClick={() => navigate("/login")} text="Log in" size="sm" className="ml-5" />
-              <Button onClick={() => navigate("/register")} text="Register" size="sm" className="ml-5" />
+              <Button onClick={() => navigate("/login")} text={ t("login") } size="sm" className="ml-5" />
+              <Button onClick={() => navigate("/register")} text={ t("register") } size="sm" className="ml-5" />
             </div>
             }
           </div>
@@ -123,21 +125,21 @@ const Navbar = () => {
                   onClick={() => {navigate("/"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
                 >
-                  Home
+                  { t("home") }
                 </button>
                 <button
                   onClick={() => {navigate("/notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
-                  My notes
+                  { t("my-notes") }
                 </button>
                 <button
                   onClick={() => {navigate("/shared_notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
-                  Shared notes
+                  { t("shared-notes") }
                 </button>
-                <Button onClick={() => {navigate("/create_note"); setMobileOpen(false)}} text="Create note" size="sm" className="my-2" />
+                <Button onClick={() => {navigate("/create_note"); setMobileOpen(false)}} text={ t("create-note") } size="sm" className="my-2" />
                 <div className="my-2 flex justify-center">
                   <FontAwesomeIcon
                     icon={ faGithub }
@@ -156,16 +158,16 @@ const Navbar = () => {
 
                   <div ref={popoverDropdownRef} className={ (dropdownOpen ? "block " : "hidden ") + "dropdown select-none bg-gray-800" } >
                       <p className="dropdown-link bg-gray-700" >
-                          <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">Settings</span>
+                          <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">{ t("settings") }</span>
                       </p>
                       <p className="dropdown-link bg-gray-700" >
-                          <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">Sign out</span>
+                          <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">{ t("sign-out") }</span>
                       </p>
                   </div>
                 </OutsideClickHandler> :
                 <div>
-                  <Button onClick={() => {navigate("/login"); setMobileOpen(false)}} text="Log in" size="sm" className="mt-5 mr-5" />
-                  <Button onClick={() => {navigate("/register"); setMobileOpen(false)}} text="Register" size="sm" className="mt-5" />
+                  <Button onClick={() => {navigate("/login"); setMobileOpen(false)}} text={ t("login") } size="sm" className="mt-5 mr-5" />
+                  <Button onClick={() => {navigate("/register"); setMobileOpen(false)}} text={ t("register") } size="sm" className="mt-5" />
                 </div> 
                 }
               </div>

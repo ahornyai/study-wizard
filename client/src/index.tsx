@@ -16,6 +16,7 @@ import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
 
 import 'react-toastify/dist/ReactToastify.css'
+import './i18n'
 
 ReactDOM.render(
   <BrowserRouter>
