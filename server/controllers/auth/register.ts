@@ -11,56 +11,56 @@ const RegisterController = {
 
         if (!username || !email || !password || !passwordAgain) {
             res.status(400).send({
-                error: "All fields are required"
+                error: "all-fields-required"
             })
             return
         }
 
         if (alphaNumerical.test(username) === false) {
             res.status(400).send({
-                error: "Username must be alphanumerical"
+                error: "username-alphanumerical"
             })
             return
         }
 
         if (username.length < 3) {
             res.status(400).send({
-                error: "Username must be at least 3 characters long"
+                error: "username-min-char"
             })
             return
         }
 
         if (mailFormat.test(email) === false) {
             res.status(400).send({
-                error: "Invalid email"
+                error: "invalid-email"
             })
             return
         }
 
         if (password.length < 6) {
             res.status(400).send({
-                error: "Password must be at least 6 characters long"
+                error: "password-min-char"
             })
             return
         }
 
         if (password !== passwordAgain) {
             res.status(400).send({
-                error: "Passwords do not match" 
+                error: "passwords-dont-match" 
             })
             return
         }
 
         if (await UserModel.findOne({ where: { username } })) {
             res.status(400).send({
-                error: "Username already taken"
+                error: "username-taken"
             })
             return
         }
 
         if (await UserModel.findOne({ where: { email } })) {
             res.status(400).send({
-                error: "Email already taken"
+                error: "email-taken"
             })
             return
         }

@@ -9,7 +9,7 @@ const LoginController = {
 
         if (!username || !password) {
             res.status(400).send({
-                error: "All fields are required"
+                error: "all-fields-required"
             })
             return
         }
@@ -18,7 +18,7 @@ const LoginController = {
 
         if (!user) {
             res.status(400).send({
-                error: "Invalid username or password"
+                error: "invalid-username-password"
             })
             return
         }
@@ -26,14 +26,14 @@ const LoginController = {
         bcrypt.compare(password, user.password, (err, result) => {
             if (err) {
                 res.status(500).send({
-                    error: "Internal server error"
+                    error: "internal"
                 })
                 return
             }
 
             if (result === false) {
                 res.status(400).send({
-                    error: "Invalid username or password"
+                    error: "invalid-username-password"
                 })
                 return
             } else {

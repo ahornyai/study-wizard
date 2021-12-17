@@ -6,6 +6,7 @@ import CreateNoteHeader from "../../elements/create_note/CreateNoteHeader"
 import AddNoteCard from "../../elements/create_note/AddNoteEntry"
 import { EntryType } from "../../elements/create_note/CreateNoteEntry"
 import NoteEntryList from '../../elements/components/NoteEntryList';
+import { useTranslation } from 'react-i18next';
 
 export class NoteEntry {
   id: string
@@ -28,8 +29,9 @@ export class NoteEntry {
 }
 
 const CreateNote = () => {
-  let [entries, setEntries] = useState<NoteEntry[]>([])
-  let [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
+  const [entries, setEntries] = useState<NoteEntry[]>([])
+  const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
       if (lastAdded === null)
@@ -40,7 +42,7 @@ const CreateNote = () => {
 
   return (
     <div className="text-white container mx-auto py-16 text-center">
-      <h1 className="text-3xl font-bold">Create note</h1>
+      <h1 className="text-3xl font-bold">{ t("create-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">
         <CreateNoteHeader />

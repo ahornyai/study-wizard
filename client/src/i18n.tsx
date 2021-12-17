@@ -14,7 +14,7 @@ i18n
         interpolation: {
             escapeValue: false,
         },
-        react: {
+        react: { //todo: replace this with proper loading screen
             useSuspense: false
         }
     })

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NoteEntry } from '../../pages/dashboard/CreateNote'
 
 interface CreateNoteEntryProps {
@@ -14,8 +15,9 @@ const sizing = {
 }
 
 const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) => {
-    let [isDone, setDone] = useState(false)
-    let input = useRef<HTMLInputElement>(null)
+    const [isDone, setDone] = useState(false)
+    const input = useRef<HTMLInputElement>(null)
+    const { t } = useTranslation()
 
     useEffect(() => {
         if (isDone && input.current !== null && input.current !== document.activeElement) {
@@ -33,7 +35,7 @@ const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) =
             onKeyPress={ e => e.key === 'Enter' ? setDone(true) : null } 
             onBlur={ () => setDone(true) }
             type="text" 
-            placeholder={ type === "note" && entry.children.length !== 0 ? "title" : type } 
+            placeholder={ type === "note" && entry.children.length !== 0 ? t("title") : t(type) } 
             className={ "item text-input placeholder-capital " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
             ref={ input } />
     )

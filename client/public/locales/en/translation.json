@@ -1,10 +1,58 @@
 {
-    "home": "Home",
-    "my-notes": "My notes",
-    "shared-notes": "Shared notes",
     "login": "Login",
-    "register": "Register",
     "settings": "Settings",
     "sign-out": "Sign out",
-    "create-note": "Create note"
+
+    "home": {
+        "title": "Home",
+        "description": "Welcome to your favourite notes app"
+    },
+
+    "your-notes": {
+        "title": "Your notes"
+    },
+
+    "shared-notes": {
+        "title": "Shared notes"
+    },
+
+    "create-note": {
+        "title": "Create note",
+        "description": "Create a new note",
+        "placeholder": "Note title",
+        "submit": "Create",
+        "add-note": "Add note",
+        "add-definition": "Add definition"
+    },
+
+    "auth": {
+        "login": "Login",
+        "register": "Register",
+        "username": "Username",
+        "email": "Username",
+        "password": "Username",
+        "password-again": "Username",
+        "forgot-password-question": "Forgot your password?",
+        "reset-your-password": "Reset your password",
+        "send": "Send",
+        "errors": {
+            "passwords-dont-match": "Passwords don't match",
+            "all-fields-required": "All fields are required",
+            "username-alphanumerical": "Username must be alphanumerical",
+            "username-min-char": "Username must be at least 3 characters long",
+            "invalid-email": "Invalid email",
+            "passwords-min-char": "Password must be at least 6 characters long",
+            "username-taken": "Username already taken",
+            "email-taken": "Email already taken",
+            "invalid-username-password": "Invalid username or password",
+            "internal": "Internal server error"
+        }
+    },
+
+    "title": "Title",
+    "upload-file": "Upload file",
+
+    "note": "Note",
+    "term": "Term",
+    "definition": "Definition"
 }

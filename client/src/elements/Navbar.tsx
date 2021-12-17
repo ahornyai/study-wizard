@@ -67,19 +67,19 @@ const Navbar = () => {
               onClick={() => navigate("/")}
               className="no-underline px-2 mr-3 text-gray-200 font-medium hover:text-blue-400"
             >
-              { t("home") }
+              { t("home.title") }
             </button>
             <button
               onClick={() => navigate("/notes")}
               className="no-underline px-2 mr-3 font-medium hover:text-blue-400"
             >
-              { t("my-notes") }
+              { t("your-notes.title") }
             </button>
             <button
               onClick={() => navigate("/shared_notes")}
               className="no-underline px-2 mr-3 font-medium hover:text-blue-400"
             >
-              { t("shared-notes") }
+              { t("shared-notes.title") }
             </button>
           </div>
           <div className="items-center hidden lg:flex">
@@ -108,8 +108,8 @@ const Navbar = () => {
               </div>
             </OutsideClickHandler> :
             <div>
-              <Button onClick={() => navigate("/login")} text={ t("login") } size="sm" className="ml-5" />
-              <Button onClick={() => navigate("/register")} text={ t("register") } size="sm" className="ml-5" />
+              <Button onClick={() => navigate("/login")} text={ t("auth.login") } size="sm" className="ml-5" />
+              <Button onClick={() => navigate("/register")} text={ t("auth.register") } size="sm" className="ml-5" />
             </div>
             }
           </div>
@@ -125,19 +125,19 @@ const Navbar = () => {
                   onClick={() => {navigate("/"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 text-gray-200 font-medium hover:text-blue-400"
                 >
-                  { t("home") }
+                  { t("home.title") }
                 </button>
                 <button
                   onClick={() => {navigate("/notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
-                  { t("my-notes") }
+                  { t("your-notes.title") }
                 </button>
                 <button
                   onClick={() => {navigate("/shared_notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
-                  { t("shared-notes") }
+                  { t("shared-notes.title") }
                 </button>
                 <Button onClick={() => {navigate("/create_note"); setMobileOpen(false)}} text={ t("create-note") } size="sm" className="my-2" />
                 <div className="my-2 flex justify-center">
@@ -166,8 +166,8 @@ const Navbar = () => {
                   </div>
                 </OutsideClickHandler> :
                 <div>
-                  <Button onClick={() => {navigate("/login"); setMobileOpen(false)}} text={ t("login") } size="sm" className="mt-5 mr-5" />
-                  <Button onClick={() => {navigate("/register"); setMobileOpen(false)}} text={ t("register") } size="sm" className="mt-5" />
+                  <Button onClick={() => {navigate("/login"); setMobileOpen(false)}} text={ t("auth.login") } size="sm" className="mt-5 mr-5" />
+                  <Button onClick={() => {navigate("/register"); setMobileOpen(false)}} text={ t("auth.register") } size="sm" className="mt-5" />
                 </div> 
                 }
               </div>

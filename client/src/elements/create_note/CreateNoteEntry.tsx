@@ -8,6 +8,7 @@ import { SortableElement } from 'react-sortable-hoc';
 import { NoteEntry } from '../../pages/dashboard/CreateNote';
 import CreateNoteInput from '../components/CreateNoteInput';
 import NoteEntryList from '../components/NoteEntryList';
+import { t } from 'i18next';
 
 export enum EntryType {
     NOTE,
@@ -73,10 +74,10 @@ export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteE
                         
                         <div ref={popoverDropdownRef} className={ (dropdownShow ? "block " : "hidden ") + "dropdown select-none " } >
                             <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.NOTE, depth+1, data) } >
-                                <FontAwesomeIcon className="text-green-300" icon={ faStickyNote } /> <span className="dropdown-text">Note</span>
+                                <FontAwesomeIcon className="text-green-300" icon={ faStickyNote } /> <span className="dropdown-text">{ t("note") }</span>
                             </p>
                             <p className="dropdown-link" onClick={ () => addNoteEntry(EntryType.DEFINITION, depth+1, data) } >
-                                <FontAwesomeIcon className="text-green-300" icon={ faQuoteRight } /> <span className="dropdown-text">Definition</span>
+                                <FontAwesomeIcon className="text-green-300" icon={ faQuoteRight } /> <span className="dropdown-text">{ t("definition") }</span>
                             </p>
                         </div>
                     </OutsideClickHandler>
