@@ -37,15 +37,17 @@ const LoginController = {
                 })
                 return
             } else {
+                req.session.user = {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    updatedAt: user.updatedAt,
+                    createdAt: user.createdAt
+                }
+
                 res.send({
                     success: true,
-                    user: {
-                        id: user.id,
-                        username: user.username,
-                        email: user.email,
-                        updatedAt: user.updatedAt,
-                        createdAt: user.createdAt
-                    }
+                    user: req.session.user
                 })
             }
         })

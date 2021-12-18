@@ -14,6 +14,18 @@ dbInit()
 
 const SessionStore = require('express-session-sequelize')(session.Store);
 
+declare module 'express-session' {
+  interface SessionData {
+    user?: {
+      id: number,
+      username: string,
+      email: string,
+      updatedAt: Date,
+      createdAt: Date
+    };
+  }
+}
+
 new API({
     port: parseInt(process.env.PORT || "5000"),
     controllers: {
