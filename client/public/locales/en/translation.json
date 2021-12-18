@@ -34,19 +34,21 @@
         "password-again": "Password again",
         "forgot-password-question": "Forgot your password?",
         "reset-your-password": "Reset your password",
-        "send": "Send",
-        "errors": {
-            "passwords-dont-match": "Passwords don't match",
-            "all-fields-required": "All fields are required",
-            "username-alphanumerical": "Username must be alphanumerical",
-            "username-min-char": "Username must be at least 3 characters long",
-            "invalid-email": "Invalid email",
-            "password-min-char": "Password must be at least 6 characters long",
-            "username-taken": "Username already taken",
-            "email-taken": "Email already taken",
-            "invalid-username-password": "Invalid username or password",
-            "internal": "Internal server error"
-        }
+        "send": "Send"
+    },
+
+    "errors": {
+        "passwords-dont-match": "Passwords don't match",
+        "all-fields-required": "All fields are required",
+        "username-alphanumerical": "Username must be alphanumerical",
+        "username-min-char": "Username must be at least 3 characters long",
+        "invalid-email": "Invalid email",
+        "password-min-char": "Password must be at least 6 characters long",
+        "username-taken": "Username already taken",
+        "email-taken": "Email already taken",
+        "invalid-username-password": "Invalid username or password",
+        "internal": "Internal server error",
+        "unauthorized": "Unauthorized"
     },
 
     "title": "Title",

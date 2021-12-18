@@ -32,7 +32,7 @@ const Register = () => {
         passwordAgain: passwordAgain.current?.value
       }).catch(err => {
         if (err.response?.data?.error) {
-          toast(t("auth.errors." + err.response.data.error), { type: "error", theme: "dark" })
+          toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
         }
       }).then(res => {
         if (res?.data?.success) {
