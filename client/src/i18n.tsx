@@ -14,9 +14,6 @@ i18n
         interpolation: {
             escapeValue: false,
         },
-        react: { //todo: replace this with proper loading screen
-            useSuspense: false
-        }
     })
 
 export default i18n

@@ -6,7 +6,7 @@ const Home = () => {
     return (
       <div className="py-52 text-center text-white">
         <h1 className="text-3xl font-bold">StudyWizard</h1>
-        <h2 className="text-2xl">{ t('home-page.description') }</h2>
+        <h2 className="text-2xl">{ t('home.description') }</h2>
       </div>
     )
 }
