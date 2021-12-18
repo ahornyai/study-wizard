@@ -1,4 +1,4 @@
-import UserModel from "../../db/models/UserModel";
+import UserModel from "../../db/models/userModel";
 import { Controller } from "../../api"
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/

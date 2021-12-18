@@ -1,4 +1,4 @@
-import UserModel from './models/UserModel'
+import UserModel from './models/userModel'
 
 const isDev = process.env.NODE_ENV === 'development'
 

@@ -44,6 +44,7 @@ ReactDOM.render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="*" element={<ForgotPassword />} />
         </Routes>
       </UserContext.Provider>
     </Suspense>

@@ -1,4 +1,4 @@
-import UserModel from "../../db/models/UserModel";
+import UserModel from "../../db/models/userModel";
 import { Controller } from "../../api"
 import bcrypt from 'bcrypt'
 
