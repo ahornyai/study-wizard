@@ -8,12 +8,16 @@ i18n
     .use(languageDetector)
     .use(initReactI18next)
     .init({
+        supportedLngs: ["en", "hu"],
         fallbackLng: 'en',
-        debug: true,
+        debug: process.env.NODE_ENV !== 'production',
 
         interpolation: {
             escapeValue: false,
         },
+        detection: {
+            order: ['navigator'],
+        }
     })
 
 export default i18n

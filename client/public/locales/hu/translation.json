@@ -1,0 +1,58 @@
+{
+    "login": "Bejelentkezés",
+    "settings": "Beállítások",
+    "sign-out": "Kijelentkezés",
+
+    "home": {
+        "title": "Főoldal",
+        "description": "Üdvözöljük a főoldalon!"
+    },
+
+    "your-notes": {
+        "title": "Jegyzeteid"
+    },
+
+    "shared-notes": {
+        "title": "Megosztott jegyzeteid"
+    },
+
+    "create-note": {
+        "title": "Jegyzet létrehozása",
+        "description": "Készíts egy új jegyzetet",
+        "placeholder": "Jegyzet címe",
+        "submit": "Létrehozás",
+        "add-note": "Jegyzet hozzáadása",
+        "add-definition": "Definíció hozzáadása"
+    },
+
+    "auth": {
+        "login": "Bejelentkezés",
+        "register": "Regisztráció",
+        "username": "Felhasználónév",
+        "email": "E-mail",
+        "password": "Jelszó",
+        "password-again": "Jelszó ismét",
+        "forgot-password-question": "Elfelejtetted a jelszavad?",
+        "reset-your-password": "Jelszó visszaállítása",
+        "send": "Küldés",
+        "errors": {
+            "passwords-dont-match": "A jelszavak nem egyeznek",
+            "all-fields-required": "Minden mező kitöltése kötelező",
+            "username-alphanumerical": "A felhasználónév csak betűket és számokat tartalmazhat",
+            "username-min-char": "A felhasználónévnek legalább 3 karakternek kell lennie",
+            "invalid-email": "Érvénytelen e-mail cím",
+            "passwords-min-char": "A jelszónak legalább 6 karakternek kell lennie",
+            "username-taken": "A felhasználónév már foglalt",
+            "email-taken": "Ez az e-mail cím már foglalt",
+            "invalid-username-password": "Érvénytelen felhasználónév vagy jelszó",
+            "internal": "Hiba történt a bejelentkezés során"
+        }
+    },
+
+    "title": "Title",
+    "upload-file": "Fájl feltöltése",
+
+    "note": "Jegyzet",
+    "term": "Kifejezés",
+    "definition": "Definíció"
+}
