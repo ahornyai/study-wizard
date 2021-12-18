@@ -8,7 +8,8 @@ import connection from "./db/connection"
 
 import RegisterController from "./controllers/auth/register"
 import LoginController from "./controllers/auth/login"
-import UserController from "./controllers/user"
+import UserInfoController from "./controllers/user/info"
+import SignOutController from "./controllers/user/signout"
 
 dbInit()
 
@@ -31,7 +32,8 @@ new API({
         //auth
         RegisterController,
         LoginController,
-        UserController
+        UserInfoController,
+        SignOutController
     ],
     middlewares: [
       express.json(),

@@ -1,15 +1,17 @@
 import axios from "axios"
-import { useRef } from "react"
+import { useContext, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
+import { User, UserContext } from "../../contexts/UserContext"
 import Button from "../../elements/components/Button"
 
 const Login = () => {
     const navigate = useNavigate()
     const username = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
-    const { t } = useTranslation() 
+    const { t } = useTranslation()
+    const { setUser } = useContext(UserContext)
 
     const handleLogin = () => {
         if (!username.current?.value || !password.current?.value) {
@@ -21,11 +23,14 @@ const Login = () => {
             password: password.current?.value
         }).catch(err => {
             if (err.response?.data?.error) {
-                toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
+              toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
             }
         }).then(res => {
-            if (res?.data?.success) {
-                navigate("/notes")
+            if (res?.data.user) {
+              const user = res.data.user
+
+              setUser(new User(user.id, user.username, true))
+              navigate("/notes")
             }
         });
     }

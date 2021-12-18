@@ -1,9 +1,9 @@
-import AuthMiddleware from "../middlewares/authMiddleware"
-import { Controller } from "../api"
+import AuthMiddleware from "../../middlewares/authMiddleware"
+import { Controller } from "../../api"
 
-const UserController = {
+const UserInfoController = {
     method: "get",
-    path: "user",
+    path: "user/info",
     handler: async (req, res) => {
         res.send({
             success: true,
@@ -13,4 +13,4 @@ const UserController = {
     middlewares: [ AuthMiddleware ]
 } as Controller
 
-export default UserController
+export default UserInfoController

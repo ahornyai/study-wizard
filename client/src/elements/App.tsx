@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { useAsyncResource } from 'use-async-resource'
 
-import { syncUser, UserContext } from '../contexts/UserContext'
+import { syncUser, User, UserContext } from '../contexts/UserContext'
 
 import Navbar from './Navbar'
 
@@ -14,10 +15,11 @@ import Register from '../pages/auth/Register'
 import ForgotPassword from '../pages/auth/ForgotPassword'
 
 const App = () => {
-    const [ user ] = useAsyncResource(syncUser, [])
+    const [ resource ] = useAsyncResource(syncUser, [])
+    const [ user, setUser ] = useState<User>(resource())
 
     return (
-        <UserContext.Provider value={ user() } >
+        <UserContext.Provider value={ { user, setUser } } >
             <Navbar />
             
             <Routes>

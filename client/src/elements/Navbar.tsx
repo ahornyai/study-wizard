@@ -18,8 +18,9 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 import Avatar from "./components/Avatar"
 import Button from "./components/Button"
-import { UserContext } from "../contexts/UserContext";
+import { User, UserContext } from "../contexts/UserContext";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
@@ -27,29 +28,39 @@ const Navbar = () => {
     const avatarDropdownRef = useRef(null)
     const popoverDropdownRef = useRef(null)
     const navigate = useNavigate();
-    const user = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const { t } = useTranslation()
 
     let dropdownInited = false
 
     const openDropdown = () => {
-        if (!(avatarDropdownRef.current && popoverDropdownRef.current)) {
-            return
-        }
-        
-        if (!dropdownInited) {
-            createPopper(avatarDropdownRef.current, popoverDropdownRef.current, {
-                placement: "bottom",
-            })
-            
-            dropdownInited = true
-        }
-        
-        setDropdown(true)
+      if (!(avatarDropdownRef.current && popoverDropdownRef.current)) {
+          return
+      }
+      
+      if (!dropdownInited) {
+          createPopper(avatarDropdownRef.current, popoverDropdownRef.current, {
+              placement: "bottom",
+          })
+          
+          dropdownInited = true
+      }
+      
+      setDropdown(true)
     }
 
     const closeDropdown = () => {
-        setDropdown(false)
+      setDropdown(false)
+    }
+
+    const handleSignOut = () => {
+      axios.post("/api/user/signout").then(res => {
+        if (res.data.success) {
+          setUser(new User())
+          navigate("/")
+          setMobileOpen(false)
+        }
+      })
     }
 
     let avatar = createAvatar(style, {
@@ -103,7 +114,7 @@ const Navbar = () => {
                       <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">{ t("settings") }</span>
                   </p>
                   <p className="dropdown-link" >
-                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">{ t("sign-out") }</span>
+                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text" onClick={ handleSignOut }>{ t("sign-out") }</span>
                   </p>
               </div>
             </OutsideClickHandler> :
@@ -161,7 +172,7 @@ const Navbar = () => {
                           <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">{ t("settings") }</span>
                       </p>
                       <p className="dropdown-link bg-gray-700" >
-                          <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">{ t("sign-out") }</span>
+                          <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text" onClick={ handleSignOut }>{ t("sign-out") }</span>
                       </p>
                   </div>
                 </OutsideClickHandler> :

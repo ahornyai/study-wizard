@@ -15,7 +15,7 @@ export class User {
 }
 
 export const syncUser = () => {
-    return axios.get("/api/user").then(res => {
+    return axios.get("/api/user/info").then(res => {
         if (!res.data.error) {
             return new User(res.data.user.id, res.data.user.username, true)
         }
@@ -30,4 +30,4 @@ export const syncUser = () => {
     })
 }
 
-export const UserContext = createContext<User>(new User());
+export const UserContext = createContext({ user: new User(), setUser: (user: User) => {} });
