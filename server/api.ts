@@ -2,24 +2,16 @@ import express, { Application, RequestHandler } from 'express'
 import path from 'path'
 
 export interface Controller {
+    method: 'get' | 'post' | 'put' | 'delete' | 'patch' | 'head' | 'options'
     path: string
     handler: RequestHandler
-}
-
-export interface ControllerDefinition {
-    get?: Controller[]
-    post?: Controller[]
-    put?: Controller[]
-    delete?: Controller[]
-    options?: Controller[]
-    patch?: Controller[]
-    head?: Controller[]
+    middlewares?: RequestHandler[]
 }
 
 export interface APIDefinition {
     port: number
     middlewares: RequestHandler[]
-    controllers: ControllerDefinition
+    controllers: Controller[]
 }
 
 export class API {
@@ -51,35 +43,9 @@ export class API {
         })
     }
 
-    private registerRoutes(controllers: ControllerDefinition) {
-        // yanderedev reference???
-
-        controllers.get?.forEach(controller => {
-            this.app.get("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.post?.forEach(controller => {
-            this.app.post("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.put?.forEach(controller => {
-            this.app.put("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.delete?.forEach(controller => {
-            this.app.delete("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.options?.forEach(controller => {
-            this.app.options("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.patch?.forEach(controller => {
-            this.app.patch("/api/" + controller.path, controller.handler)
-        })
-
-        controllers.head?.forEach(controller => {
-            this.app.head("/api/" + controller.path, controller.handler)
-        })
+    private registerRoutes(controllers: Controller[]) {
+        controllers.forEach(controller => {
+            this.app[controller.method]("/api/" + controller.path, ...(controller.middlewares ? controller.middlewares : []), controller.handler)
+        });
     }
 }

@@ -3,6 +3,7 @@ import { Controller } from "../../api"
 import bcrypt from 'bcrypt'
 
 const LoginController = {
+    method: "post",
     path: "auth/login",
     handler: async (req, res) => {
         const { username, password } = req.body
@@ -40,7 +41,6 @@ const LoginController = {
                 req.session.user = {
                     id: user.id,
                     username: user.username,
-                    email: user.email,
                     updatedAt: user.updatedAt,
                     createdAt: user.createdAt
                 }

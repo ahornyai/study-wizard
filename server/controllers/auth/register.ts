@@ -5,6 +5,7 @@ const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const alphaNumerical = /^[a-zA-Z0-9]+$/
 
 const RegisterController = {
+    method: "post",
     path: "auth/register",
     handler: async (req, res) => {
         const { username, email, password, passwordAgain } = req.body

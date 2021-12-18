@@ -19,7 +19,6 @@ declare module 'express-session' {
     user?: {
       id: number,
       username: string,
-      email: string,
       updatedAt: Date,
       createdAt: Date
     };
@@ -28,16 +27,12 @@ declare module 'express-session' {
 
 new API({
     port: parseInt(process.env.PORT || "5000"),
-    controllers: {
-        post: [
-          //auth
-          RegisterController,
-          LoginController
-        ],
-        get: [
-          UserController
-        ]
-    },
+    controllers: [
+        //auth
+        RegisterController,
+        LoginController,
+        UserController
+    ],
     middlewares: [
       express.json(),
       bodyParser.urlencoded({ extended: true }),
