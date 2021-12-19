@@ -16,6 +16,7 @@ export class NoteEntry {
   type: EntryType
   depth: number
   children: NoteEntry[]
+  values: string[] = []
   parent?: NoteEntry
 
   constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = [], parent?: NoteEntry) {

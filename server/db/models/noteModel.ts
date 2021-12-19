@@ -11,13 +11,15 @@ export class NoteEntry {
     type: EntryType
     depth: number
     children: NoteEntry[]
+    values: string[] = []
     parent?: NoteEntry
   
-    constructor(id: string, type: EntryType, depth: number, children: NoteEntry[], parent?: NoteEntry) {
+    constructor(id: string, type: EntryType, depth: number, children: NoteEntry[], values: string[], parent?: NoteEntry) {
         this.id = id
         this.type = type
         this.depth = depth
         this.children = children
+        this.values = values
         this.parent = parent
     }
 

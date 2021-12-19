@@ -27,8 +27,8 @@ const CreateNoteHeader = ({ className = "", handleCreateNote } : CreateNoteHeade
 
     return (
         <div className={ `bg-gray-800 p-3 rounded-lg lg:mx-auto flex flex-wrap space-x-4 lg:w-1/2 ${className}` }>
-            <input type="text" placeholder={ t("title") } ref={ titleInput } className="text-input flex-1" />
-            <Button text={ t("upload-file") } size="sm" onClick={ () => fileInput.current?.click() } />
+            <input min={ 5 } max={ 50 } type="text" placeholder={ t("title") } ref={ titleInput } className="text-input flex-1" />
+            <Button text={ t("import-file") } size="sm" onClick={ () => fileInput.current?.click() } />
             <Button text={ t("create") } size="sm" onClick={ () => handleCreateNote(titleInput.current?.value || "") } />
 
             <input type="file" ref={ fileInput } onChange={ (e) => {

@@ -72,7 +72,7 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0, parent?: 
             throw new Error()
         }
 
-        if (entry.id === undefined || entry.type === undefined || entry.depth === undefined || !Array.isArray(entry.children)) {
+        if (entry.id === undefined || entry.type === undefined || entry.depth === undefined || !Array.isArray(entry.values) || !Array.isArray(entry.children)) {
             throw new Error()
         }
 
@@ -88,8 +88,34 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0, parent?: 
             throw new Error()
         }
 
+        if (entry.values.length === 0) {
+            throw new Error()
+        }
+
+        if (entry.values[0].trim().length < 3) {
+            throw new Error("term-min-char")
+        }
+
+        if (entry.values[0].length > 100) {
+            throw new Error("term-max-char")
+        }
+
+        if (entry.type === 1) {
+            if (entry.values.length !== 2) {
+                throw new Error()
+            }
+
+            if (entry.values[1].trim().length < 3) {
+                throw new Error("definition-min-char")
+            }
+
+            if (entry.values[1].trim().length > 100) {
+                throw new Error("definition-max-char")
+            }
+        }
+
         ids.push(entry.id)
-        entries.push(new NoteEntry(entry.id, entry.type as EntryType, entry.depth, convertEntries(entry.children, ids, depth + 1, entry), parent))
+        entries.push(new NoteEntry(entry.id, entry.type as EntryType, entry.depth, convertEntries(entry.children, ids, depth + 1, entry), [entry.values[0], entry.values[1] || ""], parent))
     }
 
     return entries

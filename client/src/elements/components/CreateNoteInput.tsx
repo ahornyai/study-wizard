@@ -31,8 +31,11 @@ const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) =
     }, [isDone]);
 
     return (
-        <input onFocus={ () => setDone(false) } 
+        <input min={ 3 }
+            max={ 100 }
+            onFocus={ () => setDone(false) } 
             onKeyPress={ e => e.key === 'Enter' ? setDone(true) : null } 
+            onChange= { e => entry.values[type === "definition" ? 1 : 0] = e.target.value }
             onBlur={ () => setDone(true) }
             type="text" 
             placeholder={ type === "note" && entry.children.length !== 0 ? t("title") : t(type) } 
