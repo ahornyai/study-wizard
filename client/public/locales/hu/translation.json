@@ -9,7 +9,9 @@
     },
 
     "your-notes": {
-        "title": "Jegyzeteid"
+        "title": "Jegyzeteid",
+        "entries_one": "{{count}} bejegyzés",
+        "entries_other": "{{count}} bejegyzések"
     },
 
     "shared-notes": {

@@ -9,7 +9,9 @@
     },
 
     "your-notes": {
-        "title": "Your notes"
+        "title": "Your notes",
+        "entries_one": "{{count}} entry",
+        "entries_other": "{{count}} entries"
     },
 
     "shared-notes": {
