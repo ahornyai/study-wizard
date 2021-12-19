@@ -42,17 +42,22 @@
         "all-fields-required": "All fields are required",
         "username-alphanumerical": "Username must be alphanumerical",
         "username-min-char": "Username must be at least 3 characters long",
+        "username-max-char": "Username must be at most 32 characters long",
         "invalid-email": "Invalid email",
         "password-min-char": "Password must be at least 6 characters long",
         "username-taken": "Username already taken",
         "email-taken": "Email already taken",
         "invalid-username-password": "Invalid username or password",
         "internal": "Internal server error",
-        "unauthorized": "Unauthorized"
+        "unauthorized": "Unauthorized",
+        "title-min-char": "Title must be at least 5 characters long",
+        "title-max-char": "Title must be at most 50 characters long",
+        "content-invalid": "Content is invalid"
     },
 
     "title": "Title",
     "upload-file": "Upload file",
+    "create": "Create",
 
     "note": "Note",
     "term": "Term",

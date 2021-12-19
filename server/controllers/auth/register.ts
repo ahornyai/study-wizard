@@ -8,7 +8,7 @@ const RegisterController = {
     method: "post",
     path: "auth/register",
     handler: async (req, res) => {
-        const { username, email, password, passwordAgain } = req.body
+        let { username, email, password, passwordAgain } = req.body
 
         if (!username || !email || !password || !passwordAgain) {
             res.status(400).send({
@@ -16,6 +16,10 @@ const RegisterController = {
             })
             return
         }
+
+        username = username.trim()
+        email = email.trim()
+        password = password.trim()
 
         if (alphaNumerical.test(username) === false) {
             res.status(400).send({
@@ -27,6 +31,13 @@ const RegisterController = {
         if (username.length < 3) {
             res.status(400).send({
                 error: "username-min-char"
+            })
+            return
+        }
+
+        if (username.length > 32) {
+            res.status(400).send({
+                error: "username-max-char"
             })
             return
         }

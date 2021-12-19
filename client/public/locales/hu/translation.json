@@ -43,17 +43,22 @@
         "all-fields-required": "Minden mező kitöltése kötelező",
         "username-alphanumerical": "A felhasználónév csak betűket és számokat tartalmazhat",
         "username-min-char": "A felhasználónévnek legalább 3 karakternek kell lennie",
+        "username-max-char": "A felhasználónévnek maximum 32 karakter hosszú lehet",
         "invalid-email": "Érvénytelen e-mail cím",
         "passwords-min-char": "A jelszónak legalább 6 karakternek kell lennie",
         "username-taken": "A felhasználónév már foglalt",
         "email-taken": "Ez az e-mail cím már foglalt",
         "invalid-username-password": "Érvénytelen felhasználónév vagy jelszó",
         "internal": "Hiba történt a bejelentkezés során",
-        "unauthorized": "Nincs jogosultságod a művelet végrehajtására"
+        "unauthorized": "Nincs jogosultságod a művelet végrehajtására",
+        "title-min-char": "A címnek legalább 3 karakter hosszúnak kell lennie",
+        "title-max-char": "A cím maximum 50 karakter hosszú lehet",
+        "content-invalid": "Hibás tartalom"
     },
 
     "title": "Title",
     "upload-file": "Fájl feltöltése",
+    "create": "Létrehozás",
 
     "note": "Jegyzet",
     "term": "Kifejezés",

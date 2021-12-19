@@ -23,8 +23,8 @@ interface CreateNoteEntryProps {
     onSortChildren: (oldIndex:number, newIndex:number, parent?:NoteEntry) => void
 }
 
-export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }:CreateNoteEntryProps) => {
-    const { id, type, depth, children } = data;
+export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }: CreateNoteEntryProps) => {
+    const { id, type, depth, children } = data
     const [dropdownShow, setDropdown] = useState(false)
     const [expanded, setExpanded] = useState(true)
     const btnDropdownRef = useRef(null)

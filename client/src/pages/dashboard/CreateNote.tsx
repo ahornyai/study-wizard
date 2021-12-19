@@ -7,6 +7,9 @@ import AddNoteCard from "../../elements/create_note/AddNoteEntry"
 import { EntryType } from "../../elements/create_note/CreateNoteEntry"
 import NoteEntryList from '../../elements/components/NoteEntryList';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 export class NoteEntry {
   id: string
@@ -32,6 +35,7 @@ const CreateNote = () => {
   const [entries, setEntries] = useState<NoteEntry[]>([])
   const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   useEffect(() => {
       if (lastAdded === null)
@@ -40,12 +44,31 @@ const CreateNote = () => {
       document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [lastAdded])
 
+  const handleCreateNote = (title: string) => {
+    axios.post('/api/notes/create', {
+      title: title,
+      content: JSON.stringify(entries, (k, v) => {
+        if (k === 'parent')
+          return undefined
+        else
+          return v
+      })
+    }).then(() => {
+      navigate("/notes")
+    }).catch(err => {
+      if (err.response?.data?.error) {
+        toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
+      }
+    })
+  }
+
   return (
     <div className="text-white container mx-auto py-16 text-center">
+      <ToastContainer theme="dark" style={ { marginTop: 80 } } />
       <h1 className="text-3xl font-bold">{ t("create-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">
-        <CreateNoteHeader />
+        <CreateNoteHeader handleCreateNote={ handleCreateNote } />
         <NoteEntryList children={entries}
           lockAxis="y"
           axis="y"
