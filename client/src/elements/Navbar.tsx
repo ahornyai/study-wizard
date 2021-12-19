@@ -64,7 +64,7 @@ const Navbar = () => {
     }
 
     let avatar = createAvatar(style, {
-      seed: 'sustown',
+      seed: user.username,
       dataUri: true
     });
 

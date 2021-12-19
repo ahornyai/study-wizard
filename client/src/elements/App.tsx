@@ -13,10 +13,12 @@ import CreateNote from '../pages/dashboard/CreateNote'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import ForgotPassword from '../pages/auth/ForgotPassword'
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 const App = () => {
     const [ resource ] = useAsyncResource(syncUser, [])
-    const [ user, setUser ] = useState<User>(resource())
+    const syncedData = resource()
+    const [ user, setUser ] = useState<User>(syncedData ? syncedData as User : new User())
 
     return (
         <UserContext.Provider value={ { user, setUser } } >
@@ -24,9 +26,9 @@ const App = () => {
             
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/notes" element={<Notes />} />
+                <Route path="/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
 
-                <Route path="/create_note" element={<CreateNote />} />
+                <Route path="/create_note" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />
                 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />

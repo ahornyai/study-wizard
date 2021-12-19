@@ -16,10 +16,10 @@ ReactDOM.render(
     <Suspense fallback={
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={150}
-          width={150}
+            type="Oval"
+            color="#00BFFF"
+            height={ 100 }
+            width={ 100 }
           />
       </div> } 
     >
