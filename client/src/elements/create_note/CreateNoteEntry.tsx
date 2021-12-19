@@ -68,7 +68,7 @@ export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteE
                 <FontAwesomeIcon onClick={ () => setExpanded(!expanded) } className={ "font-bold text-3xl text-gray-300 hover:text-blue-400 mt-1 !mr-0 !ml-0 cursor-pointer" } icon={ expanded ? faAngleDown : faAngleLeft } fixedWidth={ true } />
                 }
                 
-                <div className={ "!ml-" + (data.hasChildren() ? "2" : "4") }>
+                <div className={ "!ml-" + (data.hasChildren() ? "2" : "4") + " " + (depth > 7 ? "hidden" : "") }>
                     <OutsideClickHandler onOutsideClick={ closeDropdown }>
                         <FontAwesomeIcon onClick={ dropdownShow ? closeDropdown : openDropdown } forwardedRef={ btnDropdownRef } className={ "font-bold text-xl text-gray-300 hover:text-blue-400 !mr-2 mt-2 cursor-pointer" } icon={ faPlus } />
                         
@@ -83,7 +83,7 @@ export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteE
                     </OutsideClickHandler>
                 </div>
 
-                <FontAwesomeIcon onClick={ () => removeNoteEntry(data) } className="font-bold text-xl text-red-400 hover:text-red-500 !ml-1 !mr-3 mt-2 cursor-pointer" icon={ faTrash } />
+                <FontAwesomeIcon onClick={ () => removeNoteEntry(data) } className={ "font-bold text-xl text-red-400 hover:text-red-500 !ml-1 !mr-3 mt-2 cursor-pointer " + (depth > 7 ? "!ml-4" : "") } icon={ faTrash } />
             </div>
 
             { (expanded && data.hasChildren()) &&

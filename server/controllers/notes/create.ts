@@ -71,6 +71,10 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
         throw new Error("content-invalid")
     }
 
+    if (depth > 8 && content.length !== 0) {
+        throw new Error("content-invalid")
+    }
+
     for (let entry of content) {
         if (typeof entry !== "object") {
             throw new Error()
