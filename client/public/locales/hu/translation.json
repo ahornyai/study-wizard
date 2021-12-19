@@ -53,7 +53,11 @@
         "unauthorized": "Nincs jogosultságod a művelet végrehajtására",
         "title-min-char": "A címnek legalább 3 karakter hosszúnak kell lennie",
         "title-max-char": "A cím maximum 50 karakter hosszú lehet",
-        "content-invalid": "Hibás tartalom"
+        "content-invalid": "Hibás tartalom",
+        "term-min-char": "A kifejezésnek legalább 3 karakter hosszúnak kell lennie",
+        "term-max-char": "A kifejezés maximum 50 karakter hosszú lehet",
+        "definition-min-char": "A definíciónak legalább 3 karakter hosszúnak kell lennie",
+        "definition-max-char": "A definíció maximum 100 karakter hosszú lehet"
     },
 
     "title": "Title",

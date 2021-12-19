@@ -43,9 +43,9 @@ const CreateNoteController = {
 
         try {
             entries = convertEntries(content)
-        }catch (e) {
+        }catch (e: any) {
             res.status(400).send({
-                error: "content-invalid"
+                error: e.message ? e.message : "content-invalid"
             })
 
             return
@@ -64,8 +64,12 @@ const CreateNoteController = {
     middlewares: [ AuthMiddleware ]
 } as Controller
 
-function convertEntries(content: any[], ids: string[] = [], depth = 0, parent?: NoteEntry): NoteEntry[] {
+function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntry[] {
     let entries = []
+
+    if (content.length === 0 && depth === 0) {
+        throw new Error("content-invalid")
+    }
 
     for (let entry of content) {
         if (typeof entry !== "object") {
@@ -115,7 +119,7 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0, parent?: 
         }
 
         ids.push(entry.id)
-        entries.push(new NoteEntry(entry.id, entry.type as EntryType, entry.depth, convertEntries(entry.children, ids, depth + 1, entry), [entry.values[0], entry.values[1] || ""], parent))
+        entries.push(new NoteEntry(entry.id, entry.type as EntryType, entry.depth, convertEntries(entry.children, ids, depth + 1), [entry.values[0], entry.values[1] || ""]))
     }
 
     return entries

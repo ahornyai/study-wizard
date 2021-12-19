@@ -52,7 +52,11 @@
         "unauthorized": "Unauthorized",
         "title-min-char": "Title must be at least 5 characters long",
         "title-max-char": "The title cannot be longer than 50 characters",
-        "content-invalid": "Content is invalid"
+        "content-invalid": "Content is invalid",
+        "term-min-char": "Term must be at least 3 characters long",
+        "term-max-char": "Term cannot be longer than 100 characters",
+        "definition-min-char": "Definition must be at least 3 characters long",
+        "definition-max-char": "Definition cannot be longer than 100 characters"
     },
 
     "title": "Title",
