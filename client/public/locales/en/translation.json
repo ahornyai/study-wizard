@@ -10,8 +10,7 @@
 
     "your-notes": {
         "title": "Your notes",
-        "entries_one": "{{count}} entry",
-        "entries_other": "{{count}} entries"
+        "last-update": "Last update"
     },
 
     "shared-notes": {

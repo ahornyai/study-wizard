@@ -6,20 +6,36 @@ const ListNotesController = {
     method: "get",
     path: "notes/list",
     handler: async (req, res) => {
-        const { pageParam, limitParam } = req.query
-        const page = parseInt(pageParam?.toString() || "1")
-        const limit = parseInt(limitParam?.toString() || "9")
+        const { page } = req.query
+        const convertedPage = parseInt(page?.toString() || "1") - 1
+
+        if (convertedPage < 0) {
+            res.status(400).send({
+                error: "Page must be a positive number"
+            })
+            return
+        }
 
         const notes = await NoteModel.findAll( { 
             attributes: ["id", "title", "updatedAt"],
             where: { authorId: req.session.user?.id },
             order: [["createdAt", "DESC"]],
-            limit,
-            offset: (page - 1) * 9
+            limit: 9,
+            offset: convertedPage * 9
         })
 
+        const hasMore = await NoteModel.count({
+            where: { authorId: req.session.user?.id }
+        }) > (convertedPage + 1) * 9
+
         res.status(200).send({
-            notes
+            notes: notes.map(note => ({
+                id: note.id,
+                title: note.title,
+                author: req.session.user?.username,
+                updatedAt: note.updatedAt
+            })),
+            hasMore
         })
     },
     middlewares: [ AuthMiddleware ]
