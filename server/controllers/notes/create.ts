@@ -68,11 +68,11 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
     let entries = []
 
     if (content.length === 0 && depth === 0) {
-        throw new Error("content-invalid")
+        throw new Error()
     }
 
     if (depth > 8 && content.length !== 0) {
-        throw new Error("content-invalid")
+        throw new Error()
     }
 
     for (let entry of content) {
@@ -108,7 +108,7 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
             throw new Error("term-max-char")
         }
 
-        if (entry.type === 1) {
+        if (entry.type === 1 && entry.children.length === 0) {
             if (entry.values.length !== 2) {
                 throw new Error()
             }

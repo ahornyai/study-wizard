@@ -11,6 +11,7 @@ import LoginController from "./controllers/auth/login"
 import UserInfoController from "./controllers/user/info"
 import SignOutController from "./controllers/user/signout"
 import CreateNoteController from "./controllers/notes/create"
+import ListNotesController from "./controllers/notes/list"
 
 dbInit()
 
@@ -39,7 +40,8 @@ new API({
         SignOutController,
 
         //notes
-        CreateNoteController
+        CreateNoteController,
+        ListNotesController
     ],
     middlewares: [
       express.json(),
