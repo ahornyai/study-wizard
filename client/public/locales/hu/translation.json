@@ -10,7 +10,8 @@
 
     "your-notes": {
         "title": "Jegyzeteid",
-        "last-update": "Utoljára frissítve"
+        "last-update": "Utoljára frissítve",
+        "no-notes": "Nincsenek jegyzeteid"
     },
 
     "shared-notes": {

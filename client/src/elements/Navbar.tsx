@@ -57,8 +57,9 @@ const Navbar = () => {
       axios.post("/api/user/signout").then(res => {
         if (res.data.success) {
           setUser(new User())
-          navigate("/")
+          setDropdown(false)
           setMobileOpen(false)
+          navigate("/login")
         }
       })
     }
@@ -110,11 +111,11 @@ const Navbar = () => {
               />
 
               <div ref={popoverDropdownRef} className={ (dropdownOpen ? "block " : "hidden ") + "dropdown select-none " } >
-                  <p className="dropdown-link" >
+                  <p className="dropdown-link">
                       <FontAwesomeIcon className="text-green-300" icon={ faCog } /> <span className="dropdown-text">{ t("settings") }</span>
                   </p>
-                  <p className="dropdown-link" >
-                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text" onClick={ handleSignOut }>{ t("sign-out") }</span>
+                  <p className="dropdown-link" onClick={ handleSignOut } >
+                      <FontAwesomeIcon className="text-green-300" icon={ faSignOutAlt } /> <span className="dropdown-text">{ t("sign-out") }</span>
                   </p>
               </div>
             </OutsideClickHandler> :

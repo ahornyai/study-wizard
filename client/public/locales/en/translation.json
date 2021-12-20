@@ -10,7 +10,8 @@
 
     "your-notes": {
         "title": "Your notes",
-        "last-update": "Last update"
+        "last-update": "Last update",
+        "no-notes": "You don't have any notes yet"
     },
 
     "shared-notes": {

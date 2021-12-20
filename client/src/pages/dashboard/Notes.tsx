@@ -4,12 +4,15 @@ import { useTranslation } from "react-i18next"
 import NoteCard, { Note } from "../../elements/notes/NoteCard"
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "react-loader-spinner";
+import Button from "../../elements/components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
     const { t } = useTranslation()
     const [notes, setNotes] = useState<Note[]>([])
     const [page, setPage] = useState(0)
     const [hasMore, setHasMore] = useState(true)
+    const navigate = useNavigate()
 
     //axios get the notes
     const fetchNotes = () => {
@@ -28,6 +31,8 @@ const Notes = () => {
     return (
       <div className="container mx-auto py-16 text-center lg:w-8/12">
         <h1 className="text-white text-3xl font-bold w-full">{ t('your-notes.title') }</h1>
+
+        { !hasMore && notes.length===0 && <><h1 className="text-white text-xl mt-5 mb-3">{ t('your-notes.no-notes') }</h1><Button onClick={() => navigate("/create_note")} text={ t("create-note.title") } size="sm" /></> }
 
         <InfiniteScroll
           className="pb-5"
