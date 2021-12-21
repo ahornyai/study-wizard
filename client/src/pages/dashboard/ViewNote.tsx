@@ -5,6 +5,13 @@ import { useParams } from "react-router-dom";
 import { useAsyncResource } from "use-async-resource";
 import { NoteEntry } from "./CreateNote";
 import { ReactNode } from "react";
+import { EntryType } from "../../elements/create_note/CreateNoteEntry";
+
+const depthListStyle = [
+  "disc",
+  "circle",
+  "square"
+]
 
 const fetchNote = async (id: number): Promise<Note | null> => {
   if (id === -1 || isNaN(id))
@@ -31,18 +38,26 @@ const fetchNote = async (id: number): Promise<Note | null> => {
 
 const renderEntry = (entry: NoteEntry): ReactNode => {
   if (!entry.hasChildren()) {
+    if (entry.depth === 0) {
+      return (
+        <p key={ entry.id }>{ entry.asString() }</p>
+      )
+    }
+
     return (
-      <ul className="list-disc ml-4" key={ entry.id }><li>{ entry.asString() }</li></ul>
+      <li key={ entry.id }>{ entry.asString() }</li>
     )
   }
 
+  const title = entry.asString() + (entry.type === EntryType.DEFINITION ? ":" : "")
+
   return (
-    <div key={ entry.id } className="ml-4" >
-      <li className="text-xl">{ entry.asString() }</li>
-      <ul className="list-disc">
+    <>
+      { entry.depth === 0 ? <p>{ title } </p> : <li>{ title } </li> }
+      <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % 3] } }>
         { entry.children.map(renderEntry) }
       </ul>
-    </div>
+    </>
   )
 }
 
@@ -65,11 +80,11 @@ const ViewNote = () => {
       <div className="container mx-auto py-16 lg:w-10/12 grid lg:grid-cols-2 gap-3 text-gray-100">
           <div className="card">
             <div className="card-header ">
-              <h1 className="text-3xl font-bold text-blue-400 inline">{ note.title }</h1>
+              <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
               <hr className="border-gray-500 mt-3" />
             </div>
 
-            <div className="card-body mt-2 text-lg">
+            <div className="card-body mt-2 text-lg ml-4">
               {
                 note?.content?.map(renderEntry)
               }

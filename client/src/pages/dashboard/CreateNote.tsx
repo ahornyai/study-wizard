@@ -36,7 +36,7 @@ export class NoteEntry {
   }
 
   public asString(): string {
-    if (this.type === EntryType.NOTE) {
+    if (this.type === EntryType.NOTE || this.hasChildren()) {
       return this.values[0]
     }
 
