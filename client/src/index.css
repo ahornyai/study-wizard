@@ -51,4 +51,8 @@
         @apply bg-gray-800 rounded-lg shadow-lg p-5;
     }
 
+    .app-holder {
+        height: calc(100vh - 5rem);
+    }
+
 }

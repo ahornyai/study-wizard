@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useTranslation } from "react-i18next"
 import { Note } from "../../elements/notes/NoteCard"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAsyncResource } from "use-async-resource";
 import { NoteEntry } from "./CreateNote";
 import { ReactNode } from "react";
 import { EntryType } from "../../elements/create_note/CreateNoteEntry";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const depthListStyle = [
   "disc",
@@ -65,6 +67,7 @@ const ViewNote = () => {
     const { t } = useTranslation()
     const { id } = useParams()
     const [ resource ] = useAsyncResource(fetchNote, parseInt(id || "-1"))
+    const navigate = useNavigate()
     const note = resource()
 
     if (note === null) {
@@ -77,9 +80,11 @@ const ViewNote = () => {
     }
 
     return (
-      <div className="container mx-auto py-16 lg:w-10/12 grid lg:grid-cols-2 gap-3 text-gray-100">
+      <div className="container py-16 h-full text-gray-100 lg:flex">
+        <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer mx-auto hidden lg:inline-block" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
+        <div className="mx-auto lg:w-10/12 grid lg:grid-cols-2 gap-3 h-full">
           <div className="card">
-            <div className="card-header ">
+            <div className="card-header">
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
               <hr className="border-gray-500 mt-3" />
             </div>
@@ -90,7 +95,12 @@ const ViewNote = () => {
               }
             </div>
           </div>
-          <div className="card">A</div>
+          <div className="grid gap-3">
+            <div className="card"></div>
+            <div className="card"></div>
+            <div className="card"></div>
+          </div>
+        </div>
       </div>
     )
 }

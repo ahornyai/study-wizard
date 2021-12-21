@@ -25,18 +25,20 @@ const App = () => {
         <UserContext.Provider value={ { user, setUser } } >
             <Navbar />
             
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
-                <Route path="/notes/:id" element={<AuthenticatedRoute><ViewNote /></AuthenticatedRoute>} />
+            <div className="app-holder">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
+                    <Route path="/notes/:id" element={<AuthenticatedRoute><ViewNote /></AuthenticatedRoute>} />
 
-                <Route path="/create_note" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />
-                
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/forgot" element={<ForgotPassword />} />
-                <Route path="*" element={<ForgotPassword />} />
-            </Routes>
+                    <Route path="/create_note" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />
+                    
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/forgot" element={<ForgotPassword />} />
+                    <Route path="*" element={<ForgotPassword />} />
+                </Routes>
+            </div>
         </UserContext.Provider>
     )
 }
