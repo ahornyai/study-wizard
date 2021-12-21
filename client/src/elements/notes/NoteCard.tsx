@@ -5,19 +5,37 @@ import * as style from '@dicebear/avatars-jdenticon-sprites';
 import { useTranslation } from "react-i18next";
 import { format } from "timeago.js";
 import i18n from "../../i18n";
+import { useNavigate } from "react-router-dom";
+import { NoteEntry } from "../../pages/dashboard/CreateNote";
+
+export class Author {
+    id: number
+    username: string
+
+    constructor (id: number, username: string) {
+        this.id = id
+        this.username = username
+    }
+
+}
 
 export class Note {
     id: number
     title: string
+    content?: NoteEntry[]
     updatedAt: Date
-    author: string
+    createdAt?: Date
+    author: Author
 
-    constructor(id: number, title: string, updatedAt: Date, author: string) {
+    constructor(id: number, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[]) {
         this.id = id
         this.title = title
         this.updatedAt = updatedAt
         this.author = author
+        this.createdAt = createdAt
+        this.content = content
     }
+
 }
 
 interface NoteCardProperties {
@@ -26,19 +44,20 @@ interface NoteCardProperties {
 
 const NoteCard = ({ note } : NoteCardProperties) => {
     const avatar = createAvatar(style, {
-        seed: note.author,
+        seed: note.author.username,
         dataUri: true
     });
     const { t } = useTranslation()
+    const navigate = useNavigate()
 
     return (
-        <div className="w-72 max-w-full bg-gray-800 rounded-md hover:outline-thickblue outline-zerowidth transition-all ease-in-out duration-200 cursor-pointer">
+        <div onClick={ () => navigate("/notes/" + note.id) } className="w-72 max-w-full bg-gray-800 rounded-md hover:outline-thickblue outline-zerowidth transition-all ease-in-out duration-200 cursor-pointer">
             <div className="p-6 pb-3 text-gray-200 text-left">
                 <h5 className="text-lg font-bold">{ note.title }</h5>
                 <p className="text-gray-400">{ t("your-notes.last-update") }: { format(note.updatedAt, i18n.language) }</p>
 
                 <Avatar className="mt-4 inline-block" image={ avatar } size="sm" />
-                <span className="ml-2 mt-5 font-semibold absolute">{ note.author }</span>
+                <span className="ml-2 mt-5 font-semibold absolute">{ note.author.username }</span>
             </div>
         </div>
     )

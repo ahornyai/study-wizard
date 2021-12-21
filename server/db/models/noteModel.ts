@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import connection from '../connection'
+import UserModel from './userModel'
 
 export enum EntryType {
     NOTE,
@@ -48,7 +49,7 @@ NoteModel.init({
     },
     authorId: {
         type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false
+        allowNull: false,
     },
     title: {
         type: DataTypes.STRING,
@@ -63,7 +64,6 @@ NoteModel.init({
     timestamps: true,
     sequelize: connection
 })
-
 
 export interface NoteInput extends Optional<NoteAttributes, 'id'> {}
 export interface NoteOuput extends Required<NoteAttributes> {}

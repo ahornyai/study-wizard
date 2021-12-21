@@ -20,6 +20,7 @@ class UserModel extends Model<UserAttributes, UserInput> implements UserAttribut
 
     public readonly createdAt!: Date
     public readonly updatedAt!: Date
+
 }
 
 UserModel.init({
@@ -45,7 +46,7 @@ UserModel.init({
 }, {
     tableName: 'users',
     timestamps: true,
-    sequelize: connection
+    sequelize: connection,
 })
 
 //from https://gist.github.com/JesusMurF/9d206738aa54131a6e7ac88ab2d9084e
@@ -72,7 +73,6 @@ function cryptPassword(password: string) {
         });
     });
 }
-
 
 export interface UserInput extends Optional<UserAttributes, 'id' | 'lastLogin' | 'regDate'> {}
 export interface UserOuput extends Required<UserAttributes> {}

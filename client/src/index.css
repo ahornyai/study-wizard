@@ -47,4 +47,8 @@
         @apply outline-thickred;
     }
 
+    .card {
+        @apply bg-gray-800 rounded-lg shadow-lg p-5;
+    }
+
 }

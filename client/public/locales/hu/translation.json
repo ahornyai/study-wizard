@@ -27,6 +27,11 @@
         "add-definition": "Definíció hozzáadása"
     },
 
+    "view-note": {
+        "title": "Jegyzet megtekintése",
+        "not-found": "Nem található a jegyzet"
+    },
+
     "auth": {
         "login": "Bejelentkezés",
         "register": "Regisztráció",
@@ -38,7 +43,6 @@
         "reset-your-password": "Jelszó visszaállítása",
         "send": "Küldés"
     },
-
     
     "errors": {
         "passwords-dont-match": "A jelszavak nem egyeznek",

@@ -32,7 +32,7 @@ const ListNotesController = {
             notes: notes.map(note => ({
                 id: note.id,
                 title: note.title,
-                author: req.session.user?.username,
+                author: { username: req.session.user?.username },
                 updatedAt: note.updatedAt
             })),
             hasMore
