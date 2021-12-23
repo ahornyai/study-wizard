@@ -16,7 +16,9 @@
 
     "view-note": {
         "title": "View note",
-        "not-found": "Note not found"
+        "not-found": "Note not found",
+        "note-memorizing": "Note memorizing",
+        "overall": "Overall"
     },
 
     "shared-notes": {
@@ -72,5 +74,6 @@
 
     "note": "Note",
     "term": "Term",
-    "definition": "Definition"
+    "definition": "Definition",
+    "definitions": "Definitions"
 }

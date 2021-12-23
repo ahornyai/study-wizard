@@ -29,7 +29,9 @@
 
     "view-note": {
         "title": "Jegyzet megtekintése",
-        "not-found": "Nem található a jegyzet"
+        "not-found": "Nem található a jegyzet",
+        "note-memorizing": "Jegyzet megjegyzés",
+        "overall": "Összesen"
     },
 
     "auth": {
@@ -72,5 +74,6 @@
 
     "note": "Jegyzet",
     "term": "Kifejezés",
-    "definition": "Definíció"
+    "definition": "Definíció",
+    "definitions": "Definíciók"
 }

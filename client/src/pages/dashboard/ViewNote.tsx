@@ -8,6 +8,7 @@ import { ReactNode } from "react";
 import { EntryType } from "../../elements/create_note/CreateNoteEntry";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../elements/components/Button";
 
 const depthListStyle = [
   "disc",
@@ -82,7 +83,7 @@ const ViewNote = () => {
     return (
       <div className="container py-16 h-full text-gray-100 lg:flex">
         <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer mx-auto hidden lg:inline-block" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
-        <div className="mx-auto lg:w-10/12 grid lg:grid-cols-2 gap-3 h-full">
+        <div className="mx-auto lg:w-10/12 grid lg:grid-cols-2 gap-3">
           <div className="card">
             <div className="card-header">
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
@@ -95,13 +96,40 @@ const ViewNote = () => {
               }
             </div>
           </div>
-          <div className="grid gap-3">
-            <div className="card">
-              <div className="w-full bg-gray-900 h-4 rounded-lg">
-                <div className="bg-green-500 h-full w-1/4 rounded-lg"></div>
+          <div className="grid gap-3" style={ { gridAutoRows: 'minmax(min-content, max-content)' } }>
+            <div className="card space-y-3">
+              <div>
+                <span className="text-xl text-gray-300">{ t("definitions") }</span>
+                <span className="text-xl ml-2 text-gray-400">60% (30/50)</span>
+
+                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
+                  <div className="bg-green-500 h-full rounded-lg" style={ { width: '60%' } } ></div>
+                </div>
+              </div>
+              <div>
+                <span className="text-xl text-gray-300">{ t("view-note.note-memorizing") }</span>
+                <span className="text-xl ml-2 text-gray-400">30% (15/50)</span>
+
+                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
+                  <div className="bg-blue-500 h-full rounded-lg" style={ { width: '30%' } } ></div>
+                </div>
+              </div>
+              <div>
+                <span className="text-xl text-gray-300">{ t("view-note.overall") }</span>
+                <span className="text-xl ml-2 text-gray-400">45% (45/100)</span>
+
+                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
+                  <div className="bg-pink-500 h-full rounded-lg" style={ { width: '45%' } } ></div>
+                </div>
               </div>
             </div>
-            <div className="card"></div>
+            <div className="card">
+              <div className="grid grid-cols-3 gap-6">
+                <Button size="sm" text="Learn definitions" />
+                <Button size="sm" text="Memorize the note" />
+                <Button size="sm" text="Write a test" />
+              </div>
+            </div>
             <div className="card"></div>
           </div>
         </div>
