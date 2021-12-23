@@ -96,7 +96,11 @@ const ViewNote = () => {
             </div>
           </div>
           <div className="grid gap-3">
-            <div className="card"></div>
+            <div className="card">
+              <div className="w-full bg-gray-900 h-4 rounded-lg">
+                <div className="bg-green-500 h-full w-1/4 rounded-lg"></div>
+              </div>
+            </div>
             <div className="card"></div>
             <div className="card"></div>
           </div>

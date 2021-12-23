@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import NoteCard, { Note } from "../../elements/notes/NoteCard"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -10,23 +10,22 @@ import { useNavigate } from "react-router-dom";
 const Notes = () => {
     const { t } = useTranslation()
     const [notes, setNotes] = useState<Note[]>([])
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(true)
     const navigate = useNavigate()
 
-    //axios get the notes
-    const fetchNotes = () => {
-      setPage(page + 1)
+    const fetchNotes = useCallback(() => {
+      if (!hasMore) return
 
-      axios.get("/api/notes/list?page=" + (page + 1)).then(res => {
-        setNotes(notes.concat(res.data.notes))
+      axios.get(`/api/notes/list?page=${page}`).then(res => {
+        setNotes(n => n.concat(res.data.notes))
         setHasMore(res.data.hasMore)
       })
-    }
+    }, [page, hasMore])
 
     useEffect(() => {
       fetchNotes()
-    }, [])
+    }, [fetchNotes])
 
     return (
       <div className="container mx-auto py-16 text-center lg:w-8/12">
@@ -37,7 +36,9 @@ const Notes = () => {
         <InfiniteScroll
           className="pb-5"
           dataLength={ notes.length }
-          next={ fetchNotes }
+          next={ () => {
+            setPage(page + 1)
+          } }
           hasMore={ hasMore }
           loader={ <div className="w-full flex justify-center"><Loader type={ "ThreeDots" } color="#00BFFF" /></div> }
         >
