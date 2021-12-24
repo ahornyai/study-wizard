@@ -11,7 +11,7 @@ import NoteEntry, { EntryType } from '../../classes/noteEntry';
 
 import { t } from 'i18next';
 
-interface CreateNoteEntryProps {
+interface ModifyNoteEntryProps {
     className?: string
     data: NoteEntry
     addNoteEntry: (type:EntryType, depth:number, parent:NoteEntry) => void
@@ -19,7 +19,7 @@ interface CreateNoteEntryProps {
     onSortChildren: (oldIndex:number, newIndex:number, parent?:NoteEntry) => void
 }
 
-export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }: CreateNoteEntryProps) => {
+const ModifyNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }: ModifyNoteEntryProps) => {
     const { id, type, depth, children } = data
     const [dropdownShow, setDropdown] = useState(false)
     const [expanded, setExpanded] = useState(true)
@@ -96,3 +96,5 @@ export const CreateNoteEntry = SortableElement(({ className = "", data, addNoteE
         </div>
     )
 })
+
+export default ModifyNoteEntry

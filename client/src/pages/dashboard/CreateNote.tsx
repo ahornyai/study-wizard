@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { arrayMoveImmutable } from 'array-move';
 
-import CreateNoteHeader from "../../elements/create_note/CreateNoteHeader"
-import AddNoteCard from "../../elements/create_note/AddNoteEntry"
+import ModifyNoteHeader from "../../elements/modify_note/ModifyNoteHeader"
+import AddNoteCard from "../../elements/modify_note/AddNoteEntry"
 import NoteEntryList from '../../elements/components/NoteEntryList';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -47,7 +47,7 @@ const CreateNote = () => {
       <h1 className="text-3xl font-bold">{ t("create-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">
-        <CreateNoteHeader handleCreateNote={ handleCreateNote } />
+        <ModifyNoteHeader handleModifyNote={ handleCreateNote } />
         <NoteEntryList children={entries}
           lockAxis="y"
           axis="y"

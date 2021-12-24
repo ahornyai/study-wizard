@@ -29,6 +29,11 @@
         "write-test": "Write a test"
     },
 
+    "edit-note": {
+        "title": "Edit note",
+        "not-found": "Note not found"
+    },
+
     "shared-notes": {
         "title": "Shared notes"
     },
@@ -79,6 +84,7 @@
     "title": "Title",
     "import-file": "Import file",
     "create": "Create",
+    "edit": "Edit",
 
     "note": "Note",
     "term": "Term",

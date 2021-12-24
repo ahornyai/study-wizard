@@ -12,6 +12,7 @@ export default class NoteEntry {
     children: NoteEntry[]
     values: string[]
     parent?: NoteEntry
+    created: boolean = false
   
     constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = [], parent?: NoteEntry, values: string[] = []) {
       this.type = type
@@ -25,6 +26,7 @@ export default class NoteEntry {
     public static fromJSON(json: any): NoteEntry {
       const entry = new NoteEntry(json.type, json.depth, json.children.map((child: any) => NoteEntry.fromJSON(child)), undefined, json.values)
       entry.id = json.id
+      entry.created = true
       
       return entry
     }
@@ -40,4 +42,5 @@ export default class NoteEntry {
     public hasChildren(): boolean {
       return this.children.length > 0
     }
+
 }

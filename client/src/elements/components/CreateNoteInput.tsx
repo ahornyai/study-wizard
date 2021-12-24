@@ -15,7 +15,7 @@ const sizing = {
 }
 
 const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) => {
-    const [isDone, setDone] = useState(false)
+    const [isDone, setDone] = useState(entry.created)
     const input = useRef<HTMLInputElement>(null)
     const { t } = useTranslation()
 
@@ -38,6 +38,7 @@ const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) =
             onChange= { e => entry.values[type === "definition" ? 1 : 0] = e.target.value }
             onBlur={ () => setDone(true) }
             type="text" 
+            defaultValue={ entry.values[type === "definition" ? 1 : 0] }
             placeholder={ type === "note" && entry.children.length !== 0 ? t("title") : t(type) } 
             className={ "item text-input placeholder-capital " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
             ref={ input } />

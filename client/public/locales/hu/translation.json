@@ -42,6 +42,11 @@
         "write-test": "Teszt írása"
     },
 
+    "edit-note": {
+        "title": "Jegyzet szerkesztése",
+        "not-found": "Nem található a jegyzet"
+    },
+
     "auth": {
         "login": "Bejelentkezés",
         "register": "Regisztráció",
@@ -79,6 +84,7 @@
     "title": "Title",
     "import-file": "Fájl importálása",
     "create": "Létrehozás",
+    "edit": "Szerkesztés",
 
     "note": "Jegyzet",
     "term": "Kifejezés",

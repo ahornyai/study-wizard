@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
@@ -16,29 +15,6 @@ const depthListStyle = [
   "circle",
   "square"
 ]
-
-const fetchNote = async (id: number): Promise<Note | null> => {
-  if (id === -1 || isNaN(id))
-    return null
-
-  return await axios.get("/api/notes/view/" + id)
-    .then(res => {
-      const note = res.data.note as Note
-
-      if (!note || note.content == null) {
-        return null
-      }
-
-      note.content = note.content.map(NoteEntry.fromJSON)
-
-      return note
-    })
-    .catch(err => {
-      console.error(err)
-
-      return null
-    })
-}
 
 const renderEntry = (entry: NoteEntry): ReactNode => {
   if (!entry.hasChildren()) {
@@ -68,7 +44,7 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
 const ViewNote = () => {
     const { t } = useTranslation()
     const { id } = useParams()
-    const [ resource ] = useAsyncResource(fetchNote, parseInt(id || "-1"))
+    const [ resource ] = useAsyncResource(Note.fetchNote, parseInt(id || "-1"))
     const navigate = useNavigate()
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)

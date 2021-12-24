@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react'
 import { arrayMoveImmutable } from 'array-move';
 
-import CreateNoteHeader from "../../elements/create_note/CreateNoteHeader"
-import AddNoteCard from "../../elements/create_note/AddNoteEntry"
+import ModifyNoteHeader from "../../elements/modify_note/ModifyNoteHeader"
+import AddNoteCard from "../../elements/modify_note/AddNoteEntry"
 import NoteEntryList from '../../elements/components/NoteEntryList';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import NoteEntry from '../../classes/noteEntry';
+import { useAsyncResource } from 'use-async-resource';
+import Note from '../../classes/note';
 
 const EditNote = () => {
-  const [entries, setEntries] = useState<NoteEntry[]>([])
-  const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const { t } = useTranslation()
+  const { id } = useParams()
+  const [ resource ] = useAsyncResource(Note.fetchNote, parseInt(id || "-1"))
+  const note = resource()
+  const [entries, setEntries] = useState<NoteEntry[]>(note?.content || [])
+  const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,6 +27,15 @@ const EditNote = () => {
 
       document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [lastAdded])
+
+  if (note === null) {
+    return (
+      <div className="container mx-auto py-16 text-center lg:w-8/12 text-white">
+        <h1 className="text-3xl font-bold mb-3">{ t('edit-note.title') }</h1>
+        <h2 className="text-xl">{ t('edit-note.not-found') }</h2>
+      </div>
+    )
+  }
 
   const handleEditNote = (title: string) => {
     axios.post('/api/notes/edit', {
@@ -44,10 +58,10 @@ const EditNote = () => {
   return (
     <div className="text-white container mx-auto py-16 text-center">
       <ToastContainer theme="dark" style={ { marginTop: 80 } } />
-      <h1 className="text-3xl font-bold">{ t("create-note.title") }</h1>
+      <h1 className="text-3xl font-bold">{ t("edit-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">
-        <CreateNoteHeader handleCreateNote={ handleEditNote } />
+        <ModifyNoteHeader note={ note } handleModifyNote={ handleEditNote } />
         <NoteEntryList children={entries}
           lockAxis="y"
           axis="y"
