@@ -55,4 +55,15 @@
         height: calc(100vh - 5rem);
     }
 
+    .modal {
+      transition: opacity 0.25s ease;
+
+      @apply fixed w-full h-full top-0 left-0 flex items-center justify-center;
+    }
+
+    .modal-active {
+      overflow-x: hidden;
+      overflow-y: visible !important;
+    }
+
 }

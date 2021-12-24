@@ -70,7 +70,7 @@ const Navbar = () => {
     });
 
     return (
-        <div className="flex items-center h-20 px-6 justify-between bg-gray-800 text-gray-100 relative z-50">
+        <div className="flex items-center h-20 px-6 justify-between bg-gray-800 text-gray-100 relative">
           <div className="items-center">
             <h1 className="font-bold text-2xl select-none cursor-pointer" onClick={() => navigate("/")}>StudyWizard</h1>
           </div>

@@ -4,12 +4,13 @@ import { Note } from "../../elements/notes/NoteCard"
 import { useNavigate, useParams } from "react-router-dom";
 import { useAsyncResource } from "use-async-resource";
 import { NoteEntry } from "./CreateNote";
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import { EntryType } from "../../elements/create_note/CreateNoteEntry";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faPenSquare, faTrash, faUsersCog } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../elements/components/Button";
 import { toast, ToastContainer } from "react-toastify";
+import Modal from "../../elements/components/Modal";
 
 const depthListStyle = [
   "disc",
@@ -71,6 +72,8 @@ const ViewNote = () => {
     const [ resource ] = useAsyncResource(fetchNote, parseInt(id || "-1"))
     const navigate = useNavigate()
     const note = resource()
+    const deleteButton = useRef<HTMLDivElement>(null)
+    const usersButton = useRef<HTMLDivElement>(null)
 
     if (note === null) {
       return (
@@ -142,17 +145,27 @@ const ViewNote = () => {
                 <FontAwesomeIcon size={ "3x" } icon={ faPenSquare } />
                 <p className="text-xl">{ t("view-note.edit") }</p>
               </div>
-              <div className="text-center cursor-pointer hover:text-red-500 text-red-400">
+              <div ref={ deleteButton } className="text-center cursor-pointer hover:text-red-500 text-red-400">
                 <FontAwesomeIcon size={ "3x" } icon={ faTrash } />
                 <p className="text-xl">{ t("view-note.delete") }</p>
               </div>
-              <div className="text-center cursor-pointer hover:text-yellow-500 text-yellow-400">
+              <div ref={ usersButton } className="text-center cursor-pointer hover:text-yellow-500 text-yellow-400">
                 <FontAwesomeIcon size={ "3x" } icon={ faUsersCog } />
                 <p className="text-xl">{ t("view-note.manage-users") }</p>
               </div>
             </div>
           </div>
         </div>
+
+        <Modal title={"Confirmation"} 
+          toggleButton={deleteButton} 
+          content={<p>Are you sure you want to delete this note?</p>} 
+          footer={
+            <>
+              <button className="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-600 mr-2 modal-close">Go back</button>
+              <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ () => navigate("/notes") }>Delete</button>
+            </>
+          } />
       </div>
     )
 }
