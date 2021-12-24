@@ -31,7 +31,15 @@
         "title": "Jegyzet megtekintése",
         "not-found": "Nem található a jegyzet",
         "note-memorizing": "Jegyzet megjegyzés",
-        "overall": "Összesen"
+        "overall": "Összesen",
+        "invite-friends": "Hívd meg a barátaidat ezzel a linkkel",
+        "copied": "Vágólapra másolva",
+        "edit": "Szerkesztés",
+        "delete": "Törlés",
+        "manage-users": "Felhasználók",
+        "learn-definitions": "Definíciók tanulása",
+        "memorize-note": "Jegyzet megjegyzése",
+        "write-test": "Teszt írása"
     },
 
     "auth": {

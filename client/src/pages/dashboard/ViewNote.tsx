@@ -7,8 +7,9 @@ import { NoteEntry } from "./CreateNote";
 import { ReactNode } from "react";
 import { EntryType } from "../../elements/create_note/CreateNoteEntry";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faPenSquare, faTrash, faUsersCog } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../elements/components/Button";
+import { toast, ToastContainer } from "react-toastify";
 
 const depthListStyle = [
   "disc",
@@ -55,12 +56,12 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
   const title = entry.asString() + (entry.type === EntryType.DEFINITION ? ":" : "")
 
   return (
-    <>
+    <div key={ entry.id }>
       { entry.depth === 0 ? <p>{ title } </p> : <li>{ title } </li> }
-      <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % 3] } }>
+      <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % depthListStyle.length] } }>
         { entry.children.map(renderEntry) }
       </ul>
-    </>
+    </div>
   )
 }
 
@@ -82,6 +83,7 @@ const ViewNote = () => {
 
     return (
       <div className="container py-16 h-full text-gray-100 lg:flex">
+        <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
         <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer mx-auto hidden lg:inline-block" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
         <div className="mx-auto lg:w-10/12 grid lg:grid-cols-2 gap-3">
           <div className="card">
@@ -123,14 +125,32 @@ const ViewNote = () => {
                 </div>
               </div>
             </div>
-            <div className="card">
-              <div className="grid grid-cols-3 gap-6">
-                <Button size="sm" text="Learn definitions" />
-                <Button size="sm" text="Memorize the note" />
-                <Button size="sm" text="Write a test" />
+            <div className="card grid grid-cols-3 lg:gap-6 gap-3">
+              <Button size="sm" text={ t("view-note.learn-definitions") } />
+              <Button size="sm" text={ t("view-note.memorize-note") } />
+              <Button size="sm" text={ t("view-note.write-test") } />
+            </div>
+            <div className="card flex flex-wrap">
+              <span className="mt-2 mr-2 mb-2 flex-1">{ t("view-note.invite-friends") }</span>
+              <input className="text-input p-2" onClick={ () => {
+                navigator.clipboard.writeText("http://localhost:3000/invite/24")
+                toast.success(t("view-note.copied"))
+              } } readOnly value="http://localhost:3000/invite/24" style={ { width: "http://localhost:3000/invite/24".length + "ch" }} />
+            </div>
+            <div className="card grid grid-cols-3 justify-items-center">
+              <div className="text-center cursor-pointer hover:text-blue-500 text-blue-400">
+                <FontAwesomeIcon size={ "3x" } icon={ faPenSquare } />
+                <p className="text-xl">{ t("view-note.edit") }</p>
+              </div>
+              <div className="text-center cursor-pointer hover:text-red-500 text-red-400">
+                <FontAwesomeIcon size={ "3x" } icon={ faTrash } />
+                <p className="text-xl">{ t("view-note.delete") }</p>
+              </div>
+              <div className="text-center cursor-pointer hover:text-yellow-500 text-yellow-400">
+                <FontAwesomeIcon size={ "3x" } icon={ faUsersCog } />
+                <p className="text-xl">{ t("view-note.manage-users") }</p>
               </div>
             </div>
-            <div className="card"></div>
           </div>
         </div>
       </div>

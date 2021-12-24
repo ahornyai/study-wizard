@@ -18,7 +18,15 @@
         "title": "View note",
         "not-found": "Note not found",
         "note-memorizing": "Note memorizing",
-        "overall": "Overall"
+        "overall": "Overall",
+        "invite-friends": "Invite your friends with this link",
+        "copied": "Copied to clipboard",
+        "edit": "Edit",
+        "delete": "Delete",
+        "manage-users": "Manage users",
+        "learn-definitions": "Learn definitions",
+        "memorize-note": "Memorize the note",
+        "write-test": "Write a test"
     },
 
     "shared-notes": {
