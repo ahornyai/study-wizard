@@ -95,7 +95,7 @@ const Navbar = () => {
             </button>
           </div>
           <div className="items-center hidden lg:flex">
-            { user.loggedIn && <Button onClick={() => navigate("/create_note")} text={ t("create-note.title") } size="sm" /> }
+            { user.loggedIn && <Button onClick={() => navigate("/notes/create")} text={ t("create-note.title") } size="sm" /> }
             <FontAwesomeIcon
               icon={ faGithub }
               onClick={ () => window.location.replace("https://github.com/ahornyai/study-wizard/") }
@@ -151,7 +151,7 @@ const Navbar = () => {
                 >
                   { t("shared-notes.title") }
                 </button>
-                { user.loggedIn && <Button onClick={() => {navigate("/create_note"); setMobileOpen(false)}} text={ t("create-note.title") } size="sm" className="my-2" /> }
+                { user.loggedIn && <Button onClick={() => {navigate("/notes/create"); setMobileOpen(false)}} text={ t("create-note.title") } size="sm" className="my-2" /> }
                 <div className="my-2 flex justify-center">
                   <FontAwesomeIcon
                     icon={ faGithub }

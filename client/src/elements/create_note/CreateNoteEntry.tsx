@@ -5,15 +5,11 @@ import { faPlus, faStickyNote, faQuoteRight, faTrash, faAngleLeft, faAngleDown }
 import OutsideClickHandler from 'react-outside-click-handler';
 import { SortableElement } from 'react-sortable-hoc';
 
-import { NoteEntry } from '../../pages/dashboard/CreateNote';
 import CreateNoteInput from '../components/CreateNoteInput';
 import NoteEntryList from '../components/NoteEntryList';
-import { t } from 'i18next';
+import NoteEntry, { EntryType } from '../../classes/noteEntry';
 
-export enum EntryType {
-    NOTE,
-    DEFINITION
-}
+import { t } from 'i18next';
 
 interface CreateNoteEntryProps {
     className?: string

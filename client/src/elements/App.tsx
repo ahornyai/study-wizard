@@ -15,6 +15,7 @@ import Register from '../pages/auth/Register'
 import ForgotPassword from '../pages/auth/ForgotPassword'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import ViewNote from '../pages/dashboard/ViewNote'
+import EditNote from '../pages/dashboard/EditNote'
 
 const App = () => {
     const [ resource ] = useAsyncResource(syncUser, [])
@@ -28,10 +29,11 @@ const App = () => {
             <div className="app-holder">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    
                     <Route path="/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
                     <Route path="/notes/:id" element={<AuthenticatedRoute><ViewNote /></AuthenticatedRoute>} />
-
-                    <Route path="/create_note" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />
+                    <Route path="/notes/edit/:id" element={<AuthenticatedRoute><EditNote /></AuthenticatedRoute>} />
+                    <Route path="/notes/create" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />
                     
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />

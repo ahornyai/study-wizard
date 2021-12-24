@@ -6,37 +6,7 @@ import { useTranslation } from "react-i18next";
 import { format } from "timeago.js";
 import i18n from "../../i18n";
 import { useNavigate } from "react-router-dom";
-import { NoteEntry } from "../../pages/dashboard/CreateNote";
-
-export class Author {
-    id: number
-    username: string
-
-    constructor (id: number, username: string) {
-        this.id = id
-        this.username = username
-    }
-
-}
-
-export class Note {
-    id: number
-    title: string
-    content?: NoteEntry[]
-    updatedAt: Date
-    createdAt?: Date
-    author: Author
-
-    constructor(id: number, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[]) {
-        this.id = id
-        this.title = title
-        this.updatedAt = updatedAt
-        this.author = author
-        this.createdAt = createdAt
-        this.content = content
-    }
-
-}
+import Note from "../../classes/note";
 
 interface NoteCardProperties {
     note: Note

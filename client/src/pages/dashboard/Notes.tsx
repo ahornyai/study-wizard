@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import NoteCard, { Note } from "../../elements/notes/NoteCard"
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "react-loader-spinner";
 import Button from "../../elements/components/Button";
 import { useNavigate } from "react-router-dom";
+import Note from "../../classes/note";
+import NoteCard from "../../elements/notes/NoteCard";
 
 const Notes = () => {
     const { t } = useTranslation()

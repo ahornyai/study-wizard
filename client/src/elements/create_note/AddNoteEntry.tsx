@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next"
+import { EntryType } from "../../classes/noteEntry"
 import Button from "../components/Button"
-import { EntryType } from "./CreateNoteEntry"
 
 interface AddNoteCardProps {
-    addNoteEntry: (type:EntryType) => void
+    addNoteEntry: (type: EntryType) => void
 }
 
 const AddNoteCard = (props:AddNoteCardProps) => {

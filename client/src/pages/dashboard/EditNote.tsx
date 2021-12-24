@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import NoteEntry from '../../classes/noteEntry';
 
-const CreateNote = () => {
+const EditNote = () => {
   const [entries, setEntries] = useState<NoteEntry[]>([])
   const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const { t } = useTranslation()
@@ -23,8 +23,8 @@ const CreateNote = () => {
       document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [lastAdded])
 
-  const handleCreateNote = (title: string) => {
-    axios.post('/api/notes/create', {
+  const handleEditNote = (title: string) => {
+    axios.post('/api/notes/edit', {
       title: title,
       content: JSON.stringify(entries, (k, v) => {
         if (k === 'parent')
@@ -47,7 +47,7 @@ const CreateNote = () => {
       <h1 className="text-3xl font-bold">{ t("create-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">
-        <CreateNoteHeader handleCreateNote={ handleCreateNote } />
+        <CreateNoteHeader handleCreateNote={ handleEditNote } />
         <NoteEntryList children={entries}
           lockAxis="y"
           axis="y"
@@ -97,4 +97,4 @@ const CreateNote = () => {
   )
 }
 
-export default CreateNote
+export default EditNote

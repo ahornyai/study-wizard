@@ -1,16 +1,15 @@
 import axios from "axios"
 import { useTranslation } from "react-i18next"
-import { Note } from "../../elements/notes/NoteCard"
-import { useNavigate, useParams } from "react-router-dom";
-import { useAsyncResource } from "use-async-resource";
-import { NoteEntry } from "./CreateNote";
-import { ReactNode, useRef } from "react";
-import { EntryType } from "../../elements/create_note/CreateNoteEntry";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faPenSquare, faTrash, faUsersCog } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../elements/components/Button";
-import { toast, ToastContainer } from "react-toastify";
-import Modal from "../../elements/components/Modal";
+import { useNavigate, useParams } from "react-router-dom"
+import { useAsyncResource } from "use-async-resource"
+import { ReactNode, useRef } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft, faPenSquare, faTrash, faUsersCog } from "@fortawesome/free-solid-svg-icons"
+import Button from "../../elements/components/Button"
+import { toast, ToastContainer } from "react-toastify"
+import Modal from "../../elements/components/Modal"
+import Note from "../../classes/note"
+import NoteEntry, { EntryType } from "../../classes/noteEntry"
 
 const depthListStyle = [
   "disc",
@@ -141,7 +140,7 @@ const ViewNote = () => {
               } } readOnly value="http://localhost:3000/invite/24" style={ { width: "http://localhost:3000/invite/24".length + "ch" }} />
             </div>
             <div className="card grid grid-cols-3 justify-items-center">
-              <div className="text-center cursor-pointer hover:text-blue-500 text-blue-400">
+              <div className="text-center cursor-pointer hover:text-blue-500 text-blue-400" onClick={ () => navigate("/notes/edit/" + note.id) }>
                 <FontAwesomeIcon size={ "3x" } icon={ faPenSquare } />
                 <p className="text-xl">{ t("view-note.edit") }</p>
               </div>
