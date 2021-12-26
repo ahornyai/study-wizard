@@ -40,7 +40,7 @@ const CreateNoteInput = ({ type, className = "", entry }:CreateNoteEntryProps) =
             type="text" 
             defaultValue={ entry.values[type === "definition" ? 1 : 0] }
             placeholder={ type === "note" && entry.children.length !== 0 ? t("title") : t(type) } 
-            className={ "item text-input placeholder-capital " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
+            className={ "text-input placeholder-capital " + (isDone ? "bg-gray-800 " : "") + (type === "term" && entry.hasChildren() ? "w-full" : sizing[type]) + " " + className }
             ref={ input } />
     )
 }

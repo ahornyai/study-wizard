@@ -20,12 +20,12 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
   if (!entry.hasChildren()) {
     if (entry.depth === 0) {
       return (
-        <p key={ entry.id }>{ entry.asString() }</p>
+        <p className="break-words" key={ entry.id }>{ entry.asString() }</p>
       )
     }
 
     return (
-      <li key={ entry.id }>{ entry.asString() }</li>
+      <li className="break-words" key={ entry.id }>{ entry.asString() }</li>
     )
   }
 
@@ -33,7 +33,7 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
 
   return (
     <div key={ entry.id }>
-      { entry.depth === 0 ? <p>{ title } </p> : <li>{ title } </li> }
+      { entry.depth === 0 ? <p className="break-words">{ title } </p> : <li className="break-words">{ title } </li> }
       <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % depthListStyle.length] } }>
         { entry.children.map(renderEntry) }
       </ul>
@@ -62,22 +62,23 @@ const ViewNote = () => {
     return (
       <div className="container py-16 h-full text-gray-100 lg:flex">
         <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
-        <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer mx-auto hidden lg:inline-block" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
-        <div className="mx-auto lg:w-10/12 grid lg:grid-cols-2 gap-3">
-          <div className="card">
+        <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block fixed left-[calc(16.67%-1em)]" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
+        
+        <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-8/12 mx-auto lg:flex-nowrap flex-wrap">
+          <div className="card w-full">
             <div className="card-header">
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
               <hr className="border-gray-500 mt-3" />
             </div>
 
-            <div className="card-body mt-2 text-lg ml-4">
+            <div className="card-body mt-2 text-lg">
               {
                 note?.content?.map(renderEntry)
               }
             </div>
           </div>
-          <div className="grid gap-3" style={ { gridAutoRows: 'minmax(min-content, max-content)' } }>
-            <div className="card space-y-3">
+          <div className="flex space-y-3 flex-wrap lg:w-10/12">
+            <div className="card space-y-3 w-full h-auto">
               <div>
                 <span className="text-xl text-gray-300">{ t("definitions") }</span>
                 <span className="text-xl ml-2 text-gray-400">60% (30/50)</span>
@@ -103,30 +104,23 @@ const ViewNote = () => {
                 </div>
               </div>
             </div>
-            <div className="card grid grid-cols-3 lg:gap-6 gap-3">
+            <div className="card grid grid-cols-3 lg:gap-6 gap-3 w-full">
               <Button size="sm" text={ t("view-note.learn-definitions") } />
               <Button size="sm" text={ t("view-note.memorize-note") } />
               <Button size="sm" text={ t("view-note.write-test") } />
             </div>
-            <div className="card flex flex-wrap">
-              <span className="mt-2 mr-2 mb-2 flex-1">{ t("view-note.invite-friends") }</span>
-              <input className="text-input p-2" onClick={ () => {
-                navigator.clipboard.writeText("http://localhost:3000/invite/24")
-                toast.success(t("view-note.copied"))
-              } } readOnly value="http://localhost:3000/invite/24" style={ { width: "http://localhost:3000/invite/24".length + "ch" }} />
-            </div>
-            <div className="card grid grid-cols-3 justify-items-center">
+            <div className="card grid grid-cols-3 justify-items-center w-full">
               <div className="text-center cursor-pointer hover:text-blue-500 text-blue-400" onClick={ () => navigate("/notes/edit/" + note.id) }>
-                <FontAwesomeIcon size={ "3x" } icon={ faPenSquare } />
-                <p className="text-xl">{ t("view-note.edit") }</p>
+                <FontAwesomeIcon size="2x" icon={ faPenSquare } />
+                <p>{ t("view-note.edit") }</p>
               </div>
               <div ref={ deleteButton } className="text-center cursor-pointer hover:text-red-500 text-red-400">
-                <FontAwesomeIcon size={ "3x" } icon={ faTrash } />
-                <p className="text-xl">{ t("view-note.delete") }</p>
+                <FontAwesomeIcon size="2x" icon={ faTrash } />
+                <p>{ t("view-note.delete") }</p>
               </div>
               <div ref={ usersButton } className="text-center cursor-pointer hover:text-yellow-500 text-yellow-400">
-                <FontAwesomeIcon size={ "3x" } icon={ faUsersCog } />
-                <p className="text-xl">{ t("view-note.manage-users") }</p>
+                <FontAwesomeIcon size="2x" icon={ faUsersCog } />
+                <p>{ t("view-note.manage-users") }</p>
               </div>
             </div>
           </div>

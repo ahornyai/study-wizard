@@ -104,7 +104,7 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
             throw new Error("term-min-char")
         }
 
-        if (entry.values[0].length > 100) {
+        if (entry.values[0].length > 256) {
             throw new Error("term-max-char")
         }
 
@@ -117,7 +117,7 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
                 throw new Error("definition-min-char")
             }
 
-            if (entry.values[1].trim().length > 100) {
+            if (entry.values[1].trim().length > 256) {
                 throw new Error("definition-max-char")
             }
         }
