@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
 import { ReactNode, useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft, faPenSquare, faTrash, faUsersCog } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faPenSquare, faTrash, faShareAlt } from "@fortawesome/free-solid-svg-icons"
 import Button from "../../elements/components/Button"
 import { toast, ToastContainer } from "react-toastify"
 import Modal from "../../elements/components/Modal"
@@ -66,62 +66,21 @@ const ViewNote = () => {
         
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-8/12 mx-auto lg:flex-nowrap flex-wrap">
           <div className="card w-full">
-            <div className="card-header">
+            <div className="card-header relative">
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
-              <hr className="border-gray-500 mt-3" />
+              
+              <div className="float-right space-x-3 absolute bottom-2 right-4">
+                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPenSquare } size="lg" />
+                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
+                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ usersButton } icon={ faShareAlt } size="lg" />
+              </div>
             </div>
+            <hr className="border-gray-500 mt-3" />
 
             <div className="card-body mt-2 text-lg">
               {
                 note?.content?.map(renderEntry)
               }
-            </div>
-          </div>
-          <div className="flex space-y-3 flex-wrap lg:w-10/12">
-            <div className="card space-y-3 w-full h-auto">
-              <div>
-                <span className="text-xl text-gray-300">{ t("definitions") }</span>
-                <span className="text-xl ml-2 text-gray-400">60% (30/50)</span>
-
-                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
-                  <div className="bg-green-500 h-full rounded-lg" style={ { width: '60%' } } ></div>
-                </div>
-              </div>
-              <div>
-                <span className="text-xl text-gray-300">{ t("view-note.note-memorizing") }</span>
-                <span className="text-xl ml-2 text-gray-400">30% (15/50)</span>
-
-                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
-                  <div className="bg-blue-500 h-full rounded-lg" style={ { width: '30%' } } ></div>
-                </div>
-              </div>
-              <div>
-                <span className="text-xl text-gray-300">{ t("view-note.overall") }</span>
-                <span className="text-xl ml-2 text-gray-400">45% (45/100)</span>
-
-                <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
-                  <div className="bg-pink-500 h-full rounded-lg" style={ { width: '45%' } } ></div>
-                </div>
-              </div>
-            </div>
-            <div className="card grid grid-cols-3 lg:gap-6 gap-3 w-full">
-              <Button size="sm" text={ t("view-note.learn-definitions") } />
-              <Button size="sm" text={ t("view-note.memorize-note") } />
-              <Button size="sm" text={ t("view-note.write-test") } />
-            </div>
-            <div className="card grid grid-cols-3 justify-items-center w-full">
-              <div className="text-center cursor-pointer hover:text-blue-500 text-blue-400" onClick={ () => navigate("/notes/edit/" + note.id) }>
-                <FontAwesomeIcon size="2x" icon={ faPenSquare } />
-                <p>{ t("view-note.edit") }</p>
-              </div>
-              <div ref={ deleteButton } className="text-center cursor-pointer hover:text-red-500 text-red-400">
-                <FontAwesomeIcon size="2x" icon={ faTrash } />
-                <p>{ t("view-note.delete") }</p>
-              </div>
-              <div ref={ usersButton } className="text-center cursor-pointer hover:text-yellow-500 text-yellow-400">
-                <FontAwesomeIcon size="2x" icon={ faUsersCog } />
-                <p>{ t("view-note.manage-users") }</p>
-              </div>
             </div>
           </div>
         </div>
