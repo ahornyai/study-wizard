@@ -7,10 +7,10 @@ interface ModalProps {
     title: string
     toggleButton: RefObject<HTMLElement>
     content: React.ReactNode
-    footer: React.ReactNode
+    footer?: React.ReactNode
 }
 
-const Modal = ({ title, toggleButton, content, footer }: ModalProps) => {
+const Modal = ({ title, toggleButton, content, footer = <></> }: ModalProps) => {
     const [isOpen, setOpen] = useState(false)
     const modal = useRef<HTMLDivElement>(null)
 

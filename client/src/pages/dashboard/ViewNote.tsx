@@ -49,7 +49,7 @@ const ViewNote = () => {
     const navigate = useNavigate()
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)
-    const usersButton = useRef<HTMLDivElement>(null)
+    const shareButton = useRef<HTMLDivElement>(null)
 
     if (note === null) {
       return (
@@ -85,7 +85,7 @@ const ViewNote = () => {
               <div className="float-right space-x-3 absolute bottom-2 right-4">
                 <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPenSquare } size="lg" />
                 <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
-                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ usersButton } icon={ faShareAlt } size="lg" />
+                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ shareButton } icon={ faShareAlt } size="lg" />
               </div>
             </div>
             <hr className="border-gray-500 mt-3" />
@@ -98,7 +98,7 @@ const ViewNote = () => {
           </div>
         </div>
 
-        <Modal title={"Confirmation"} 
+        <Modal title={ t("confirmation") } 
           toggleButton={deleteButton} 
           content={<p>Are you sure you want to delete this note?</p>} 
           footer={
@@ -106,7 +106,28 @@ const ViewNote = () => {
               <button className="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-600 mr-2 modal-close">Go back</button>
               <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ handleDeleteNote }>Delete</button>
             </>
-          } />
+          } 
+        />
+
+        <Modal title={ t("share") }
+          toggleButton={shareButton} 
+          content={ 
+            <div className="flex flex-col space-y-3">
+              <label>
+                <span className="text-gray-400">{ t("url") }</span>
+                <input className="w-full text-input bg-gray-800 mt-1" 
+                  type="text" 
+                  value={ `${window.location.origin}/notes/${note.id}` } 
+                  readOnly
+                  onClick={ () => {
+                    navigator.clipboard.writeText("http://localhost:3000/invite/24")
+                    toast.success(t("view-note.copied"))
+                  } } 
+                />
+              </label>
+            </div>
+          }
+        />
       </div>
     )
 }

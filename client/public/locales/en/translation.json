@@ -85,6 +85,9 @@
     "import-file": "Import file",
     "create": "Create",
     "edit": "Edit",
+    "share": "Share",
+    "confirmation": "Confirmation",
+    "url": "URL",
 
     "note": "Note",
     "term": "Term",

@@ -85,6 +85,9 @@
     "import-file": "Fájl importálása",
     "create": "Létrehozás",
     "edit": "Szerkesztés",
+    "share": "Megosztás",
+    "confirmation": "Megerősítés",
+    "url": "URL",
 
     "note": "Jegyzet",
     "term": "Kifejezés",
