@@ -2,11 +2,34 @@ import AuthMiddleware from "../../middlewares/authMiddleware"
 import { Controller } from "../../api"
 import { EntryType, NoteEntry, NoteModel } from "../../db/models/noteModel"
 
-const CreateNoteController = {
+const ModifyNoteController = {
     method: "post",
-    path: "notes/create",
+    path: "notes/modify/:method",
     handler: async (req, res) => {
-        let { title, content } = req.body
+        const { method } = req.params
+        let { title, content, id } = req.body
+
+        if (method !== "create" && method !== "update" && method !== "delete") {
+            res.status(400).send({
+                error: "Invalid method"
+            })
+            return
+        }
+        
+        if (method === "delete") {
+            const queryResult = await NoteModel.destroy({
+                where: {
+                    id,
+                    authorId: req.session!.user!.id
+                }
+            })
+
+            res.status(200).send({
+                success: queryResult === 1
+            })
+
+            return
+        }
 
         if (!title || !content) {
             res.status(400).send({
@@ -50,16 +73,33 @@ const CreateNoteController = {
 
             return
         }
-        
-        await NoteModel.create({
-            authorId: req?.session?.user?.id || -1,
-            title,
-            content: entries
-        })
 
-        res.status(200).send({
-            success: true
-        })
+        if (method === "create") {
+            const { id } = await NoteModel.create({
+                authorId: req?.session?.user?.id || -1,
+                title,
+                content: entries
+            })
+
+            res.status(200).send({
+                success: true,
+                id
+            })
+        }else {
+            const [ affectedRows ] = await NoteModel.update({
+                title,
+                content: entries
+            }, {
+                where: {
+                    id,
+                    authorId: req?.session?.user?.id || -1
+                }
+            })
+
+            res.status(200).send({
+                success: affectedRows === 1
+            })
+        }
     },
     middlewares: [ AuthMiddleware ]
 } as Controller
@@ -129,4 +169,4 @@ function convertEntries(content: any[], ids: string[] = [], depth = 0): NoteEntr
     return entries
 }
 
-export default CreateNoteController
+export default ModifyNoteController

@@ -10,7 +10,7 @@ import RegisterController from "./controllers/auth/register"
 import LoginController from "./controllers/auth/login"
 import UserInfoController from "./controllers/user/info"
 import SignOutController from "./controllers/user/signout"
-import CreateNoteController from "./controllers/notes/create"
+import ModifyNoteController from "./controllers/notes/modify"
 import ListNotesController from "./controllers/notes/list"
 import ViewNotesController from "./controllers/notes/view"
 
@@ -41,7 +41,7 @@ new API({
         SignOutController,
 
         //notes
-        CreateNoteController,
+        ModifyNoteController,
         ListNotesController,
         ViewNotesController
     ],

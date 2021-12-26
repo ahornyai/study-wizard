@@ -38,7 +38,8 @@ const EditNote = () => {
   }
 
   const handleEditNote = (title: string) => {
-    axios.post('/api/notes/edit', {
+    axios.post('/api/notes/modify/update', {
+      id: note.id,
       title: title,
       content: JSON.stringify(entries, (k, v) => {
         if (k === 'parent')
@@ -47,7 +48,7 @@ const EditNote = () => {
           return v
       })
     }).then(() => {
-      navigate("/notes")
+      navigate("/notes/" + note.id)
     }).catch(err => {
       if (err.response?.data?.error) {
         toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })

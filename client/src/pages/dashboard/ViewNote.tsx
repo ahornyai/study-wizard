@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify"
 import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
 import NoteEntry, { EntryType } from "../../classes/noteEntry"
+import axios from "axios"
 
 const depthListStyle = [
   "disc",
@@ -20,16 +21,16 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
   if (!entry.hasChildren()) {
     if (entry.depth === 0) {
       return (
-        <p className="break-words" key={ entry.id }>{ entry.asString() }</p>
+        <div className="break-words" key={ entry.id }>{ entry.asHtml() }</div>
       )
     }
 
     return (
-      <li className="break-words" key={ entry.id }>{ entry.asString() }</li>
+      <li className="break-words" key={ entry.id }>{ entry.asHtml() }</li>
     )
   }
 
-  const title = entry.asString() + (entry.type === EntryType.DEFINITION ? ":" : "")
+  const title = entry.asHtml() + (entry.type === EntryType.DEFINITION ? ":" : "")
 
   return (
     <div key={ entry.id }>
@@ -57,6 +58,18 @@ const ViewNote = () => {
           <h2 className="text-xl">{ t('view-note.not-found') }</h2>
         </div>
       )
+    }
+
+    const handleDeleteNote = () => {
+      axios.post("/api/notes/modify/delete", {
+        id: note.id
+      }).then(() => {
+        navigate("/notes")
+      }).catch(err => {
+        if (err.response?.data?.error) {
+          toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
+        }
+      })
     }
 
     return (
@@ -91,7 +104,7 @@ const ViewNote = () => {
           footer={
             <>
               <button className="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-600 mr-2 modal-close">Go back</button>
-              <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ () => navigate("/notes") }>Delete</button>
+              <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ handleDeleteNote }>Delete</button>
             </>
           } />
       </div>

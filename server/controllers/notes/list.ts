@@ -19,7 +19,7 @@ const ListNotesController = {
         const notes = await NoteModel.findAll( { 
             attributes: ["id", "title", "updatedAt"],
             where: { authorId: req.session.user?.id },
-            order: [["createdAt", "DESC"]],
+            order: [["updatedAt", "DESC"]],
             limit: 9,
             offset: convertedPage * 9
         })

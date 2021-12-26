@@ -24,7 +24,7 @@ const CreateNote = () => {
   }, [lastAdded])
 
   const handleCreateNote = (title: string) => {
-    axios.post('/api/notes/create', {
+    axios.post('/api/notes/modify/create', {
       title: title,
       content: JSON.stringify(entries, (k, v) => {
         if (k === 'parent')
@@ -32,8 +32,8 @@ const CreateNote = () => {
         else
           return v
       })
-    }).then(() => {
-      navigate("/notes")
+    }).then(res => {
+      navigate("/notes/" + res.data.id)
     }).catch(err => {
       if (err.response?.data?.error) {
         toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
