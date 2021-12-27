@@ -1,15 +1,23 @@
 import axios from "axios";
 import { createContext } from "react";
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/avatars-jdenticon-sprites';
 
 export class User {
     id: number
     username: string
     loggedIn: boolean
+    avatar: string | undefined;
+
 
     constructor (id: number = 0, username: string = "", loggedIn: boolean = false) {
         this.id = id
         this.username = username
         this.loggedIn = loggedIn
+        this.avatar = createAvatar(style, {
+            seed: this.username,
+            dataUri: true
+        });
     }
 
 }

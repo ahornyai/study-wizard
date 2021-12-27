@@ -10,9 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/avatars-jdenticon-sprites';
-
 import { createPopper } from "@popperjs/core";
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -64,11 +61,6 @@ const Navbar = () => {
       })
     }
 
-    let avatar = createAvatar(style, {
-      seed: user.username,
-      dataUri: true
-    });
-
     return (
         <div className="flex items-center h-20 px-6 justify-between bg-gray-800 text-gray-100 relative">
           <div className="items-center">
@@ -106,7 +98,7 @@ const Navbar = () => {
               <Avatar
                 onClick={ dropdownOpen ? closeDropdown : openDropdown } 
                 forwardedRef={ avatarDropdownRef }
-                image={ avatar }
+                image={ user.avatar }
                 className="ml-6 cursor-pointer"
               />
 
@@ -164,7 +156,7 @@ const Navbar = () => {
                   <Avatar
                     onClick={ dropdownOpen ? closeDropdown : openDropdown } 
                     forwardedRef={ avatarDropdownRef }
-                    image={ avatar }
+                    image={ user.avatar }
                     className="cursor-pointer my-2"
                   />
 

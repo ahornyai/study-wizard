@@ -36,10 +36,12 @@
         "copied": "Vágólapra másolva",
         "edit": "Szerkesztés",
         "delete": "Törlés",
-        "manage-users": "Felhasználók",
+        "members": "Tagok",
         "learn-definitions": "Definíciók tanulása",
         "memorize-note": "Jegyzet megjegyzése",
-        "write-test": "Teszt írása"
+        "write-test": "Teszt írása",
+        "are-you-sure-delete": "Biztos benne, hogy törölni szeretné a jegyzetet?",
+        "go-back": "Vissza"
     },
 
     "edit-note": {
@@ -81,7 +83,7 @@
         "definition-max-char": "A definíció maximum 256 karakter hosszú lehet"
     },
 
-    "title": "Title",
+    "title": "Cím",
     "import-file": "Fájl importálása",
     "create": "Létrehozás",
     "edit": "Szerkesztés",

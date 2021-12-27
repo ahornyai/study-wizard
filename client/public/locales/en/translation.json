@@ -23,10 +23,12 @@
         "copied": "Copied to clipboard",
         "edit": "Edit",
         "delete": "Delete",
-        "manage-users": "Manage users",
+        "members": "Members",
         "learn-definitions": "Learn definitions",
         "memorize-note": "Memorize the note",
-        "write-test": "Write a test"
+        "write-test": "Write a test",
+        "are-you-sure-delete": "Are you sure you want to delete this note?",
+        "go-back": "Go back"
     },
 
     "edit-note": {

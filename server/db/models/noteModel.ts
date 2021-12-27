@@ -1,6 +1,6 @@
+import { nanoid } from 'nanoid'
 import { DataTypes, Model, Optional } from 'sequelize'
 import connection from '../connection'
-import UserModel from './userModel'
 
 export enum EntryType {
     NOTE,
@@ -25,14 +25,14 @@ export class NoteEntry {
 }
 
 interface NoteAttributes {
-    id: number
+    id: string
     authorId: number
     title: string
     content: NoteEntry[]
 }
 
 export class NoteModel extends Model<NoteAttributes, NoteInput> implements NoteAttributes {
-    public id!: number
+    public id!: string
     public authorId!: number
     public title!: string
     public content!: NoteEntry[]
@@ -43,8 +43,8 @@ export class NoteModel extends Model<NoteAttributes, NoteInput> implements NoteA
 
 NoteModel.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
+        type: DataTypes.STRING,
+        defaultValue: nanoid(),
         primaryKey: true,
     },
     authorId: {

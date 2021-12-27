@@ -32,7 +32,7 @@ const Notes = () => {
       <div className="container mx-auto py-16 text-center lg:w-8/12">
         <h1 className="text-white text-3xl font-bold w-full">{ t('your-notes.title') }</h1>
 
-        { !hasMore && notes.length===0 && <><h1 className="text-white text-xl mt-5 mb-3">{ t('your-notes.no-notes') }</h1><Button onClick={() => navigate("/create_note")} text={ t("create-note.title") } size="sm" /></> }
+        { !hasMore && notes.length===0 && <><h1 className="text-white text-xl mt-5 mb-3">{ t('your-notes.no-notes') }</h1><Button onClick={() => navigate("/notes/create")} text={ t("create-note.title") } size="sm" /></> }
 
         <InfiniteScroll
           className="pb-5"

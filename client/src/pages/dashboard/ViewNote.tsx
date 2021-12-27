@@ -1,15 +1,16 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
-import { ReactNode, useRef } from "react"
+import { ReactNode, useContext, useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faPenSquare, faTrash, faShareAlt } from "@fortawesome/free-solid-svg-icons"
-import Button from "../../elements/components/Button"
 import { toast, ToastContainer } from "react-toastify"
 import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
 import NoteEntry, { EntryType } from "../../classes/noteEntry"
 import axios from "axios"
+import { UserContext } from "../../contexts/UserContext"
+import Avatar from "../../elements/components/Avatar"
 
 const depthListStyle = [
   "disc",
@@ -45,11 +46,12 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
 const ViewNote = () => {
     const { t } = useTranslation()
     const { id } = useParams()
-    const [ resource ] = useAsyncResource(Note.fetchNote, parseInt(id || "-1"))
+    const [ resource ] = useAsyncResource(Note.fetchNote, id || "")
     const navigate = useNavigate()
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)
     const shareButton = useRef<HTMLDivElement>(null)
+    const { user } = useContext(UserContext)
 
     if (note === null) {
       return (
@@ -100,11 +102,11 @@ const ViewNote = () => {
 
         <Modal title={ t("confirmation") } 
           toggleButton={deleteButton} 
-          content={<p>Are you sure you want to delete this note?</p>} 
+          content={<p> { t("view-note.are-you-sure-delete") } </p>} 
           footer={
             <>
-              <button className="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-600 mr-2 modal-close">Go back</button>
-              <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ handleDeleteNote }>Delete</button>
+              <button className="px-4 bg-gray-700 p-3 rounded-lg text-white hover:bg-gray-800 mr-2 modal-close">{ t("view-note.go-back") }</button>
+              <button className="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-600" onClick={ handleDeleteNote }>{ t("view-note.delete") }</button>
             </>
           } 
         />
@@ -117,14 +119,26 @@ const ViewNote = () => {
                 <span className="text-gray-400">{ t("url") }</span>
                 <input className="w-full text-input bg-gray-800 mt-1" 
                   type="text" 
-                  value={ `${window.location.origin}/notes/${note.id}` } 
+                  value={ `${window.location.origin}/notes/invite/${note.id}` } 
                   readOnly
                   onClick={ () => {
-                    navigator.clipboard.writeText("http://localhost:3000/invite/24")
+                    navigator.clipboard.writeText(`${window.location.origin}/notes/${note.id}`)
                     toast.success(t("view-note.copied"))
                   } } 
                 />
               </label>
+
+              <p className="text-gray-400">{ t("view-note.members") }</p>
+              <div className="flex space-y-3 w-full">
+                <div className="flex-1 flex items-center space-x-3">
+                  <Avatar image={ user.avatar } className="inline-block" />
+                  <span>{ user.username }</span>
+                </div>
+
+                <div className="flex">
+                  <FontAwesomeIcon icon={ faTrash } className="bg-gray-800" />
+                </div>
+              </div>
             </div>
           }
         />

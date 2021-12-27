@@ -3,14 +3,14 @@ import Author from "./author"
 import NoteEntry from "./noteEntry"
 
 export default class Note {
-    id: number
+    id: string
     title: string
     content?: NoteEntry[]
     updatedAt: Date
     createdAt?: Date
     author: Author
 
-    constructor(id: number, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[]) {
+    constructor(id: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[]) {
         this.id = id
         this.title = title
         this.updatedAt = updatedAt
@@ -20,10 +20,7 @@ export default class Note {
     }
 
     
-    static async fetchNote(id: number): Promise<Note | null> {
-        if (id === -1 || isNaN(id))
-            return null
-    
+    static async fetchNote(id: string): Promise<Note | null> {
         return await axios.get("/api/notes/view/" + id)
             .then(res => {
                 const note = res.data.note as Note
