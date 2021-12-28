@@ -2,18 +2,49 @@ import AuthMiddleware from "../../middlewares/authMiddleware"
 import { Controller } from "../../api"
 import { NoteModel } from "../../db/models/noteModel"
 import UserModel from "../../db/models/userModel"
+import SharedNoteModel from "../../db/models/sharedNote"
 
 const ViewNotesController = {
     method: "get",
     path: "notes/view/:id",
     handler: async (req, res) => {
         const { id } = req.params
+        const { invite } = req.query
 
-        const note = await NoteModel.findOne({
-            attributes: ["id", "title", "content", "createdAt", "updatedAt"],
-            where: { id: id },
-            include: [{ model: UserModel, as: "author", attributes: ["id", "username"] }]
-        })
+        if (!id) {
+            res.status(400).send({
+                error: "all-fields-required"
+            })
+            return
+        }
+
+        let note;
+
+        if (invite) {
+            note = await NoteModel.findOne({
+                attributes: ["id", "title"],
+                where: { inviteId: id },
+                include: [
+                    { model: UserModel, as: "author", attributes: ["id", "username"] }
+                ]
+            })
+        } else {
+            note = await NoteModel.findOne({
+                attributes: ["id", "inviteId", "title", "content", "createdAt", "updatedAt"],
+                where: { id },
+                include: [
+                    { model: UserModel, as: "author", attributes: ["id", "username"] }, 
+                    { 
+                        model: SharedNoteModel, 
+                        as: "sharedWith", 
+                        attributes: ["canWrite", "canShare"], 
+                        include: [
+                            { model: UserModel, as: "user", attributes: ["id", "username"] }
+                        ] 
+                    }
+                ]
+            })
+        }
 
         if (!note) {
             res.status(404).send({

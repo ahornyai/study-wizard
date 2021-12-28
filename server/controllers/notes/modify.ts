@@ -75,7 +75,7 @@ const ModifyNoteController = {
         }
 
         if (method === "create") {
-            const { id } = await NoteModel.create({
+            const { id, inviteId } = await NoteModel.create({
                 authorId: req?.session?.user?.id || -1,
                 title,
                 content: entries
@@ -83,7 +83,8 @@ const ModifyNoteController = {
 
             res.status(200).send({
                 success: true,
-                id
+                id,
+                inviteId
             })
         }else {
             const [ affectedRows ] = await NoteModel.update({

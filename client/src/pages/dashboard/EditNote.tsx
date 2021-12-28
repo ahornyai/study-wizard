@@ -15,7 +15,7 @@ import Note from '../../classes/note';
 const EditNote = () => {
   const { t } = useTranslation()
   const { id } = useParams()
-  const [ resource ] = useAsyncResource(Note.fetchNote, id || "")
+  const [ resource ] = useAsyncResource(Note.fetch, id || "")
   const note = resource()
   const [entries, setEntries] = useState<NoteEntry[]>(note?.content || [])
   const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)

@@ -26,6 +26,7 @@ export class NoteEntry {
 
 interface NoteAttributes {
     id: string
+    inviteId?: string
     authorId: number
     title: string
     content: NoteEntry[]
@@ -33,6 +34,7 @@ interface NoteAttributes {
 
 export class NoteModel extends Model<NoteAttributes, NoteInput> implements NoteAttributes {
     public id!: string
+    public inviteId!: string
     public authorId!: number
     public title!: string
     public content!: NoteEntry[]
@@ -47,17 +49,22 @@ NoteModel.init({
         defaultValue: nanoid(),
         primaryKey: true,
     },
+    inviteId: {
+        type: DataTypes.STRING,
+        defaultValue: nanoid(),
+        unique: true,
+    },
     authorId: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     content: {
         type: DataTypes.JSON,
-        allowNull: false
+        allowNull: false,
     }
 }, {
     tableName: 'notes',

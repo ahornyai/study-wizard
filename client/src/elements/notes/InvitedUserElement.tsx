@@ -42,6 +42,7 @@ const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementPr
                     <FontAwesomeIcon onClick={ () => setDropdown(!dropdownShow) } forwardedRef={ btnDropdownRef } className={ "text-green-400 hover:text-green-500 cursor-pointer" } icon={ faUserShield } />
                     
                     <div ref={popoverDropdownRef} className={ (dropdownShow ? "block " : "hidden ") + "dropdown select-none " } >
+                        <p className="dropdown-link text-center hover:text-gray-200 cursor-default">Permissions</p>
                         <p className="dropdown-link" onClick={ () => setCanWrite(!canWrite) }>
                             <FontAwesomeIcon className="text-green-300" icon={ canWrite ? faCheckSquare : faSquare } /> <span className="dropdown-text">{ t("write") }</span>
                         </p>
@@ -50,7 +51,6 @@ const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementPr
                         </p>
                     </div>
                 </OutsideClickHandler>
-                
                 <FontAwesomeIcon className="text-red-400 hover:text-red-500 cursor-pointer" size="lg" icon={ faTrash } onClick={ onRemove } />
             </div>
         </div>

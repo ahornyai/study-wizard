@@ -49,6 +49,11 @@
         "add-definition": "Add definition"
     },
 
+    "accept-invite": {
+        "title": "Accept invite",
+        "not-found": "Invite not found"
+    },
+
     "auth": {
         "login": "Login",
         "register": "Register",

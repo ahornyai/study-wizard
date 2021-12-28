@@ -27,6 +27,11 @@
         "add-definition": "Definíció hozzáadása"
     },
 
+    "accept-invite": {
+        "title": "Meghívó elfogadása",
+        "not-found": "A meghívó nem található"
+    },
+
     "view-note": {
         "title": "Jegyzet megtekintése",
         "not-found": "Nem található a jegyzet",

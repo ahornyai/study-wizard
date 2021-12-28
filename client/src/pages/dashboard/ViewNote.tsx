@@ -46,7 +46,7 @@ const renderEntry = (entry: NoteEntry): ReactNode => {
 const ViewNote = () => {
     const { t } = useTranslation()
     const { id } = useParams()
-    const [ resource ] = useAsyncResource(Note.fetchNote, id || "")
+    const [ resource ] = useAsyncResource(Note.fetch, id || "")
     const navigate = useNavigate()
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)
