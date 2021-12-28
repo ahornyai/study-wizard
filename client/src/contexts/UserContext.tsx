@@ -7,7 +7,7 @@ export class User {
     id: number
     username: string
     loggedIn: boolean
-    avatar: string | undefined;
+    avatar: string
 
 
     constructor (id: number = 0, username: string = "", loggedIn: boolean = false) {

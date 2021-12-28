@@ -10,7 +10,7 @@ import Note from "../../classes/note"
 import NoteEntry, { EntryType } from "../../classes/noteEntry"
 import axios from "axios"
 import { UserContext } from "../../contexts/UserContext"
-import Avatar from "../../elements/components/Avatar"
+import InvitedUserElement from "../../elements/notes/InvitedUserElement"
 
 const depthListStyle = [
   "disc",
@@ -129,15 +129,8 @@ const ViewNote = () => {
               </label>
 
               <p className="text-gray-400">{ t("view-note.members") }</p>
-              <div className="flex space-y-3 w-full">
-                <div className="flex-1 flex items-center space-x-3">
-                  <Avatar image={ user.avatar } className="inline-block" />
-                  <span>{ user.username }</span>
-                </div>
-
-                <div className="flex">
-                  <FontAwesomeIcon icon={ faTrash } className="bg-gray-800" />
-                </div>
+              <div className="space-y-3">
+                <InvitedUserElement username={ user.username } avatar={ user.avatar } onRemove={ () => console.log("removed entry") } />
               </div>
             </div>
           }
