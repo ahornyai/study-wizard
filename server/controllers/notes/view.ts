@@ -37,7 +37,7 @@ const ViewNotesController = {
                     { 
                         model: SharedNoteModel, 
                         as: "sharedWith", 
-                        attributes: ["canWrite", "canShare"], 
+                        attributes: ["canWrite", "canManagePerms"], 
                         include: [
                             { model: UserModel, as: "user", attributes: ["id", "username"] }
                         ] 

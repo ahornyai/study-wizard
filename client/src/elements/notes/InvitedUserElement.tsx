@@ -18,7 +18,7 @@ const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementPr
     const btnDropdownRef = useRef(null)
     const popoverDropdownRef = useRef(null)
     const [canWrite, setCanWrite] = useState(false)
-    const [canShare, setCanShare] = useState(false)
+    const [canManagePerms, setCanManagePerms] = useState(false)
     
     useEffect(() => {
         if (!(btnDropdownRef.current && popoverDropdownRef.current)) {
@@ -46,8 +46,8 @@ const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementPr
                         <p className="dropdown-link" onClick={ () => setCanWrite(!canWrite) }>
                             <FontAwesomeIcon className="text-green-300" icon={ canWrite ? faCheckSquare : faSquare } /> <span className="dropdown-text">{ t("write") }</span>
                         </p>
-                        <p className="dropdown-link" onClick={ () => setCanShare(!canShare) }>
-                            <FontAwesomeIcon className="text-green-300" icon={ canShare ? faCheckSquare : faSquare } /> <span className="dropdown-text">{ t("share") }</span>
+                        <p className="dropdown-link" onClick={ () => setCanManagePerms(!canManagePerms) }>
+                            <FontAwesomeIcon className="text-green-300" icon={ canManagePerms ? faCheckSquare : faSquare } /> <span className="dropdown-text">{ t("view-note.manage-perms") }</span>
                         </p>
                     </div>
                 </OutsideClickHandler>

@@ -48,7 +48,8 @@
         "memorize-note": "Jegyzet megjegyzése",
         "write-test": "Teszt írása",
         "are-you-sure-delete": "Biztos benne, hogy törölni szeretné a jegyzetet?",
-        "go-back": "Vissza"
+        "go-back": "Vissza",
+        "manage-perms": "Jogosultságok kezelése"
     },
 
     "edit-note": {

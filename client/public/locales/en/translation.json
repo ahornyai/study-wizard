@@ -28,7 +28,8 @@
         "memorize-note": "Memorize the note",
         "write-test": "Write a test",
         "are-you-sure-delete": "Are you sure you want to delete this note?",
-        "go-back": "Go back"
+        "go-back": "Go back",
+        "manage-perms": "Manage permissions"
     },
 
     "edit-note": {

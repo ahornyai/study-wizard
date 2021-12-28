@@ -25,7 +25,7 @@ const AcceptInviteController = {
             return
         }
 
-        if (await SharedNoteModel.findOne({ where: { noteId: note.id, userId: req.session.user?.id } })) {
+        if (note.authorId === req.session.user?.id || await SharedNoteModel.findOne({ where: { noteId: note.id, userId: req.session.user?.id } })) {
             res.status(400).send({
                 error: "already-accepted-invite"
             })

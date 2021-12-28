@@ -6,7 +6,7 @@ interface SharedNoteAttributes {
     noteId: string
     userId: number
     canWrite?: boolean
-    canShare?: boolean
+    canManagePerms?: boolean
 }
 
 class SharedNoteModel extends Model<SharedNoteAttributes, SharedNoteInput> implements SharedNoteAttributes {
@@ -14,7 +14,7 @@ class SharedNoteModel extends Model<SharedNoteAttributes, SharedNoteInput> imple
     public noteId!: string
     public userId!: number
     public canWrite!: boolean
-    public canShare!: boolean
+    public canManagePerms!: boolean
 
     public readonly createdAt!: Date
     public readonly updatedAt!: Date
@@ -38,7 +38,7 @@ SharedNoteModel.init({
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    canShare: {
+    canManagePerms: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
