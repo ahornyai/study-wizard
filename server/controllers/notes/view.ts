@@ -20,7 +20,7 @@ const ViewNotesController = {
 
         let note;
 
-        if (invite) {
+        if (invite === "true") {
             note = await NoteModel.findOne({
                 attributes: ["id", "title"],
                 where: { inviteId: id },

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { createContext } from "react";
-import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/avatars-jdenticon-sprites';
+import axios from "axios"
+import { createContext } from "react"
+import { createAvatar } from '@dicebear/avatars'
+import * as style from '@dicebear/avatars-jdenticon-sprites'
 
 export class User {
     id: number
@@ -17,7 +17,7 @@ export class User {
         this.avatar = createAvatar(style, {
             seed: this.username,
             dataUri: true
-        });
+        })
     }
 
 }

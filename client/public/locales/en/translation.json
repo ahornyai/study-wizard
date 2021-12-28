@@ -51,7 +51,9 @@
 
     "accept-invite": {
         "title": "Accept invite",
-        "not-found": "Invite not found"
+        "not-found": "Invite not found",
+        "invited-you-to-collaborate": "invited you to collaborate on",
+        "accept": "Accept"
     },
 
     "auth": {
@@ -85,7 +87,9 @@
         "term-min-char": "Term must be at least 3 characters long",
         "term-max-char": "Term cannot be longer than 256 characters",
         "definition-min-char": "Definition must be at least 3 characters long",
-        "definition-max-char": "Definition cannot be longer than 256 characters"
+        "definition-max-char": "Definition cannot be longer than 256 characters",
+        "note-not-found": "Note not found",
+        "already-accepted-invite": "You have already accepted this invite"
     },
 
     "title": "Title",

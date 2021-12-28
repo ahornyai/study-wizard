@@ -46,12 +46,14 @@ export class NoteModel extends Model<NoteAttributes, NoteInput> implements NoteA
 NoteModel.init({
     id: {
         type: DataTypes.STRING,
-        defaultValue: nanoid(),
+        allowNull: false,
+        defaultValue: () => nanoid(),
         primaryKey: true,
     },
     inviteId: {
         type: DataTypes.STRING,
-        defaultValue: nanoid(),
+        allowNull: false,
+        defaultValue: () => nanoid(),
         unique: true,
     },
     authorId: {

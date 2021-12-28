@@ -119,10 +119,10 @@ const ViewNote = () => {
                 <span className="text-gray-400">{ t("url") }</span>
                 <input className="w-full text-input bg-gray-800 mt-1" 
                   type="text" 
-                  value={ `${window.location.origin}/notes/invite/${note.id}` } 
+                  value={ `${window.location.origin}/notes/invite/${note.inviteId}` } 
                   readOnly
                   onClick={ () => {
-                    navigator.clipboard.writeText(`${window.location.origin}/notes/${note.id}`)
+                    navigator.clipboard.writeText(`${window.location.origin}/notes/invite/${note.inviteId}`)
                     toast.success(t("view-note.copied"))
                   } } 
                 />

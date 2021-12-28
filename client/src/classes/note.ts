@@ -26,11 +26,19 @@ export default class Note {
             .then(res => {
                 const note = res.data.note as Note
             
-                if (!note || note.content == null) {
+                if (!note) {
                     return null
                 }
-            
-                note.content = note.content.map(NoteEntry.fromJSON)
+
+                if (!invite) {
+                    if (note.content == null) {
+                        return null
+                    }
+
+                    note.content = note.content.map(NoteEntry.fromJSON)
+                }
+
+                note.author = new Author(note.author.id, note.author.username)
             
                 return note
             })

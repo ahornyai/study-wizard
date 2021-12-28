@@ -13,6 +13,7 @@ import SignOutController from "./controllers/user/signout"
 import ModifyNoteController from "./controllers/notes/modify"
 import ListNotesController from "./controllers/notes/list"
 import ViewNotesController from "./controllers/notes/view"
+import AcceptInviteController from "./controllers/notes/accept_invite"
 
 dbInit()
 
@@ -43,7 +44,8 @@ new API({
         //notes
         ModifyNoteController,
         ListNotesController,
-        ViewNotesController
+        ViewNotesController,
+        AcceptInviteController,
     ],
     middlewares: [
       express.json(),

@@ -3,7 +3,7 @@ import AuthMiddleware from "../../middlewares/authMiddleware";
 import { NoteModel } from "../../db/models/noteModel";
 import SharedNoteModel from "../../db/models/sharedNote";
 
-const RegisterController = {
+const AcceptInviteController = {
     method: "post",
     path: "notes/accept_invite",
     handler: async (req, res) => {
@@ -33,7 +33,7 @@ const RegisterController = {
         }
 
         await SharedNoteModel.create({
-            noteId: inviteId,
+            noteId: note.id,
             userId: req.session.user?.id || -1
         })
 
@@ -44,4 +44,4 @@ const RegisterController = {
     middlewares: [ AuthMiddleware ]
 } as Controller
 
-export default RegisterController
+export default AcceptInviteController

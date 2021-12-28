@@ -5,11 +5,16 @@ import UserModel from './models/userModel'
 const dbInit = () => Promise.all([
     UserModel.sync(),
     NoteModel.sync(),
+    SharedNoteModel.sync(),
 
     // relationships
     UserModel.hasMany(NoteModel, {
         foreignKey: 'authorId',
         as: 'notes'
+    }),
+    UserModel.hasMany(SharedNoteModel, {
+        foreignKey: 'userId',
+        as: 'sharedWith'
     }),
     NoteModel.belongsTo(UserModel, {
         foreignKey: 'authorId',
@@ -17,7 +22,7 @@ const dbInit = () => Promise.all([
     }),
     NoteModel.hasMany(SharedNoteModel, {
         foreignKey: 'noteId',
-        as: 'sharedNotes'
+        as: 'sharedWith'
     }),
     SharedNoteModel.belongsTo(NoteModel, {
         foreignKey: 'noteId',
