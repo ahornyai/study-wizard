@@ -32,6 +32,13 @@ const Notes = ({ shared }: NotesProps) => {
       fetchNotes()
     }, [fetchNotes])
 
+    // not the best solution for resetting the page, but it works
+    useEffect(() => {
+      setHasMore(true)
+      setPage(1)
+      setNotes([])
+    }, [shared])
+
     return (
       <div className="container mx-auto py-16 text-center lg:w-8/12">
         <h1 className="text-white text-3xl font-bold w-full">{ shared ? t("shared-notes.title") : t("your-notes.title") }</h1>
