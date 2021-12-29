@@ -31,7 +31,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     
-                    <Route path="/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
+                    <Route path="/shared_notes" element={<AuthenticatedRoute><Notes shared={ true } /></AuthenticatedRoute>} />
+                    <Route path="/notes" element={<AuthenticatedRoute><Notes shared={ false } /></AuthenticatedRoute>} />
                     <Route path="/notes/:id" element={<AuthenticatedRoute><ViewNote /></AuthenticatedRoute>} />
                     <Route path="/notes/edit/:id" element={<AuthenticatedRoute><EditNote /></AuthenticatedRoute>} />
                     <Route path="/notes/create" element={<AuthenticatedRoute><CreateNote /></AuthenticatedRoute>} />

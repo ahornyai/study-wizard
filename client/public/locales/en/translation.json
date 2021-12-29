@@ -38,7 +38,8 @@
     },
 
     "shared-notes": {
-        "title": "Shared notes"
+        "title": "Shared notes",
+        "no-notes": "You don't have any shared notes yet"
     },
 
     "create-note": {

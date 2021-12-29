@@ -15,7 +15,8 @@
     },
 
     "shared-notes": {
-        "title": "Megosztott jegyzeteid"
+        "title": "Megosztott jegyzeteid",
+        "no-notes": "Nincsenek megosztott jegyzeteid"
     },
 
     "create-note": {
