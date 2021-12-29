@@ -8,7 +8,7 @@ const ManageMemberController = {
     method: "post",
     path: "notes/manage-member/:method",
     handler: async (req, res) => {
-        const { noteId, memberId, permission } = req.body
+        const { noteId, memberId, permission, value } = req.body
         const { method } = req.params
 
         if (!noteId || !memberId || !method) {
@@ -74,7 +74,7 @@ const ManageMemberController = {
                 break
             }
             case "permission": {
-                if (!permission) {
+                if (!permission || value === undefined || (value !== true && value !== false)) {
                     res.status(400).send({
                         error: "all-fields-required"
                     })
@@ -88,10 +88,7 @@ const ManageMemberController = {
                     return
                 }
 
-                await SharedNoteModel.update({
-                    canWrite: permission === "write" ? true : false,
-                    canManagePerms: permission === "manage" ? true : false
-                }, { where: { noteId: note.id, userId: memberId } })
+                await SharedNoteModel.update({ [permission === "write" ? "canWrite" : "canManagePerms"]: value === true }, { where: { noteId: note.id, userId: memberId } })
 
                 res.send({
                     success: true

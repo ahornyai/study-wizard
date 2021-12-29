@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
-import { ReactNode, useContext, useRef } from "react"
+import { ReactNode, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faPenSquare, faTrash, faShareAlt } from "@fortawesome/free-solid-svg-icons"
 import { toast, ToastContainer } from "react-toastify"
@@ -10,6 +10,7 @@ import Note from "../../classes/note"
 import NoteEntry, { EntryType } from "../../classes/noteEntry"
 import axios from "axios"
 import InvitedUserElement from "../../elements/notes/InvitedUserElement"
+import NoteMember from "../../classes/noteMember"
 
 const depthListStyle = [
   "disc",
@@ -50,6 +51,7 @@ const ViewNote = () => {
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)
     const shareButton = useRef<HTMLDivElement>(null)
+    const [ sharedWith, setSharedWith ] = useState<NoteMember[]>(typeof note === "string" ? [] : note.sharedWith || [])
 
     if (typeof note === "string") {
       return (
@@ -67,7 +69,21 @@ const ViewNote = () => {
         navigate("/notes")
       }).catch(err => {
         if (err.response?.data?.error) {
-          toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
+          toast.error(t("errors." + err.response.data.error))
+        }
+      })
+    }
+
+    const handleDeleteMember = (memberId: number) => {
+      axios.post("/api/notes/manage-member/delete", {
+        noteId: note.id,
+        memberId
+      }).then(() => {
+        toast.success(t("view-note.successfully-deleted"))
+        setSharedWith(sharedWith.filter(member => member.user.id !== memberId))
+      }).catch(err => {
+        if (err.response?.data?.error) {
+          toast.error(t("errors." + err.response.data.error))
         }
       })
     }
@@ -130,16 +146,15 @@ const ViewNote = () => {
                 />
               </label>
               
-              { note.sharedWith &&
+              { sharedWith.length !== 0 &&
               <>
                 <p className="text-gray-400">{ t("view-note.members") }</p>
                 <div className="space-y-3">
                   {
-                    note.sharedWith?.map(member => (
-                      <InvitedUserElement member={ member } key={ member.user.id } onRemove={ () => console.log("removed entry", member) } />
+                    sharedWith.map(member => (
+                      <InvitedUserElement note={ note } member={ member } key={ member.user.id } onRemove={ () => handleDeleteMember(member.user.id) } />
                     ))
                   }
-                  
                 </div>
               </>
               }

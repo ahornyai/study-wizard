@@ -50,7 +50,8 @@
         "write-test": "Teszt írása",
         "are-you-sure-delete": "Biztos benne, hogy törölni szeretné a jegyzetet?",
         "go-back": "Vissza",
-        "manage-perms": "Jogosultságok kezelése"
+        "manage-perms": "Jogosultságok kezelése",
+        "successfully-deleted": "Sikeres törlés"
     },
 
     "edit-note": {
@@ -102,6 +103,7 @@
     "confirmation": "Megerősítés",
     "url": "URL",
     "write": "Írás",
+    "permissions": "Jogosultságok",
 
     "note": "Jegyzet",
     "term": "Kifejezés",

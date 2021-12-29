@@ -14,6 +14,7 @@ import ModifyNoteController from "./controllers/notes/modify"
 import ListNotesController from "./controllers/notes/list"
 import ViewNotesController from "./controllers/notes/view"
 import AcceptInviteController from "./controllers/notes/accept_invite"
+import ManageMemberController from "./controllers/notes/manage_member"
 
 dbInit()
 
@@ -46,6 +47,7 @@ new API({
         ListNotesController,
         ViewNotesController,
         AcceptInviteController,
+        ManageMemberController
     ],
     middlewares: [
       express.json(),
