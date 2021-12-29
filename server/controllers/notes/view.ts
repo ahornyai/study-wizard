@@ -60,8 +60,29 @@ const ViewNotesController = {
             return
         }
 
+        let canWrite = (note.author.id === req.session.user?.id || note.sharedWith?.find((s: any) => s.user.id === req.session.user?.id && s.canWrite === true)) !== undefined || false
+        let canManagePerms = true
+
+        if (note.author.id !== req.session.user?.id && !note.sharedWith?.find((s: any) => s.user.id === req.session.user?.id && s.canManagePerms === true)) {
+            note.sharedWith = undefined
+            canManagePerms = false
+        }
+        
         res.status(200).send({
-            note
+            note: {
+                id: note.id,
+                inviteId: note.inviteId,
+                title: note.title,
+                content: note.content,
+                createdAt: note.createdAt,
+                updatedAt: note.updatedAt,
+                author: note.author,
+                sharedWith: note.sharedWith,
+                perms: {
+                    write: canWrite,
+                    managePerms: canManagePerms
+                }
+            }
         })
     },
     middlewares: [ AuthMiddleware ]

@@ -1,6 +1,17 @@
 import axios from "axios"
 import Author from "./author"
 import NoteEntry from "./noteEntry"
+import NoteMember from "./noteMember"
+
+export class Permissions {
+    write: boolean
+    managePerms: boolean
+
+    constructor(write: boolean, managePerms: boolean) {
+        this.write = write
+        this.managePerms = managePerms
+    }
+}
 
 export default class Note {
     id: string
@@ -10,8 +21,10 @@ export default class Note {
     updatedAt: Date
     createdAt?: Date
     author: Author
+    sharedWith?: NoteMember[] = []
+    perms: Permissions
 
-    constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[]) {
+    constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[], perms: Permissions = new Permissions(false, false)) {
         this.id = id
         this.inviteId = inviteId
         this.title = title
@@ -19,6 +32,7 @@ export default class Note {
         this.author = author
         this.createdAt = createdAt
         this.content = content
+        this.perms = perms
     }
 
     static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
@@ -39,6 +53,10 @@ export default class Note {
                 }
 
                 note.author = new Author(note.author.id, note.author.username)
+
+                if (note.sharedWith) {
+                    note.sharedWith = note.sharedWith.map(s => new NoteMember(s.user.id, s.user.username, s.canWrite, s.canManagePerms))
+                }
             
                 return note
             })

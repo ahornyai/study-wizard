@@ -5,20 +5,20 @@ import { t } from "i18next"
 import { useEffect } from "react"
 import { useRef, useState } from "react"
 import OutsideClickHandler from "react-outside-click-handler"
+import NoteMember from "../../classes/noteMember"
 import Avatar from "../components/Avatar"
 
 interface InvitedUserElementProps {
-    username: string
-    avatar: string
+    member: NoteMember
     onRemove: () => void
 }
 
-const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementProps) => {
+const InvitedUserElement = ({ member, onRemove }: InvitedUserElementProps) => {
     const [dropdownShow, setDropdown] = useState(false)
     const btnDropdownRef = useRef(null)
     const popoverDropdownRef = useRef(null)
-    const [canWrite, setCanWrite] = useState(false)
-    const [canManagePerms, setCanManagePerms] = useState(false)
+    const [canWrite, setCanWrite] = useState(member.canWrite)
+    const [canManagePerms, setCanManagePerms] = useState(member.canManagePerms)
     
     useEffect(() => {
         if (!(btnDropdownRef.current && popoverDropdownRef.current)) {
@@ -33,8 +33,8 @@ const InvitedUserElement = ({ username, avatar, onRemove }: InvitedUserElementPr
     return (
         <div className="flex bg-gray-800 rounded-lg p-2 px-3">
             <div className="flex-1 flex items-center space-x-3">
-                <Avatar image={ avatar } className="inline-block" />
-                <span>{ username }</span>
+                <Avatar image={ member.user.avatar } className="inline-block" />
+                <span>{ member.user.username }</span>
             </div>
 
             <div className="flex space-x-3 items-center">

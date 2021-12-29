@@ -9,7 +9,6 @@ import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
 import NoteEntry, { EntryType } from "../../classes/noteEntry"
 import axios from "axios"
-import { UserContext } from "../../contexts/UserContext"
 import InvitedUserElement from "../../elements/notes/InvitedUserElement"
 
 const depthListStyle = [
@@ -51,7 +50,6 @@ const ViewNote = () => {
     const note = resource()
     const deleteButton = useRef<HTMLDivElement>(null)
     const shareButton = useRef<HTMLDivElement>(null)
-    const { user } = useContext(UserContext)
 
     if (typeof note === "string") {
       return (
@@ -85,8 +83,12 @@ const ViewNote = () => {
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
               
               <div className="float-right space-x-3 absolute bottom-2 right-4">
-                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPenSquare } size="lg" />
-                <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
+                { note.perms.write &&
+                  <>
+                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPenSquare } size="lg" />
+                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
+                  </>
+                }
                 <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ shareButton } icon={ faShareAlt } size="lg" />
               </div>
             </div>
@@ -127,11 +129,20 @@ const ViewNote = () => {
                   } } 
                 />
               </label>
-
-              <p className="text-gray-400">{ t("view-note.members") }</p>
-              <div className="space-y-3">
-                <InvitedUserElement username={ user.username } avatar={ user.avatar } onRemove={ () => console.log("removed entry") } />
-              </div>
+              
+              { note.sharedWith &&
+              <>
+                <p className="text-gray-400">{ t("view-note.members") }</p>
+                <div className="space-y-3">
+                  {
+                    note.sharedWith?.map(member => (
+                      <InvitedUserElement member={ member } key={ member.user.id } onRemove={ () => console.log("removed entry", member) } />
+                    ))
+                  }
+                  
+                </div>
+              </>
+              }
             </div>
           }
         />

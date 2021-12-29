@@ -9,7 +9,6 @@ export class User {
     loggedIn: boolean
     avatar: string
 
-
     constructor (id: number = 0, username: string = "", loggedIn: boolean = false) {
         this.id = id
         this.username = username
