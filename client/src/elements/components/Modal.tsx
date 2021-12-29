@@ -20,14 +20,14 @@ const Modal = ({ title, toggleButton, content, footer = <></> }: ModalProps) => 
     }, [toggleButton])
 
     return (
-        <div ref={ modal } className={ "modal " + (isOpen ? "modal-active" : "opacity-0 pointer-events-none")}>
+        <div ref={ modal } className={ "modal " + (isOpen ? "modal-active z-40" : "opacity-0 pointer-events-none")}>
             <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 modal-close"></div>
             
-                <div className="bg-gray-900 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+                <div className="bg-gray-900 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg overflow-y-auto z-50">
                     <div className="py-4 text-left px-6">
                         <div className="flex justify-between items-center pb-3">
                             <p className="text-2xl font-bold">{ title }</p>
-                            <FontAwesomeIcon className="cursor-pointer z-50 hover:text-gray-300 modal-close" icon={ faTimes } size={"lg"} />
+                            <FontAwesomeIcon className="cursor-pointer hover:text-gray-300 modal-close" icon={ faTimes } size={"lg"} />
                         </div>
 
                         { content }

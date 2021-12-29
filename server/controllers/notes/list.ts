@@ -38,8 +38,6 @@ const ListNotesController = {
                 offset: convertedPage * 9
             })
 
-            console.log(notes + " amogus")
-
             hasMore = await SharedNoteModel.count({
                 where: { userId: req.session.user?.id }
             }) > (convertedPage + 1) * 9
