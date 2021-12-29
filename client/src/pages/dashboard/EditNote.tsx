@@ -17,7 +17,7 @@ const EditNote = () => {
   const { id } = useParams()
   const [ resource ] = useAsyncResource(Note.fetch, id || "")
   const note = resource()
-  const [entries, setEntries] = useState<NoteEntry[]>(note?.content || [])
+  const [entries, setEntries] = useState<NoteEntry[]>([])
   const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const navigate = useNavigate()
 
@@ -28,14 +28,16 @@ const EditNote = () => {
       document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [lastAdded])
 
-  if (note === null) {
+  if (typeof note === "string") {
     return (
       <div className="container mx-auto py-16 text-center lg:w-8/12 text-white">
         <h1 className="text-3xl font-bold mb-3">{ t('edit-note.title') }</h1>
-        <h2 className="text-xl">{ t('edit-note.not-found') }</h2>
+        <h2 className="text-xl">{ t('errors' + note) }</h2>
       </div>
     )
   }
+
+  setEntries(note.content || [])
 
   const handleEditNote = (title: string) => {
     axios.post('/api/notes/modify/update', {

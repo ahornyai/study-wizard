@@ -53,11 +53,11 @@ const ViewNote = () => {
     const shareButton = useRef<HTMLDivElement>(null)
     const { user } = useContext(UserContext)
 
-    if (note === null) {
+    if (typeof note === "string") {
       return (
         <div className="container mx-auto py-16 text-center lg:w-8/12 text-white">
           <h1 className="text-3xl font-bold mb-3">{ t('view-note.title') }</h1>
-          <h2 className="text-xl">{ t('view-note.not-found') }</h2>
+          <h2 className="text-xl">{ t('errors.' + note) }</h2>
         </div>
       )
     }

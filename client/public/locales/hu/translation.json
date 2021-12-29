@@ -82,7 +82,7 @@
         "email-taken": "Ez az e-mail cím már foglalt",
         "invalid-username-password": "Érvénytelen felhasználónév vagy jelszó",
         "internal": "Hiba történt a bejelentkezés során",
-        "unauthorized": "Nincs jogosultságod a művelet végrehajtására",
+        "unauthorized": "Nincs jogosultságod ehhez az oldalhoz",
         "title-min-char": "A címnek legalább 3 karakter hosszúnak kell lennie",
         "title-max-char": "A cím maximum 50 karakter hosszú lehet",
         "content-invalid": "Hibás tartalom",

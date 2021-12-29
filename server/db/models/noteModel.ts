@@ -33,6 +33,7 @@ interface NoteAttributes {
 }
 
 export class NoteModel extends Model<NoteAttributes, NoteInput> implements NoteAttributes {
+    [sharedWith: string]: any
     public id!: string
     public inviteId!: string
     public authorId!: number

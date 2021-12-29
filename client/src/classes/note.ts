@@ -21,18 +21,18 @@ export default class Note {
         this.content = content
     }
 
-    static async fetch(id: string, invite: boolean = false): Promise<Note | null> {
+    static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
         return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
             .then(res => {
                 const note = res.data.note as Note
             
                 if (!note) {
-                    return null
+                    return "not-found"
                 }
 
                 if (!invite) {
                     if (note.content == null) {
-                        return null
+                        return "content-invalid"
                     }
 
                     note.content = note.content.map(NoteEntry.fromJSON)
@@ -43,9 +43,7 @@ export default class Note {
                 return note
             })
             .catch(err => {
-                console.error(err)
-            
-                return null
+                return err.response.data.error
             })
     }
 
