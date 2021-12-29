@@ -53,7 +53,7 @@ const ViewNotesController = {
             return
         }
 
-        if (note.author.id !== req.session.user?.id && !note.sharedWith.find((s: any) => s.user.id === req.session.user?.id)) {
+        if (note.author.id !== req.session.user?.id && !note.sharedWith?.find((s: any) => s.user.id === req.session.user?.id) && !invite) {
             res.status(403).send({
                 error: "unauthorized"
             })
