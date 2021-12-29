@@ -17,7 +17,7 @@ const EditNote = () => {
   const { id } = useParams()
   const [ resource ] = useAsyncResource(Note.fetch, id || "")
   const note = resource()
-  const [entries, setEntries] = useState<NoteEntry[]>([])
+  const [entries, setEntries] = useState<NoteEntry[]>(typeof note === "string" ? [] : note.content || [])
   const [lastAdded, setLastAdded] = useState<NoteEntry|null>(null)
   const navigate = useNavigate()
 
@@ -36,8 +36,6 @@ const EditNote = () => {
       </div>
     )
   }
-
-  setEntries(note.content || [])
 
   const handleEditNote = (title: string) => {
     axios.post('/api/notes/modify/update', {

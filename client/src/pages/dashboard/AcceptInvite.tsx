@@ -24,7 +24,7 @@ const AcceptInvite = () => {
     }
 
     const handleAcceptInvite = async () => {
-      axios.post(`/api/notes/accept_invite`, {
+      axios.post(`/api/notes/accept-invite`, {
         inviteId: id
       }).then(() => {
         navigate(`/notes/${note.id}`)

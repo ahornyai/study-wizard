@@ -5,7 +5,7 @@ import SharedNoteModel from "../../db/models/sharedNote";
 
 const AcceptInviteController = {
     method: "post",
-    path: "notes/accept_invite",
+    path: "notes/accept-invite",
     handler: async (req, res) => {
         let { inviteId } = req.body
 

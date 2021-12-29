@@ -1,6 +1,8 @@
 import AuthMiddleware from "../../middlewares/authMiddleware"
 import { Controller } from "../../api"
 import { EntryType, NoteEntry, NoteModel } from "../../db/models/noteModel"
+import UserModel from "../../db/models/userModel"
+import SharedNoteModel from "../../db/models/sharedNote"
 
 const ModifyNoteController = {
     method: "post",
@@ -11,9 +13,49 @@ const ModifyNoteController = {
 
         if (method !== "create" && method !== "update" && method !== "delete") {
             res.status(400).send({
-                error: "Invalid method"
+                error: "invalid-method"
             })
             return
+        }
+
+        if (method === "delete" || method === "update") {
+            if (id === undefined) {
+                res.status(400).send({
+                    error: "all-fields-required"
+                })
+                return
+            }
+
+            const note = await NoteModel.findOne({
+                attributes: ["id", "inviteId", "title", "content", "createdAt", "updatedAt"],
+                where: { id: id },
+                include: [
+                    { model: UserModel, as: "author", attributes: ["id", "username"] }, 
+                    { 
+                        model: SharedNoteModel, 
+                        as: "sharedWith", 
+                        attributes: ["canWrite", "canManagePerms"], 
+                        include: [
+                            { model: UserModel, as: "user", attributes: ["id", "username"] }
+                        ] 
+                    }
+                ]
+            })
+
+            if (note === null) {
+                res.status(404).send({
+                    error: "note-not-found"
+                })
+                return
+            }
+
+            if (note.author.id !== req.session.user?.id 
+                && !note.sharedWith?.find((s: any) => s.user.id === req.session.user?.id && s.canWrite === true)) {
+                res.status(403).send({
+                    error: "unauthorized"
+                })
+                return
+            }
         }
         
         if (method === "delete") {
