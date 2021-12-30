@@ -1,11 +1,19 @@
-import { useRef } from "react"
+import { useContext, useRef } from "react"
 import ReCAPTCHA from "react-google-recaptcha"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../contexts/UserContext"
 import Button from "../../elements/components/Button"
 
 const ForgotPassword = () => {
+    const navigate = useNavigate()
     const { t } = useTranslation()
     const reCaptcha = useRef<ReCAPTCHA>(null)
+    const { user } = useContext(UserContext)
+
+    if (user.loggedIn) {
+        navigate("/")
+    }
 
     return (
       <div className="pt-40 text-white space-y-4 container text-center">

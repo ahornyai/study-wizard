@@ -1,9 +1,10 @@
 import axios from "axios"
-import { useRef } from "react"
+import { useContext, useRef } from "react"
 import ReCAPTCHA from "react-google-recaptcha"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
+import { UserContext } from "../../contexts/UserContext"
 
 import Button from "../../elements/components/Button"
 
@@ -16,6 +17,11 @@ const Register = () => {
     const password = useRef<HTMLInputElement>(null)
     const passwordAgain = useRef<HTMLInputElement>(null)
     const { t } = useTranslation()
+    const { user } = useContext(UserContext)
+
+    if (user.loggedIn) {
+        navigate("/")
+    }
 
     const handleRegister = async () => {
       if (!form.current?.checkValidity()) {
