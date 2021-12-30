@@ -1,21 +1,31 @@
 import UserModel from "../../db/models/userModel";
 import { Controller } from "../../api"
 import bcrypt from 'bcrypt'
+import axios from "axios";
 
 const LoginController = {
     method: "post",
     path: "auth/login",
     handler: async (req, res) => {
-        const { username, password } = req.body
+        const { username, password, captchaToken } = req.body
 
-        if (!username || !password) {
+        if (!username || !password || !captchaToken) {
             res.status(400).send({
                 error: "all-fields-required"
             })
             return
         }
 
-        const user = await UserModel.findOne({ where: { username } });
+        const captchaRes = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`)
+
+        if (!captchaRes.data.success) {
+            res.status(400).send({
+                error: "captcha-failed"
+            })
+            return
+        }
+
+        const user = await UserModel.findOne({ where: { username } })
 
         if (!user) {
             res.status(400).send({

@@ -5,22 +5,28 @@ import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 import { User, UserContext } from "../../contexts/UserContext"
 import Button from "../../elements/components/Button"
+import ReCAPTCHA from "react-google-recaptcha"
 
 const Login = () => {
     const navigate = useNavigate()
     const username = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
+    const reCaptcha = useRef<ReCAPTCHA>(null)
     const { t } = useTranslation()
     const { setUser } = useContext(UserContext)
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!username.current?.value || !password.current?.value) {
             return
         }
 
+        const captchaToken = await reCaptcha.current?.executeAsync();
+        reCaptcha.current?.reset();
+
         axios.post("/api/auth/login", {
-            username: username.current?.value,
-            password: password.current?.value
+            username: username.current.value,
+            password: password.current.value,
+            captchaToken
         }).catch(err => {
             if (err.response?.data?.error) {
               toast(t("errors." + err.response.data.error), { type: "error", theme: "dark" })
@@ -41,6 +47,10 @@ const Login = () => {
 
         <div className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 !mb-4">
           <h1 className="text-2xl font-bold mb-5">{ t("auth.login") }</h1>
+
+          <ReCAPTCHA ref={ reCaptcha }
+            sitekey={ process.env.REACT_APP_RECAPTCHA_SITE_KEY || "" }
+            size="invisible" />
 
           <input type="text" 
             placeholder={ t("auth.username") } 

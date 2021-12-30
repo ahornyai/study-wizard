@@ -92,7 +92,8 @@
         "definition-min-char": "Definition must be at least 3 characters long",
         "definition-max-char": "Definition cannot be longer than 256 characters",
         "note-not-found": "Note not found",
-        "already-accepted-invite": "You have already accepted this invite"
+        "already-accepted-invite": "You have already accepted this invite",
+        "captcha-failed": "Captcha failed"
     },
 
     "title": "Title",

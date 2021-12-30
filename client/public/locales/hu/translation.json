@@ -92,7 +92,8 @@
         "definition-min-char": "A definíciónak legalább 3 karakter hosszúnak kell lennie",
         "definition-max-char": "A definíció maximum 256 karakter hosszú lehet",
         "note-not-found": "A jegyzet nem található",
-        "already-accepted-invite": "Már elfogadtad ezt a meghívót"
+        "already-accepted-invite": "Már elfogadtad ezt a meghívót",
+        "captcha-failed": "Hibás captcha, próbáld újra"
     },
 
     "title": "Cím",

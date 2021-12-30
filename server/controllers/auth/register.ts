@@ -1,5 +1,6 @@
 import UserModel from "../../db/models/userModel";
 import { Controller } from "../../api"
+import axios from "axios";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const alphaNumerical = /^[a-zA-Z0-9]+$/
@@ -8,11 +9,20 @@ const RegisterController = {
     method: "post",
     path: "auth/register",
     handler: async (req, res) => {
-        let { username, email, password, passwordAgain } = req.body
+        let { username, email, password, passwordAgain, captchaToken } = req.body
 
-        if (!username || !email || !password || !passwordAgain) {
+        if (!username || !email || !password || !passwordAgain || !captchaToken) {
             res.status(400).send({
                 error: "all-fields-required"
+            })
+            return
+        }
+
+        const captchaRes = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`)
+
+        if (!captchaRes.data.success) {
+            res.status(400).send({
+                error: "captcha-failed"
             })
             return
         }
