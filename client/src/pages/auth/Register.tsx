@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useContext, useRef } from "react"
-import ReCAPTCHA from "react-google-recaptcha"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
@@ -12,12 +12,12 @@ const Register = () => {
     const navigate = useNavigate()
     const form = useRef<HTMLFormElement>(null)
     const username = useRef<HTMLInputElement>(null)
-    const reCaptcha = useRef<ReCAPTCHA>(null)
     const email = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
     const passwordAgain = useRef<HTMLInputElement>(null)
     const { t } = useTranslation()
     const { user } = useContext(UserContext)
+    const { executeRecaptcha } = useGoogleReCaptcha()
 
     if (user.loggedIn) {
         navigate("/")
@@ -33,8 +33,12 @@ const Register = () => {
         return
       }
 
-      const captchaToken = await reCaptcha.current?.executeAsync();
-      reCaptcha.current?.reset();
+      if (!executeRecaptcha) {
+        toast.error(t("errors.captcha-failed"))
+        return;
+      }
+
+      const captchaToken = await executeRecaptcha("login")
 
       axios.post("/api/auth/register", {
         username: username.current?.value,
@@ -59,10 +63,6 @@ const Register = () => {
 
         <form ref={ form } onSubmit={ (e) => e.preventDefault() } className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 !mb-4">
           <h1 className={ "text-2xl font-bold mb-5" }>{ t("auth.register") }</h1>
-
-          <ReCAPTCHA ref={ reCaptcha }
-            sitekey={ process.env.REACT_APP_RECAPTCHA_SITE_KEY || "" }
-            size="invisible" />
 
           <input type="text" 
             placeholder={ t("auth.username") } 

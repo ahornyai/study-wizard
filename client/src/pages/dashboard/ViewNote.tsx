@@ -1,47 +1,16 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
-import { ReactNode, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faPenSquare, faTrash, faShareAlt } from "@fortawesome/free-solid-svg-icons"
 import { toast, ToastContainer } from "react-toastify"
 import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
-import NoteEntry, { EntryType } from "../../classes/noteEntry"
 import axios from "axios"
 import InvitedUserElement from "../../elements/notes/InvitedUserElement"
 import NoteMember from "../../classes/noteMember"
-
-const depthListStyle = [
-  "disc",
-  "circle",
-  "square"
-]
-
-const renderEntry = (entry: NoteEntry): ReactNode => {
-  if (!entry.hasChildren()) {
-    if (entry.depth === 0) {
-      return (
-        <div className="break-words" key={ entry.id }>{ entry.asHtml() }</div>
-      )
-    }
-
-    return (
-      <li className="break-words" key={ entry.id }>{ entry.asHtml() }</li>
-    )
-  }
-
-  const title = entry.asHtml() + (entry.type === EntryType.DEFINITION ? ":" : "")
-
-  return (
-    <div key={ entry.id }>
-      { entry.depth === 0 ? <p className="break-words">{ title } </p> : <li className="break-words">{ title } </li> }
-      <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % depthListStyle.length] } }>
-        { entry.children.map(renderEntry) }
-      </ul>
-    </div>
-  )
-}
+import RenderedNoteEntry from "../../elements/notes/RenderedNoteEntry"
 
 const ViewNote = () => {
     const { t } = useTranslation()
@@ -95,7 +64,7 @@ const ViewNote = () => {
         
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-8/12 mx-auto lg:flex-nowrap flex-wrap">
           <div className="card w-full">
-            <div className="card-header relative">
+            <div className="relative">
               <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
               
               <div className="float-right space-x-3 absolute bottom-2 right-4">
@@ -110,9 +79,33 @@ const ViewNote = () => {
             </div>
             <hr className="border-gray-500 mt-3" />
 
-            <div className="card-body mt-2 text-lg">
+            <div className="mt-2 text-lg overflow-y-auto lg:h-[calc(100%-4rem)]">
               {
-                note?.content?.map(renderEntry)
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+              }
+              
+              {
+                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
               }
             </div>
           </div>

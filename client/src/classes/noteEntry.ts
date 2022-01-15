@@ -31,14 +31,6 @@ export default class NoteEntry {
       return entry
     }
   
-    public asHtml(): any {
-      if (this.type === EntryType.NOTE || this.hasChildren()) {
-        return this.values[0]
-      }
-  
-      return (<p><span className="underline">{ this.values[0] }</span>: { this.values[1] }</p>)
-    }
-  
     public hasChildren(): boolean {
       return this.children.length > 0
     }

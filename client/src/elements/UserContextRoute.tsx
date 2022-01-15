@@ -10,7 +10,15 @@ interface UserContextRouteProps {
 const UserContextRoute = ({ children, redirectWhenAuthenticated = false }: UserContextRouteProps) => {
     const { user } = useContext(UserContext)
 
-    return user.loggedIn ? (redirectWhenAuthenticated ? <Navigate to="/" /> : children) : <Navigate to="/login" />
+    if (user.loggedIn && redirectWhenAuthenticated) {
+        return <Navigate to="/" />
+    }
+
+    if (!user.loggedIn && !redirectWhenAuthenticated) {
+        return <Navigate to="/login" />
+    }
+
+    return children
 }
 
 export default UserContextRoute

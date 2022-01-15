@@ -28,7 +28,7 @@
     "nanoid": "^3.1.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-google-recaptcha": "^2.1.0",
+    "react-google-recaptcha-v3": "^1.9.7",
     "react-i18next": "^11.15.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-loader-spinner": "^4.0.0",
