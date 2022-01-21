@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import NoteEntry from '../../classes/noteEntry';
-import { useAsyncResource } from 'use-async-resource';
+import { resourceCache, useAsyncResource } from 'use-async-resource';
 import Note from '../../classes/note';
 
 const EditNote = () => {
@@ -48,6 +48,7 @@ const EditNote = () => {
           return v
       })
     }).then(() => {
+      resourceCache(Note.fetch).delete(note.id)
       navigate("/notes/" + note.id)
     }).catch(err => {
       if (err.response?.data?.error) {

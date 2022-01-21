@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { useAsyncResource } from "use-async-resource"
+import { useAsyncResource, resourceCache } from "use-async-resource"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft, faPenSquare, faTrash, faShareAlt } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faTrash, faShareAlt, faPen } from "@fortawesome/free-solid-svg-icons"
 import { toast, ToastContainer } from "react-toastify"
 import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
@@ -35,6 +35,7 @@ const ViewNote = () => {
       axios.post("/api/notes/modify/delete", {
         id: note.id
       }).then(() => {
+        resourceCache(Note.fetch).delete(note.id)
         navigate("/notes")
       }).catch(err => {
         if (err.response?.data?.error) {
@@ -48,6 +49,7 @@ const ViewNote = () => {
         noteId: note.id,
         memberId
       }).then(() => {
+        resourceCache(Note.fetch).delete(note.id)
         toast.success(t("view-note.successfully-deleted"))
         setSharedWith(sharedWith.filter(member => member.user.id !== memberId))
       }).catch(err => {
@@ -63,14 +65,14 @@ const ViewNote = () => {
         <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block fixed left-[calc(16.67%-1em)]" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
         
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-8/12 mx-auto lg:flex-nowrap flex-wrap">
-          <div className="card w-full">
-            <div className="relative">
-              <h1 className="text-3xl font-bold text-green-400 inline">{ note.title }</h1>
+          <div className="card flex flex-col w-full h-[calc(100vh-12rem)]">
+            <div className="flex flex-wrap break-all">
+              <h1 className="text-3xl font-bold text-green-400 flex-1">{ note.title }</h1>
               
-              <div className="float-right space-x-3 absolute bottom-2 right-4">
+              <div className="space-x-3 ml-3 self-center">
                 { note.perms.write &&
                   <>
-                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPenSquare } size="lg" />
+                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPen } size="lg" />
                     <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
                   </>
                 }
@@ -79,34 +81,15 @@ const ViewNote = () => {
             </div>
             <hr className="border-gray-500 mt-3" />
 
-            <div className="mt-2 text-lg overflow-y-auto lg:h-[calc(100%-4rem)]">
+            <div className="mt-2 text-lg overflow-y-auto">
               {
                 note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
               }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
-              
-              {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
-              }
+            </div>
+          </div>
+          <div className="flex flex-col lg:w-2/3 w-full h-[calc(100vh-12rem)] space-y-3">
+            <div className="card">
+              <h1 className="text-2xl font-bold text-green-400">{ t("settings") }</h1>
             </div>
           </div>
         </div>

@@ -66,4 +66,14 @@
       overflow-y: visible !important;
     }
 
+    \\ perfect scrollbar smooth scrolling
+
+    .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+        transition: .2s linear left;
+    }
+
+    .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+        transition: .2s linear top;
+    }
+
 }

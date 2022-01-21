@@ -6,6 +6,7 @@ import Loader from 'react-loader-spinner'
 import './index.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 import './i18n'
 
