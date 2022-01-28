@@ -35,6 +35,22 @@
         text-transform: capitalize;
     }
 
+    .practice-input {
+        box-shadow: none !important;
+
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 2px;
+
+        background-color: inherit;
+        padding-left: 0.25rem;
+
+        transition-duration: 0.5s;
+
+        @apply focus:border-blue-600 border-gray-300 transition-colors placeholder-gray-400 text-gray-200 ;
+    }
+
     .text-input {
         box-shadow: none !important;
 
@@ -64,16 +80,6 @@
     .modal-active {
       overflow-x: hidden;
       overflow-y: visible !important;
-    }
-
-    \\ perfect scrollbar smooth scrolling
-
-    .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
-        transition: .2s linear left;
-    }
-
-    .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
-        transition: .2s linear top;
     }
 
 }

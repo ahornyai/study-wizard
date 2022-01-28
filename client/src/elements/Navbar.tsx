@@ -80,7 +80,7 @@ const Navbar = () => {
               { t("your-notes.title") }
             </button>
             <button
-              onClick={() => navigate("/shared_notes")}
+              onClick={() => navigate("/shared-notes")}
               className="no-underline px-2 mr-3 font-medium hover:text-blue-400"
             >
               { t("shared-notes.title") }
@@ -138,7 +138,7 @@ const Navbar = () => {
                   { t("your-notes.title") }
                 </button>
                 <button
-                  onClick={() => {navigate("/shared_notes"); setMobileOpen(false)}}
+                  onClick={() => {navigate("/shared-notes"); setMobileOpen(false)}}
                   className="no-underline px-2 my-2 font-medium hover:text-blue-400"
                 >
                   { t("shared-notes.title") }

@@ -62,9 +62,10 @@ const ViewNote = () => {
     return (
       <div className="container py-16 h-full text-gray-100 lg:flex">
         <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
-        <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block fixed left-[calc(16.67%-1em)]" onClick={ () => navigate("/notes") } icon={ faArrowLeft } size="3x" />
-        
-        <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-8/12 mx-auto lg:flex-nowrap flex-wrap">
+
+        <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-9/12 mx-auto lg:flex-nowrap flex-wrap -translate-x-10">
+          <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block mr-5" onClick={ () => navigate(`/notes/`) } icon={ faArrowLeft } size="3x" />
+         
           <div className="card flex flex-col w-full h-[calc(100vh-12rem)]">
             <div className="flex flex-wrap break-all">
               <h1 className="text-3xl font-bold text-green-400 flex-1">{ note.title }</h1>
@@ -72,7 +73,7 @@ const ViewNote = () => {
               <div className="space-x-3 ml-3 self-center">
                 { note.perms.write &&
                   <>
-                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/edit/${note.id}`) } icon={ faPen } size="lg" />
+                    <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" onClick={ () => navigate(`/notes/${note.id}/edit`) } icon={ faPen } size="lg" />
                     <FontAwesomeIcon className="text-gray-200 hover:text-blue-400 cursor-pointer" forwardedRef={ deleteButton } icon={ faTrash } size="lg" />
                   </>
                 }
@@ -83,7 +84,7 @@ const ViewNote = () => {
 
             <div className="mt-2 text-lg overflow-y-auto">
               {
-                note?.content?.map(e => <RenderedNoteEntry entry={ e } />)
+                note?.content?.map(e => <RenderedNoteEntry key={ e.id } entry={ e } />)
               }
             </div>
           </div>
@@ -113,10 +114,10 @@ const ViewNote = () => {
                 <span className="text-gray-400">{ t("url") }</span>
                 <input className="w-full text-input bg-gray-800 mt-1" 
                   type="text" 
-                  value={ `${window.location.origin}/notes/invite/${note.inviteId}` } 
+                  value={ `${window.location.origin}/notes/${note.inviteId}/invite` } 
                   readOnly
                   onClick={ () => {
-                    navigator.clipboard.writeText(`${window.location.origin}/notes/invite/${note.inviteId}`)
+                    navigator.clipboard.writeText(`${window.location.origin}/notes/${note.inviteId}/invite`)
                     toast.success(t("view-note.copied"))
                   } } 
                 />

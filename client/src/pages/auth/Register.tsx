@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
       <div className="pt-40 text-white container space-y-4 text-center">
-        <ToastContainer theme="dark" style={ { marginTop: 80 } } />
+        <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
 
         <form ref={ form } onSubmit={ (e) => e.preventDefault() } className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 !mb-4">
           <h1 className={ "text-2xl font-bold mb-5" }>{ t("auth.register") }</h1>

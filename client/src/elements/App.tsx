@@ -17,6 +17,7 @@ import UserContextRoute from './UserContextRoute'
 import ViewNote from '../pages/dashboard/ViewNote'
 import EditNote from '../pages/dashboard/EditNote'
 import AcceptInvite from '../pages/dashboard/AcceptInvite'
+import PracticeNote from '../pages/dashboard/PracticeNote'
 
 const App = () => {
     const [ resource ] = useAsyncResource(syncUser, [])
@@ -31,13 +32,13 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     
-                    <Route path="/shared_notes" element={<UserContextRoute><Notes shared={ true } /></UserContextRoute>} />
+                    <Route path="/shared-notes" element={<UserContextRoute><Notes shared={ true } /></UserContextRoute>} />
                     <Route path="/notes" element={<UserContextRoute><Notes shared={ false } /></UserContextRoute>} />
                     <Route path="/notes/:id" element={<UserContextRoute><ViewNote /></UserContextRoute>} />
-                    <Route path="/notes/edit/:id" element={<UserContextRoute><EditNote /></UserContextRoute>} />
+                    <Route path="/notes/:id/edit" element={<UserContextRoute><EditNote /></UserContextRoute>} />
+                    <Route path="/notes/:id/invite" element={<UserContextRoute><AcceptInvite /></UserContextRoute>} />
+                    <Route path="/notes/:id/practice/:type" element={<UserContextRoute><PracticeNote /></UserContextRoute>} />
                     <Route path="/notes/create" element={<UserContextRoute><CreateNote /></UserContextRoute>} />
-                    <Route path="/notes/invite/:id" element={<UserContextRoute><AcceptInvite /></UserContextRoute>} />
-                    
                     
                     <Route path="/login" element={<UserContextRoute redirectWhenAuthenticated={ true } captcha={ true }><Login /></UserContextRoute>} />
                     <Route path="/register" element={<UserContextRoute redirectWhenAuthenticated={ true } captcha={ true }><Register /></UserContextRoute>} />

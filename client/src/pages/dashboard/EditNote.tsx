@@ -59,7 +59,7 @@ const EditNote = () => {
 
   return (
     <div className="text-white container mx-auto py-16 text-center">
-      <ToastContainer theme="dark" style={ { marginTop: 80 } } />
+      <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
       <h1 className="text-3xl font-bold">{ t("edit-note.title") }</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">

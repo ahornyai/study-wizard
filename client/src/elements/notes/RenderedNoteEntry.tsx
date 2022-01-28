@@ -20,22 +20,22 @@ const RenderedNoteEntry = ({ entry }: RenderedNoteEntryProps) => {
     if (!entry.hasChildren()) {
         if (entry.depth === 0) {
             return (
-                <div className="break-words" key={ entry.id }>{ content }</div>
+                <div className="break-words">{ content }</div>
             )
         }
 
         return (
-            <li className="break-words" key={ entry.id }>{ content }</li>
+            <li className="break-words">{ content }</li>
         )
     }
 
     const title = entry.values[0] + (entry.type === EntryType.DEFINITION ? ":" : "")
 
     return (
-        <div key={ entry.id }>
+        <div>
             { entry.depth === 0 ? <p className="break-words">{ title } </p> : <li className="break-words">{ title } </li> }
             <ul className="list-disc ml-8" style={ { listStyleType: depthListStyle[entry.depth % depthListStyle.length] } }>
-            { entry.children.map(e => <RenderedNoteEntry entry={ e } />) }
+            { entry.children.map(e => <RenderedNoteEntry key={ e.id } entry={ e } />) }
             </ul>
         </div>
     )

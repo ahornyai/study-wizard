@@ -14,6 +14,27 @@
         "no-notes": "You don't have any notes yet"
     },
 
+    "shared-notes": {
+        "title": "Shared notes",
+        "no-notes": "You don't have any shared notes yet"
+    },
+
+    "create-note": {
+        "title": "Create note",
+        "description": "Create a new note",
+        "placeholder": "Note title",
+        "submit": "Create",
+        "add-note": "Add note",
+        "add-definition": "Add definition"
+    },
+
+    "accept-invite": {
+        "title": "Accept invite",
+        "not-found": "Invite not found",
+        "invited-you-to-collaborate": "invited you to collaborate on",
+        "accept": "Accept"
+    },
+
     "view-note": {
         "title": "View note",
         "not-found": "Note not found",
@@ -38,25 +59,8 @@
         "not-found": "Note not found"
     },
 
-    "shared-notes": {
-        "title": "Shared notes",
-        "no-notes": "You don't have any shared notes yet"
-    },
-
-    "create-note": {
-        "title": "Create note",
-        "description": "Create a new note",
-        "placeholder": "Note title",
-        "submit": "Create",
-        "add-note": "Add note",
-        "add-definition": "Add definition"
-    },
-
-    "accept-invite": {
-        "title": "Accept invite",
-        "not-found": "Invite not found",
-        "invited-you-to-collaborate": "invited you to collaborate on",
-        "accept": "Accept"
+    "practice-note": {
+        "title": "Practice note"
     },
 
     "auth": {
@@ -93,7 +97,8 @@
         "definition-max-char": "Definition cannot be longer than 256 characters",
         "note-not-found": "Note not found",
         "already-accepted-invite": "You have already accepted this invite",
-        "captcha-failed": "Captcha failed"
+        "captcha-failed": "Captcha failed",
+        "undefined-type": "Undefined type"
     },
 
     "title": "Title",
