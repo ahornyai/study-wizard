@@ -18,7 +18,7 @@ const Avatar = ({
   size = "base",
   forwardedRef,
   onClick,
-}:AvatarProps) => {
+}: AvatarProps) => {
   let finalClass = `${className} relative rounded-full`
   if (!image) finalClass += " bg-gray-300 flex items-center justify-center"
 
@@ -37,15 +37,15 @@ const Avatar = ({
   }
 
   return (
-    <div className={finalClass} style={ { aspectRatio: '1/1' } } >
+    <div className={finalClass} style={{ aspectRatio: '1/1' }} >
       {image ? (
         <img
           src={image}
-          style={ { aspectRatio: '1/1' } }
+          style={{ aspectRatio: '1/1' }}
           alt="avatar"
-          className={ "absolute left-0 top-0 w-full h-full rounded-full object-cover bg-[#19212C] " + forwardedClass }
-          ref={ forwardedRef }
-          onClick={ onClick }
+          className={"absolute left-0 top-0 w-full h-full rounded-full object-cover bg-[#19212C] " + forwardedClass}
+          ref={forwardedRef}
+          onClick={onClick}
         />
       ) : (
         <FontAwesomeIcon icon={faUser} />

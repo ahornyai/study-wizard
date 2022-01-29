@@ -32,34 +32,34 @@ declare module 'express-session' {
 }
 
 new API({
-    port: parseInt(process.env.PORT || "5000"),
-    controllers: [
-        //auth
-        RegisterController,
-        LoginController,
+  port: parseInt(process.env.PORT || "5000"),
+  controllers: [
+    //auth
+    RegisterController,
+    LoginController,
 
-        //user
-        UserInfoController,
-        SignOutController,
+    //user
+    UserInfoController,
+    SignOutController,
 
-        //notes
-        ModifyNoteController,
-        ListNotesController,
-        ViewNotesController,
-        AcceptInviteController,
-        ManageMemberController
-    ],
-    middlewares: [
-      express.json(),
-      bodyParser.urlencoded({ extended: true }),
-      session({
-          secret: process.env.SESSION_SECRET || "secret",
-          store: new SessionStore({ db: connection }),
-          cookie: {
-              maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
-          },
-          resave: false,
-          saveUninitialized: false,
-      })
-    ]
+    //notes
+    ModifyNoteController,
+    ListNotesController,
+    ViewNotesController,
+    AcceptInviteController,
+    ManageMemberController
+  ],
+  middlewares: [
+    express.json(),
+    bodyParser.urlencoded({ extended: true }),
+    session({
+      secret: process.env.SESSION_SECRET || "secret",
+      store: new SessionStore({ db: connection }),
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+      },
+      resave: false,
+      saveUninitialized: false,
+    })
+  ]
 })

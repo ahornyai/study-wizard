@@ -1,124 +1,111 @@
 {
-    "login": "Bejelentkezés",
-    "settings": "Beállítások",
-    "sign-out": "Kijelentkezés",
-
-    "home": {
-        "title": "Főoldal",
-        "description": "Üdvözöljük a főoldalon!"
-    },
-
-    "your-notes": {
-        "title": "Jegyzeteid",
-        "last-update": "Utoljára frissítve",
-        "no-notes": "Nincsenek jegyzeteid"
-    },
-
-    "shared-notes": {
-        "title": "Megosztott jegyzeteid",
-        "no-notes": "Nincsenek megosztott jegyzeteid"
-    },
-
-    "create-note": {
-        "title": "Jegyzet létrehozása",
-        "description": "Készíts egy új jegyzetet",
-        "placeholder": "Jegyzet címe",
-        "submit": "Létrehozás",
-        "add-note": "Jegyzet hozzáadása",
-        "add-definition": "Definíció hozzáadása"
-    },
-
-    "accept-invite": {
-        "title": "Meghívó elfogadása",
-        "not-found": "A meghívó nem található",
-        "invited-you-to-collaborate": "meghívott a következő jegyzethez:",
-        "accept": "Elfogadás"
-    },
-
-    "view-note": {
-        "title": "Jegyzet megtekintése",
-        "not-found": "Nem található a jegyzet",
-        "note-memorizing": "Jegyzet megjegyzés",
-        "overall": "Összesen",
-        "invite-friends": "Hívd meg a barátaidat ezzel a linkkel",
-        "copied": "Vágólapra másolva",
-        "edit": "Szerkesztés",
-        "delete": "Törlés",
-        "members": "Tagok",
-        "learn-definitions": "Definíciók tanulása",
-        "memorize-note": "Jegyzet megjegyzése",
-        "write-test": "Teszt írása",
-        "are-you-sure-delete": "Biztos benne, hogy törölni szeretné a jegyzetet?",
-        "go-back": "Vissza",
-        "manage-perms": "Jogosultságok kezelése",
-        "successfully-deleted": "Sikeres törlés"
-    },
-
-    "edit-note": {
-        "title": "Jegyzet szerkesztése",
-        "not-found": "Nem található a jegyzet"
-    },
-
-    "practice-note": {
-        "title": "Jegyzet gyakorlása"
-    },
-
-    "auth": {
-        "login": "Bejelentkezés",
-        "register": "Regisztráció",
-        "username": "Felhasználónév",
-        "email": "E-mail",
-        "password": "Jelszó",
-        "password-again": "Jelszó ismét",
-        "forgot-password-question": "Elfelejtetted a jelszavad?",
-        "reset-your-password": "Jelszó visszaállítása",
-        "send": "Küldés"
-    },
-    
-    "errors": {
-        "passwords-dont-match": "A jelszavak nem egyeznek",
-        "all-fields-required": "Minden mező kitöltése kötelező",
-        "username-alphanumerical": "A felhasználónév csak betűket és számokat tartalmazhat",
-        "username-min-char": "A felhasználónévnek legalább 3 karakternek kell lennie",
-        "username-max-char": "A felhasználónévnek maximum 32 karakter hosszú lehet",
-        "invalid-email": "Érvénytelen e-mail cím",
-        "passwords-min-char": "A jelszónak legalább 6 karakternek kell lennie",
-        "username-taken": "A felhasználónév már foglalt",
-        "email-taken": "Ez az e-mail cím már foglalt",
-        "invalid-username-password": "Érvénytelen felhasználónév vagy jelszó",
-        "internal": "Hiba történt a bejelentkezés során",
-        "unauthorized": "Nincs jogosultságod ehhez az oldalhoz",
-        "title-min-char": "A címnek legalább 3 karakter hosszúnak kell lennie",
-        "title-max-char": "A cím maximum 50 karakter hosszú lehet",
-        "content-invalid": "Hibás tartalom",
-        "term-min-char": "A kifejezésnek legalább 3 karakter hosszúnak kell lennie",
-        "term-max-char": "A kifejezés maximum 256 karakter hosszú lehet",
-        "definition-min-char": "A definíciónak legalább 3 karakter hosszúnak kell lennie",
-        "definition-max-char": "A definíció maximum 256 karakter hosszú lehet",
-        "note-not-found": "A jegyzet nem található",
-        "already-accepted-invite": "Már elfogadtad ezt a meghívót",
-        "captcha-failed": "Hibás captcha, próbáld újra",
-        "undefined-type": "Nem meghatározott típus"
-    },
-
-    "stats": {
-        "correct": "Helyes",
-        "wrong": "Hibás",
-        "remaining": "Hátralévő"
-    },
-
-    "title": "Cím",
-    "import-file": "Fájl importálása",
-    "create": "Létrehozás",
+  "login": "Bejelentkezés",
+  "settings": "Beállítások",
+  "sign-out": "Kijelentkezés",
+  "home": {
+    "title": "Főoldal",
+    "description": "Üdvözöljük a főoldalon!"
+  },
+  "your-notes": {
+    "title": "Jegyzeteid",
+    "last-update": "Utoljára frissítve",
+    "no-notes": "Nincsenek jegyzeteid"
+  },
+  "shared-notes": {
+    "title": "Megosztott jegyzeteid",
+    "no-notes": "Nincsenek megosztott jegyzeteid"
+  },
+  "create-note": {
+    "title": "Jegyzet létrehozása",
+    "description": "Készíts egy új jegyzetet",
+    "placeholder": "Jegyzet címe",
+    "submit": "Létrehozás",
+    "add-note": "Jegyzet hozzáadása",
+    "add-definition": "Definíció hozzáadása"
+  },
+  "accept-invite": {
+    "title": "Meghívó elfogadása",
+    "not-found": "A meghívó nem található",
+    "invited-you-to-collaborate": "meghívott a következő jegyzethez:",
+    "accept": "Elfogadás"
+  },
+  "view-note": {
+    "title": "Jegyzet megtekintése",
+    "not-found": "Nem található a jegyzet",
+    "note-memorizing": "Jegyzet megjegyzés",
+    "overall": "Összesen",
+    "invite-friends": "Hívd meg a barátaidat ezzel a linkkel",
+    "copied": "Vágólapra másolva",
     "edit": "Szerkesztés",
-    "share": "Megosztás",
-    "confirmation": "Megerősítés",
-    "url": "URL",
-    "write": "Írás",
-    "permissions": "Jogosultságok",
-
-    "note": "Jegyzet",
-    "term": "Kifejezés",
-    "definition": "Definíció",
-    "definitions": "Definíciók"
+    "delete": "Törlés",
+    "members": "Tagok",
+    "learn-definitions": "Definíciók tanulása",
+    "memorize-note": "Jegyzet megjegyzése",
+    "write-test": "Teszt írása",
+    "are-you-sure-delete": "Biztos benne, hogy törölni szeretné a jegyzetet?",
+    "go-back": "Vissza",
+    "manage-perms": "Jogosultságok kezelése",
+    "successfully-deleted": "Sikeres törlés"
+  },
+  "edit-note": {
+    "title": "Jegyzet szerkesztése",
+    "not-found": "Nem található a jegyzet"
+  },
+  "practice-note": {
+    "title": "Jegyzet gyakorlása"
+  },
+  "auth": {
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
+    "username": "Felhasználónév",
+    "email": "E-mail",
+    "password": "Jelszó",
+    "password-again": "Jelszó ismét",
+    "forgot-password-question": "Elfelejtetted a jelszavad?",
+    "reset-your-password": "Jelszó visszaállítása",
+    "send": "Küldés"
+  },
+  "errors": {
+    "passwords-dont-match": "A jelszavak nem egyeznek",
+    "all-fields-required": "Minden mező kitöltése kötelező",
+    "username-alphanumerical": "A felhasználónév csak betűket és számokat tartalmazhat",
+    "username-min-char": "A felhasználónévnek legalább 3 karakternek kell lennie",
+    "username-max-char": "A felhasználónévnek maximum 32 karakter hosszú lehet",
+    "invalid-email": "Érvénytelen e-mail cím",
+    "passwords-min-char": "A jelszónak legalább 6 karakternek kell lennie",
+    "username-taken": "A felhasználónév már foglalt",
+    "email-taken": "Ez az e-mail cím már foglalt",
+    "invalid-username-password": "Érvénytelen felhasználónév vagy jelszó",
+    "internal": "Hiba történt a bejelentkezés során",
+    "unauthorized": "Nincs jogosultságod ehhez az oldalhoz",
+    "title-min-char": "A címnek legalább 3 karakter hosszúnak kell lennie",
+    "title-max-char": "A cím maximum 50 karakter hosszú lehet",
+    "content-invalid": "Hibás tartalom",
+    "term-min-char": "A kifejezésnek legalább 3 karakter hosszúnak kell lennie",
+    "term-max-char": "A kifejezés maximum 256 karakter hosszú lehet",
+    "definition-min-char": "A definíciónak legalább 3 karakter hosszúnak kell lennie",
+    "definition-max-char": "A definíció maximum 256 karakter hosszú lehet",
+    "note-not-found": "A jegyzet nem található",
+    "already-accepted-invite": "Már elfogadtad ezt a meghívót",
+    "captcha-failed": "Hibás captcha, próbáld újra",
+    "undefined-type": "Nem meghatározott típus"
+  },
+  "stats": {
+    "correct": "Helyes",
+    "wrong": "Hibás",
+    "remaining": "Hátralévő"
+  },
+  "title": "Cím",
+  "import-file": "Fájl importálása",
+  "create": "Létrehozás",
+  "edit": "Szerkesztés",
+  "share": "Megosztás",
+  "confirmation": "Megerősítés",
+  "url": "URL",
+  "write": "Írás",
+  "permissions": "Jogosultságok",
+  "note": "Jegyzet",
+  "term": "Kifejezés",
+  "definition": "Definíció",
+  "definitions": "Definíciók"
 }

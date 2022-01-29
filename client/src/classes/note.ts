@@ -4,65 +4,65 @@ import NoteEntry from "./noteEntry"
 import NoteMember from "./noteMember"
 
 export class Permissions {
-    write: boolean
-    managePerms: boolean
+  write: boolean
+  managePerms: boolean
 
-    constructor(write: boolean, managePerms: boolean) {
-        this.write = write
-        this.managePerms = managePerms
-    }
+  constructor(write: boolean, managePerms: boolean) {
+    this.write = write
+    this.managePerms = managePerms
+  }
 }
 
 export default class Note {
-    id: string
-    inviteId: string
-    title: string
-    content?: NoteEntry[]
-    updatedAt: Date
-    createdAt?: Date
-    author: Author
-    sharedWith?: NoteMember[] = []
-    perms: Permissions
+  id: string
+  inviteId: string
+  title: string
+  content?: NoteEntry[]
+  updatedAt: Date
+  createdAt?: Date
+  author: Author
+  sharedWith?: NoteMember[] = []
+  perms: Permissions
 
-    constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[], perms: Permissions = new Permissions(false, false)) {
-        this.id = id
-        this.inviteId = inviteId
-        this.title = title
-        this.updatedAt = updatedAt
-        this.author = author
-        this.createdAt = createdAt
-        this.content = content
-        this.perms = perms
-    }
+  constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[], perms: Permissions = new Permissions(false, false)) {
+    this.id = id
+    this.inviteId = inviteId
+    this.title = title
+    this.updatedAt = updatedAt
+    this.author = author
+    this.createdAt = createdAt
+    this.content = content
+    this.perms = perms
+  }
 
-    static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
-        return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
-            .then(res => {
-                const note = res.data.note as Note
-            
-                if (!note) {
-                    return "not-found"
-                }
+  static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
+    return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
+      .then(res => {
+        const note = res.data.note as Note
 
-                if (!invite) {
-                    if (note.content == null) {
-                        return "content-invalid"
-                    }
+        if (!note) {
+          return "not-found"
+        }
 
-                    note.content = note.content.map(NoteEntry.fromJSON)
-                }
+        if (!invite) {
+          if (note.content == null) {
+            return "content-invalid"
+          }
 
-                note.author = new Author(note.author.id, note.author.username)
+          note.content = note.content.map(NoteEntry.fromJSON)
+        }
 
-                if (note.sharedWith) {
-                    note.sharedWith = note.sharedWith.map(s => new NoteMember(s.user.id, s.user.username, s.canWrite, s.canManagePerms))
-                }
-            
-                return note
-            })
-            .catch(err => {
-                return err.response.data.error
-            })
-    }
+        note.author = new Author(note.author.id, note.author.username)
+
+        if (note.sharedWith) {
+          note.sharedWith = note.sharedWith.map(s => new NoteMember(s.user.id, s.user.username, s.canWrite, s.canManagePerms))
+        }
+
+        return note
+      })
+      .catch(err => {
+        return err.response.data.error
+      })
+  }
 
 }

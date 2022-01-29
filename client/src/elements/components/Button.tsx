@@ -17,18 +17,18 @@ interface ButtonProps {
 }
 
 const Button = ({
-    className = "",
-    text = "button",
-    size = "base",
-    link,
-    type = "primary",
-    icon = null,
-    iconPosition = "left",
-    submit = false,
-    full = false,
-    onClick,
-    loading = false
-  }:ButtonProps) => {
+  className = "",
+  text = "button",
+  size = "base",
+  link,
+  type = "primary",
+  icon = null,
+  iconPosition = "left",
+  submit = false,
+  full = false,
+  onClick,
+  loading = false
+}: ButtonProps) => {
   let finalClass = `${className} select-none inline-block rounded-sm font-medium border border-solid cursor-pointer text-center transition-colors duration-200`
   if (size === "xs") finalClass += " text-xs py-1 px-2"
   else if (size === "sm") finalClass += " text-sm py-2 px-4"
@@ -58,7 +58,7 @@ const Button = ({
       " text-white bg-gray-900 border-gray-900 " + (loading ? "" : "hover:bg-black hover:border-black")
   if (full) finalClass += " w-full"
   if (loading) finalClass += " opacity-75 hover:"
-  let content : any = text
+  let content: any = text
   if (icon) {
     if (iconPosition === "left")
       content = (
@@ -75,7 +75,7 @@ const Button = ({
         </>
       )
   }
-  let ButtonTag : any = link ? "a" : "div"
+  let ButtonTag: any = link ? "a" : "div"
   if (submit) ButtonTag = "button"
   return (
     <ButtonTag
@@ -84,7 +84,7 @@ const Button = ({
       type={submit ? "submit" : ""}
       onClick={onClick}
     >
-      {loading && <FontAwesomeIcon icon={ faCircleNotch } spin={ true } />} {content}
+      {loading && <FontAwesomeIcon icon={faCircleNotch} spin={true} />} {content}
     </ButtonTag>
   )
 }

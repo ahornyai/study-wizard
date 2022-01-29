@@ -16,13 +16,13 @@ ReactDOM.render(
   <BrowserRouter>
     <Suspense fallback={
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Loader
-            type="Oval"
-            color="#00BFFF"
-            height={ 100 }
-            width={ 100 }
-          />
-      </div> } 
+        <Loader
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      </div>}
     >
       <App />
     </Suspense>

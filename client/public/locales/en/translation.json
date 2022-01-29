@@ -1,124 +1,111 @@
 {
-    "login": "Login",
-    "settings": "Settings",
-    "sign-out": "Sign out",
-
-    "home": {
-        "title": "Home",
-        "description": "Welcome to your favourite notes app"
-    },
-
-    "your-notes": {
-        "title": "Your notes",
-        "last-update": "Last update",
-        "no-notes": "You don't have any notes yet"
-    },
-
-    "shared-notes": {
-        "title": "Shared notes",
-        "no-notes": "You don't have any shared notes yet"
-    },
-
-    "create-note": {
-        "title": "Create note",
-        "description": "Create a new note",
-        "placeholder": "Note title",
-        "submit": "Create",
-        "add-note": "Add note",
-        "add-definition": "Add definition"
-    },
-
-    "accept-invite": {
-        "title": "Accept invite",
-        "not-found": "Invite not found",
-        "invited-you-to-collaborate": "invited you to collaborate on",
-        "accept": "Accept"
-    },
-
-    "view-note": {
-        "title": "View note",
-        "not-found": "Note not found",
-        "note-memorizing": "Note memorizing",
-        "overall": "Overall",
-        "invite-friends": "Invite your friends with this link",
-        "copied": "Copied to clipboard",
-        "edit": "Edit",
-        "delete": "Delete",
-        "members": "Members",
-        "learn-definitions": "Learn definitions",
-        "memorize-note": "Memorize the note",
-        "write-test": "Write a test",
-        "are-you-sure-delete": "Are you sure you want to delete this note?",
-        "go-back": "Go back",
-        "manage-perms": "Manage permissions",
-        "successfully-deleted": "Sucessfully deleted"
-    },
-
-    "edit-note": {
-        "title": "Edit note",
-        "not-found": "Note not found"
-    },
-
-    "practice-note": {
-        "title": "Practice note"
-    },
-
-    "auth": {
-        "login": "Login",
-        "register": "Register",
-        "username": "Username",
-        "email": "Email",
-        "password": "Password",
-        "password-again": "Password again",
-        "forgot-password-question": "Forgot your password?",
-        "reset-your-password": "Reset your password",
-        "send": "Send"
-    },
-
-    "errors": {
-        "passwords-dont-match": "Passwords don't match",
-        "all-fields-required": "All fields are required",
-        "username-alphanumerical": "Username must be alphanumerical",
-        "username-min-char": "Username must be at least 3 characters long",
-        "username-max-char": "Username can be up to 32 characters",
-        "invalid-email": "Invalid email",
-        "password-min-char": "Password must be at least 6 characters long",
-        "username-taken": "Username already taken",
-        "email-taken": "Email already taken",
-        "invalid-username-password": "Invalid username or password",
-        "internal": "Internal server error",
-        "unauthorized": "Unauthorized",
-        "title-min-char": "Title must be at least 5 characters long",
-        "title-max-char": "The title cannot be longer than 50 characters",
-        "content-invalid": "Content is invalid",
-        "term-min-char": "Term must be at least 3 characters long",
-        "term-max-char": "Term cannot be longer than 256 characters",
-        "definition-min-char": "Definition must be at least 3 characters long",
-        "definition-max-char": "Definition cannot be longer than 256 characters",
-        "note-not-found": "Note not found",
-        "already-accepted-invite": "You have already accepted this invite",
-        "captcha-failed": "Captcha failed",
-        "undefined-type": "Undefined type"
-    },
-
-    "stats": {
-        "correct": "Correct",
-        "wrong": "Wrong",
-        "remaining": "Remaining"
-    },
-
-    "title": "Title",
-    "import-file": "Import file",
-    "create": "Create",
+  "login": "Login",
+  "settings": "Settings",
+  "sign-out": "Sign out",
+  "home": {
+    "title": "Home",
+    "description": "Welcome to your favourite notes app"
+  },
+  "your-notes": {
+    "title": "Your notes",
+    "last-update": "Last update",
+    "no-notes": "You don't have any notes yet"
+  },
+  "shared-notes": {
+    "title": "Shared notes",
+    "no-notes": "You don't have any shared notes yet"
+  },
+  "create-note": {
+    "title": "Create note",
+    "description": "Create a new note",
+    "placeholder": "Note title",
+    "submit": "Create",
+    "add-note": "Add note",
+    "add-definition": "Add definition"
+  },
+  "accept-invite": {
+    "title": "Accept invite",
+    "not-found": "Invite not found",
+    "invited-you-to-collaborate": "invited you to collaborate on",
+    "accept": "Accept"
+  },
+  "view-note": {
+    "title": "View note",
+    "not-found": "Note not found",
+    "note-memorizing": "Note memorizing",
+    "overall": "Overall",
+    "invite-friends": "Invite your friends with this link",
+    "copied": "Copied to clipboard",
     "edit": "Edit",
-    "share": "Share",
-    "confirmation": "Confirmation",
-    "url": "URL",
-    "write": "Write",
-    "permissions": "Permissions",
-
-    "note": "Note",
-    "term": "Term",
-    "definition": "Definition",
-    "definitions": "Definitions"
+    "delete": "Delete",
+    "members": "Members",
+    "learn-definitions": "Learn definitions",
+    "memorize-note": "Memorize the note",
+    "write-test": "Write a test",
+    "are-you-sure-delete": "Are you sure you want to delete this note?",
+    "go-back": "Go back",
+    "manage-perms": "Manage permissions",
+    "successfully-deleted": "Sucessfully deleted"
+  },
+  "edit-note": {
+    "title": "Edit note",
+    "not-found": "Note not found"
+  },
+  "practice-note": {
+    "title": "Practice note"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "password-again": "Password again",
+    "forgot-password-question": "Forgot your password?",
+    "reset-your-password": "Reset your password",
+    "send": "Send"
+  },
+  "errors": {
+    "passwords-dont-match": "Passwords don't match",
+    "all-fields-required": "All fields are required",
+    "username-alphanumerical": "Username must be alphanumerical",
+    "username-min-char": "Username must be at least 3 characters long",
+    "username-max-char": "Username can be up to 32 characters",
+    "invalid-email": "Invalid email",
+    "password-min-char": "Password must be at least 6 characters long",
+    "username-taken": "Username already taken",
+    "email-taken": "Email already taken",
+    "invalid-username-password": "Invalid username or password",
+    "internal": "Internal server error",
+    "unauthorized": "Unauthorized",
+    "title-min-char": "Title must be at least 5 characters long",
+    "title-max-char": "The title cannot be longer than 50 characters",
+    "content-invalid": "Content is invalid",
+    "term-min-char": "Term must be at least 3 characters long",
+    "term-max-char": "Term cannot be longer than 256 characters",
+    "definition-min-char": "Definition must be at least 3 characters long",
+    "definition-max-char": "Definition cannot be longer than 256 characters",
+    "note-not-found": "Note not found",
+    "already-accepted-invite": "You have already accepted this invite",
+    "captcha-failed": "Captcha failed",
+    "undefined-type": "Undefined type"
+  },
+  "stats": {
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "remaining": "Remaining"
+  },
+  "title": "Title",
+  "import-file": "Import file",
+  "create": "Create",
+  "edit": "Edit",
+  "share": "Share",
+  "confirmation": "Confirmation",
+  "url": "URL",
+  "write": "Write",
+  "permissions": "Permissions",
+  "note": "Note",
+  "term": "Term",
+  "definition": "Definition",
+  "definitions": "Definitions"
 }
