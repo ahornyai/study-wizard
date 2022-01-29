@@ -69,7 +69,7 @@ LearningStatusModel.init({
   }
 }, {
   tableName: 'learning_status',
-  timestamps: true,
+  timestamps: false,
   sequelize: connection
 })
 

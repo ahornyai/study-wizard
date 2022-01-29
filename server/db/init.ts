@@ -1,5 +1,6 @@
 import { NoteModel } from './models/noteModel'
 import { LearningStatusModel } from './models/learningStatusModel'
+import { LearningStatisticModel } from './models/learningStatisticModel'
 import SharedNoteModel from './models/sharedNote'
 import UserModel from './models/userModel'
 
@@ -21,6 +22,10 @@ const dbInit = () => Promise.all([
   UserModel.hasMany(LearningStatusModel, {
     foreignKey: 'userId',
     as: 'learningStatuses'
+  }),
+  UserModel.hasMany(LearningStatisticModel, {
+    foreignKey: 'userId',
+    as: 'learningStatistics'
   }),
 
   NoteModel.belongsTo(UserModel, {
@@ -50,6 +55,15 @@ const dbInit = () => Promise.all([
     as: 'note'
   }),
   LearningStatusModel.belongsTo(UserModel, {
+    foreignKey: 'userId',
+    as: 'user'
+  }),
+
+  LearningStatisticModel.belongsTo(NoteModel, {
+    foreignKey: 'noteId',
+    as: 'note'
+  }),
+  LearningStatisticModel.belongsTo(UserModel, {
     foreignKey: 'userId',
     as: 'user'
   })
