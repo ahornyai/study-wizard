@@ -101,6 +101,12 @@
         "undefined-type": "Undefined type"
     },
 
+    "stats": {
+        "correct": "Correct",
+        "wrong": "Wrong",
+        "remaining": "Remaining"
+    },
+
     "title": "Title",
     "import-file": "Import file",
     "create": "Create",

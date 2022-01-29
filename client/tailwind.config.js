@@ -1,7 +1,5 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './src/**', './public/index.html'],
-  mode: 'jit',
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**', './public/index.html'],
   theme: {
     container: {
       padding: "2rem"
@@ -24,11 +22,6 @@ module.exports = {
       "10xl": "8rem"
     },
     extend: {
-      outline: {
-        thickblue: ['5px solid #1e3a8a'],
-        thickred: ['5px solid #B91C1C'],
-        zerowidth: ['0px solid #1e3a8a'],
-      },
       spacing: {
         "72": "18rem",
         "84": "21rem",
@@ -49,15 +42,15 @@ module.exports = {
         "2px": "2px"
       },
       inset: {
-        "24": "5rem", // not for real
+        "24": "5rem",
         "1/2": "50%",
         full: "100%"
       },
       transitionProperty: {
         width: "width",
         outlinewidth: "outline-width"
-      }
-    }
+      },
+    },
   },
   variants: {
     borderWidth: ["responsive", "last", "hover", "focus"],

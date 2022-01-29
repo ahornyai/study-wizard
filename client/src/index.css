@@ -82,4 +82,19 @@
       overflow-y: visible !important;
     }
 
+    .outline-thickblue {
+        outline-offset: 0px;
+        outline: 5px solid #1e3a8a;
+    }
+
+    .outline-thickred {
+        outline-offset: 0px;
+        outline: 5px solid #B91C1C;
+    }
+
+    .outline-zerowidth {
+        outline-offset: 0px;
+        outline: 0px solid #1e3a8a;
+    }
+
 }

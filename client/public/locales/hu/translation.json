@@ -101,6 +101,12 @@
         "undefined-type": "Nem meghatározott típus"
     },
 
+    "stats": {
+        "correct": "Helyes",
+        "wrong": "Hibás",
+        "remaining": "Hátralévő"
+    },
+
     "title": "Cím",
     "import-file": "Fájl importálása",
     "create": "Létrehozás",
