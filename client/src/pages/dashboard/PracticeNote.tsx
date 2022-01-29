@@ -59,11 +59,11 @@ const PracticeNote = () => {
                 </div>
               </div>
               <div>
-                <span className="text-xl text-gray-300">{t("stats.remaining")}</span>
-                <span className="text-xl ml-2 text-gray-400">10% (5/50)</span>
+                <span className="text-xl text-gray-300">{t("stats.completed")}</span>
+                <span className="text-xl ml-2 text-gray-400">90% (45/50)</span>
 
                 <div className="w-full bg-gray-900 h-4 rounded-lg mt-2">
-                  <div className="bg-blue-500 h-full rounded-lg" style={{ width: '45%' }} ></div>
+                  <div className="bg-blue-500 h-full rounded-lg" style={{ width: '90%' }} ></div>
                 </div>
               </div>
             </div>

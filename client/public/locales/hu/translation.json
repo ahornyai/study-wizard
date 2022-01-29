@@ -93,7 +93,7 @@
   "stats": {
     "correct": "Helyes",
     "wrong": "Hibás",
-    "remaining": "Hátralévő"
+    "completed": "Befejezett"
   },
   "title": "Cím",
   "import-file": "Fájl importálása",

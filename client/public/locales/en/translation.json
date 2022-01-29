@@ -93,7 +93,7 @@
   "stats": {
     "correct": "Correct",
     "wrong": "Wrong",
-    "remaining": "Remaining"
+    "completed": "Completed"
   },
   "title": "Title",
   "import-file": "Import file",
