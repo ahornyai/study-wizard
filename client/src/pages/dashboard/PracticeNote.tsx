@@ -6,6 +6,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { ToastContainer } from "react-toastify"
 import Note from "../../classes/note"
 import DefinitionQuestion from "../../elements/practice/DefinitionQuestion"
+import QuestionResult from "../../elements/practice/QuestionResult"
 
 const PracticeNote = () => {
   const { t } = useTranslation()

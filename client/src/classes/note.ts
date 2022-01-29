@@ -1,6 +1,6 @@
 import axios from "axios"
 import Author from "./author"
-import NoteEntry from "./noteEntry"
+import NoteEntry, { EntryType } from "./noteEntry"
 import NoteMember from "./noteMember"
 
 export class Permissions {
@@ -17,14 +17,14 @@ export default class Note {
   id: string
   inviteId: string
   title: string
-  content?: NoteEntry[]
+  content: NoteEntry[]
   updatedAt: Date
   createdAt?: Date
   author: Author
   sharedWith?: NoteMember[] = []
   perms: Permissions
 
-  constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content?: NoteEntry[], perms: Permissions = new Permissions(false, false)) {
+  constructor(id: string, inviteId: string, title: string, author: Author, updatedAt: Date, createdAt?: Date, content: NoteEntry[] = [], perms: Permissions = new Permissions(false, false)) {
     this.id = id
     this.inviteId = inviteId
     this.title = title
@@ -33,6 +33,20 @@ export default class Note {
     this.createdAt = createdAt
     this.content = content
     this.perms = perms
+  }
+
+  public getDefinitions(list: NoteEntry[] = this.content): NoteEntry[] {
+    const definitions: NoteEntry[] = []
+
+    list.forEach(entry => {
+      if (entry.type === EntryType.DEFINITION && entry.children.length === 0) {
+        definitions.push(entry)
+      } else if (entry.children.length > 0) {
+        definitions.push(...this.getDefinitions(entry.children))
+      }
+    })
+
+    return definitions
   }
 
   static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
@@ -58,7 +72,7 @@ export default class Note {
           note.sharedWith = note.sharedWith.map(s => new NoteMember(s.user.id, s.user.username, s.canWrite, s.canManagePerms))
         }
 
-        return note
+        return new Note(note.id, note.inviteId, note.title, note.author, note.updatedAt, note.createdAt, note.content, new Permissions(note.perms.write, note.perms.managePerms))
       })
       .catch(err => {
         return err.response.data.error
