@@ -9,6 +9,7 @@ const dbInit = () => Promise.all([
   NoteModel.sync(),
   SharedNoteModel.sync(),
   LearningStatusModel.sync(),
+  LearningStatisticModel.sync(),
 
   // relationships
   UserModel.hasMany(NoteModel, {
@@ -39,6 +40,10 @@ const dbInit = () => Promise.all([
   NoteModel.hasMany(LearningStatusModel, {
     foreignKey: 'noteId',
     as: 'learningStatuses'
+  }),
+  NoteModel.hasMany(LearningStatisticModel, {
+    foreignKey: 'noteId',
+    as: 'learningStatistics'
   }),
 
   SharedNoteModel.belongsTo(NoteModel, {

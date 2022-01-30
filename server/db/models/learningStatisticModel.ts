@@ -55,7 +55,7 @@ LearningStatisticModel.init({
     defaultValue: () => 0
   }
 }, {
-  tableName: 'learning_status',
+  tableName: 'learning_statistics',
   timestamps: true,
   sequelize: connection
 })

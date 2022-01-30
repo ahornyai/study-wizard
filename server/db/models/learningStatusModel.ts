@@ -19,13 +19,13 @@ export class SentenceFillingStatus {
 }
 
 interface LearningStatusAttributes {
-  id: number
+  id?: number
   noteId: string
   userId: number
 
-  definitionStatus: DefinitionStatus
-  cardStatus: LearningCardStatus
-  sentenceFillingStatus: SentenceFillingStatus
+  definitionStatus?: DefinitionStatus
+  cardStatus?: LearningCardStatus
+  sentenceFillingStatus?: SentenceFillingStatus
 }
 
 export class LearningStatusModel extends Model<LearningStatusAttributes, LearningStatusInput> implements LearningStatusAttributes {

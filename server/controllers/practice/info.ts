@@ -20,8 +20,19 @@ const PracticeInfoController = {
     const note = await NoteModel.findOne({
       where: { id, authorId: req.session.user?.id },
       include: [
-        { model: LearningStatusModel, where: { userId: req.session.user?.id }, as: "learningStatuses", attributes: ["id", "definitionStatus", "cardStatus", "sentenceFillingStatus"] },
-        { model: LearningStatisticModel, where: { userId: req.session.user?.id }, as: "learningStatistics", attributes: ["id", "definitionCorrect", "cardCorrect", "sentenceFillingCorrect"] }
+        {
+          model: LearningStatusModel,
+          where: { userId: req.session.user?.id },
+          as: "learningStatuses",
+          required: false,
+          limit: 1
+        },
+        {
+          model: LearningStatisticModel,
+          where: { userId: req.session.user?.id },
+          as: "learningStatistics",
+          required: false
+        }
       ]
     })
 
@@ -32,8 +43,18 @@ const PracticeInfoController = {
       return
     }
 
+    let learningStatus = note.learningStatuses[0]
+
+    if (!learningStatus) {
+      learningStatus = await LearningStatusModel.create({
+        userId: req.session.user?.id as number,
+        noteId: note.id
+      })
+    }
+
     res.send({
-      note
+      learningStatus: learningStatus,
+      learningStatistics: note.learningStatistics
     })
   },
   middlewares: [AuthMiddleware]
