@@ -2,7 +2,7 @@ import axios from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 import Button from "../../elements/components/Button";
 import { useNavigate } from "react-router-dom";
 import Note from "../../classes/note";
@@ -53,7 +53,7 @@ const Notes = ({ shared }: NotesProps) => {
           setPage(page + 1)
         }}
         hasMore={hasMore}
-        loader={<div className="w-full flex justify-center"><Loader type={"ThreeDots"} color="#00BFFF" /></div>}
+        loader={<div className="w-full flex justify-center"><ThreeDots color="#00BFFF" /></div>}
       >
         <div id="note-holder" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 justify-items-center">
           {notes.map(note => <NoteCard key={note.id} note={note} />)}

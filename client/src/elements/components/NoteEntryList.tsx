@@ -22,7 +22,9 @@ interface NoteEntryListProps {
 }
 
 const NoteEntryList = SortableContainer(({ children, addNoteEntry, removeNoteEntry, depth = -1, onSortChildren }: NoteEntryListProps) => {
-  return (<div className={depth !== -1 ? "border-l-2 border-solid " + colorDepthArray[depth] : "grid grid-cols-1 gap-3 w-full cursor-move"} style={depth !== -1 ? { marginLeft: 20, marginTop: 16 } : {}} >
+  return (<div 
+    className={depth !== -1 ? "border-l-2 border-solid " + colorDepthArray[depth] : "grid grid-cols-1 gap-3 w-full cursor-move"} 
+    style={depth !== -1 ? { marginLeft: 20, marginTop: 16 } : {}} >
     {children.map((entry, index) => (
       <ModifyNoteEntry key={entry.id}
         index={index}

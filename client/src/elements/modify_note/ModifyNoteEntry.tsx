@@ -8,8 +8,7 @@ import { SortableElement } from 'react-sortable-hoc';
 import CreateNoteInput from '../components/CreateNoteInput';
 import NoteEntryList from '../components/NoteEntryList';
 import NoteEntry, { EntryType } from '../../classes/note_entry';
-
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 interface ModifyNoteEntryProps {
   className?: string
@@ -25,6 +24,7 @@ const ModifyNoteEntry = SortableElement(({ className = "", data, addNoteEntry, r
   const [expanded, setExpanded] = useState(true)
   const btnDropdownRef = useRef(null)
   const popoverDropdownRef = useRef(null)
+  const { t } = useTranslation()
   let dropdownInited = false
 
   const openDropdown = () => {

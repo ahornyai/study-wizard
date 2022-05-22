@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Slide, toast, ToastContainer } from 'react-toastify';
-import NoteEntry from '../../classes/note_entry';
+import NoteEntry, { EntryType } from '../../classes/note_entry';
 import { resourceCache, useAsyncResource } from 'use-async-resource';
 import Note from '../../classes/note';
 
@@ -68,14 +68,14 @@ const EditNote = () => {
           lockAxis="y"
           axis="y"
           shouldCancelStart={(e: any) => ['input', 'textarea', 'select', 'option', 'button', 'path', 'svg', 'span'].indexOf(e.target.tagName.toLowerCase()) !== -1 || e.target.onclick}
-          addNoteEntry={(type, depth, parent) => {
+          addNoteEntry={(type: EntryType, depth: number, parent: NoteEntry) => {
             const newNote = new NoteEntry(type, depth, [], parent);
             setLastAdded(newNote)
 
             parent.children.push(newNote)
             setEntries([...entries])
           }}
-          removeNoteEntry={(entry) => {
+          removeNoteEntry={(entry: NoteEntry) => {
             if (entry.parent) {
               entry.parent.children.splice(entry.parent.children.indexOf(entry), 1)
             } else {
@@ -91,7 +91,7 @@ const EditNote = () => {
               newIndex,
             ))
           }}
-          onSortChildren={(oldIndex, newIndex, parent) => {
+          onSortChildren={(oldIndex: number, newIndex: number, parent: any) => {
             if (!parent)
               return
 

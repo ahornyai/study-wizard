@@ -2,9 +2,9 @@ import { faUserShield, faTrash, faCheckSquare, faSquare } from "@fortawesome/fre
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { createPopper } from "@popperjs/core"
 import axios from "axios"
-import { t } from "i18next"
 import { useContext, useEffect } from "react"
 import { useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import OutsideClickHandler from "react-outside-click-handler"
 import Note from "../../classes/note"
 import NoteMember from "../../classes/note_member"
@@ -24,6 +24,7 @@ const InvitedUserElement = ({ note, member, onRemove }: InvitedUserElementProps)
   const [canWrite, setCanWrite] = useState(member.canWrite)
   const [canManagePerms, setCanManagePerms] = useState(member.canManagePerms)
   const { user } = useContext(UserContext)
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (!(btnDropdownRef.current && popoverDropdownRef.current)) {

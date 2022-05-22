@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Slide, toast, ToastContainer, Zoom } from 'react-toastify';
-import NoteEntry from '../../classes/note_entry';
+import NoteEntry, { EntryType } from '../../classes/note_entry';
 
 const CreateNote = () => {
   const [entries, setEntries] = useState<NoteEntry[]>([])
@@ -52,14 +52,14 @@ const CreateNote = () => {
           lockAxis="y"
           axis="y"
           shouldCancelStart={(e: any) => ['input', 'textarea', 'select', 'option', 'button', 'path', 'svg', 'span'].indexOf(e.target.tagName.toLowerCase()) !== -1 || e.target.onclick}
-          addNoteEntry={(type, depth, parent) => {
+          addNoteEntry={(type: EntryType, depth: number, parent: NoteEntry) => {
             const newNote = new NoteEntry(type, depth, [], parent);
             setLastAdded(newNote)
 
             parent.children.push(newNote)
             setEntries([...entries])
           }}
-          removeNoteEntry={(entry) => {
+          removeNoteEntry={(entry: NoteEntry) => {
             if (entry.parent) {
               entry.parent.children.splice(entry.parent.children.indexOf(entry), 1)
             } else {
@@ -75,7 +75,7 @@ const CreateNote = () => {
               newIndex,
             ))
           }}
-          onSortChildren={(oldIndex, newIndex, parent) => {
+          onSortChildren={(oldIndex: number, newIndex: number, parent: any) => {
             if (!parent)
               return
 
