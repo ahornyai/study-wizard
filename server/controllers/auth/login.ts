@@ -46,7 +46,6 @@ const LoginController = {
         res.status(400).send({
           error: "invalid-username-password"
         })
-        return
       } else {
         req.session.user = {
           id: user.id,

@@ -3,17 +3,16 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource } from "use-async-resource"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import { ToastContainer } from "react-toastify"
+import { Slide, ToastContainer } from "react-toastify"
 import Note from "../../classes/note"
 import DefinitionQuestion from "../../elements/practice/DefinitionQuestion"
-import QuestionResult from "../../elements/practice/QuestionResult"
 
 const PracticeNote = () => {
   const { t } = useTranslation()
   const { id, type } = useParams()
-  const [resource] = useAsyncResource(Note.fetch, id || "")
+  const [noteResource] = useAsyncResource(Note.fetch, id || "")
   const navigate = useNavigate()
-  const note = resource()
+  const note = noteResource()
 
   if (typeof note === "string") {
     return (
@@ -25,15 +24,26 @@ const PracticeNote = () => {
   }
 
   if (type === "definitions") {
+    const definition = null
+
+    if (!definition) {
+      return (
+        <div className="container mx-auto py-16 text-center lg:w-8/12 text-white">
+          <h1 className="text-3xl font-bold mb-3">{t('practice-note.title')}</h1>
+          <h2 className="text-xl">{t('errors.internal')}</h2>
+        </div>
+      )
+    }
+
     return (
       <div className="container py-16 text-gray-100 lg:flex">
-        <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
+        <ToastContainer className="lg:mt-20 mt-5" theme="dark" transition={Slide} />
 
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-9/12 mx-auto lg:flex-nowrap flex-wrap -translate-x-10">
           <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block mr-5" onClick={() => navigate(`/notes/${id}`)} icon={faArrowLeft} size="3x" />
 
           <div className="card flex flex-col lg:w-7/12 w-full h-fit">
-            <DefinitionQuestion note={note} />
+            <DefinitionQuestion note={note} definition={definition} />
           </div>
 
           <div className="card flex flex-col flex-1 w-full">

@@ -52,7 +52,8 @@
     "not-found": "Note not found"
   },
   "practice-note": {
-    "title": "Practice note"
+    "title": "Practice note",
+    "check": "Check"
   },
   "auth": {
     "login": "Login",

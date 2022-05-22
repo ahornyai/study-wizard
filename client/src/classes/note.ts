@@ -35,6 +35,22 @@ export default class Note {
     this.perms = perms
   }
 
+  public getEntry(id: string, list: NoteEntry[] = this.content): NoteEntry | undefined {
+    for (const entry of list) {
+      if (entry.id === id) {
+        return entry
+      } else if (entry.children.length > 0) {
+        const deepSearch = this.getEntry(id, entry.children)
+
+        if (deepSearch) {
+          return deepSearch
+        }
+      }
+    }
+
+    return undefined
+  }
+
   public getDefinitions(list: NoteEntry[] = this.content): NoteEntry[] {
     const definitions: NoteEntry[] = []
 

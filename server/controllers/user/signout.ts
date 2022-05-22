@@ -6,6 +6,8 @@ const SignOutController = {
   path: "user/signout",
   handler: async (req, res) => {
     req.session.destroy(() => {
+      res.clearCookie("state") // delete learning status cookie 
+
       res.send({
         success: true
       })

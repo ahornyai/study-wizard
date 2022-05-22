@@ -1,6 +1,4 @@
 import { NoteModel } from './models/noteModel'
-import { LearningStatusModel } from './models/learningStatusModel'
-import { LearningStatisticModel } from './models/learningStatisticModel'
 import SharedNoteModel from './models/sharedNote'
 import UserModel from './models/userModel'
 
@@ -8,8 +6,6 @@ const dbInit = () => Promise.all([
   UserModel.sync(),
   NoteModel.sync(),
   SharedNoteModel.sync(),
-  LearningStatusModel.sync(),
-  LearningStatisticModel.sync(),
 
   // relationships
   UserModel.hasMany(NoteModel, {
@@ -20,14 +16,6 @@ const dbInit = () => Promise.all([
     foreignKey: 'userId',
     as: 'sharedWith'
   }),
-  UserModel.hasMany(LearningStatusModel, {
-    foreignKey: 'userId',
-    as: 'learningStatuses'
-  }),
-  UserModel.hasMany(LearningStatisticModel, {
-    foreignKey: 'userId',
-    as: 'learningStatistics'
-  }),
 
   NoteModel.belongsTo(UserModel, {
     foreignKey: 'authorId',
@@ -36,14 +24,6 @@ const dbInit = () => Promise.all([
   NoteModel.hasMany(SharedNoteModel, {
     foreignKey: 'noteId',
     as: 'sharedWith'
-  }),
-  NoteModel.hasMany(LearningStatusModel, {
-    foreignKey: 'noteId',
-    as: 'learningStatuses'
-  }),
-  NoteModel.hasMany(LearningStatisticModel, {
-    foreignKey: 'noteId',
-    as: 'learningStatistics'
   }),
 
   SharedNoteModel.belongsTo(NoteModel, {
@@ -54,24 +34,6 @@ const dbInit = () => Promise.all([
     foreignKey: 'userId',
     as: 'user'
   }),
-
-  LearningStatusModel.belongsTo(NoteModel, {
-    foreignKey: 'noteId',
-    as: 'note'
-  }),
-  LearningStatusModel.belongsTo(UserModel, {
-    foreignKey: 'userId',
-    as: 'user'
-  }),
-
-  LearningStatisticModel.belongsTo(NoteModel, {
-    foreignKey: 'noteId',
-    as: 'note'
-  }),
-  LearningStatisticModel.belongsTo(UserModel, {
-    foreignKey: 'userId',
-    as: 'user'
-  })
 ])
 
 export default dbInit

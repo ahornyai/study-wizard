@@ -5,7 +5,7 @@ import Note from "../../classes/note"
 import Avatar from "../../elements/components/Avatar"
 import Button from "../../elements/components/Button"
 import axios from "axios"
-import { toast, ToastContainer } from "react-toastify"
+import { Slide, toast, ToastContainer } from "react-toastify"
 
 const AcceptInvite = () => {
   const { t } = useTranslation()
@@ -35,7 +35,7 @@ const AcceptInvite = () => {
 
   return (
     <div className="container mx-auto py-16 text-center lg:w-1/3 text-white">
-      <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
+      <ToastContainer className="lg:mt-20 mt-5" theme="dark" transition={Slide} />
       <h1 className="text-3xl font-bold mb-3">{t("accept-invite.title")}</h1>
 
       <div className="card">

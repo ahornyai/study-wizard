@@ -7,7 +7,7 @@ import NoteEntryList from '../../elements/components/NoteEntryList';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { Slide, toast, ToastContainer, Zoom } from 'react-toastify';
 import NoteEntry from '../../classes/noteEntry';
 
 const CreateNote = () => {
@@ -43,7 +43,7 @@ const CreateNote = () => {
 
   return (
     <div className="text-white container mx-auto py-16 text-center">
-      <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
+      <ToastContainer className="lg:mt-20 mt-5" theme="dark" transition={Slide} />
       <h1 className="text-3xl font-bold">{t("create-note.title")}</h1>
 
       <div className="grid grid-cols-1 mt-10 gap-3">

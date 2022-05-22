@@ -53,6 +53,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     axios.post("/api/user/signout").then(res => {
       if (res.data.success) {
+        localStorage.removeItem("state")
         setUser(new User())
         setDropdown(false)
         setMobileOpen(false)

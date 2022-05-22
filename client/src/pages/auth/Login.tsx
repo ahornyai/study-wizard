@@ -2,7 +2,7 @@ import axios from "axios"
 import { useContext, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-import { toast, ToastContainer } from "react-toastify"
+import { Slide, toast, ToastContainer } from "react-toastify"
 import { User, UserContext } from "../../contexts/UserContext"
 import Button from "../../elements/components/Button"
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <div className="pt-40 text-white space-y-4 container text-center">
-      <ToastContainer className="lg:mt-20 mt-5" theme="dark" />
+      <ToastContainer className="lg:mt-20 mt-5" theme="dark" transition={Slide} />
 
       <div className="bg-gray-800 mx-auto lg:max-w-xs md:max-w-sm rounded-lg p-5 px-10 space-y-2 !mb-4">
         <h1 className="text-2xl font-bold mb-5">{t("auth.login")}</h1>

@@ -52,7 +52,8 @@
     "not-found": "Nem található a jegyzet"
   },
   "practice-note": {
-    "title": "Jegyzet gyakorlása"
+    "title": "Jegyzet gyakorlása",
+    "check": "Ellenőrzés"
   },
   "auth": {
     "login": "Bejelentkezés",

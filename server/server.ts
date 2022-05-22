@@ -15,8 +15,6 @@ import ListNotesController from "./controllers/notes/list"
 import ViewNotesController from "./controllers/notes/view"
 import AcceptInviteController from "./controllers/notes/accept_invite"
 import ManageMemberController from "./controllers/notes/manage_member"
-import PracticeInfoController from "./controllers/practice/info"
-import PracticeAnswerController from "./controllers/practice/answer"
 
 dbInit()
 
@@ -49,11 +47,7 @@ new API({
     ListNotesController,
     ViewNotesController,
     AcceptInviteController,
-    ManageMemberController,
-
-    //practice
-    PracticeInfoController,
-    PracticeAnswerController
+    ManageMemberController
   ],
   middlewares: [
     express.json(),
