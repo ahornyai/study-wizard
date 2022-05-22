@@ -1,7 +1,7 @@
 import axios from "axios"
 import Author from "./author"
-import NoteEntry, { EntryType } from "./noteEntry"
-import NoteMember from "./noteMember"
+import NoteEntry, { EntryType } from "./note_entry"
+import NoteMember from "./note_member"
 
 export class Permissions {
   write: boolean

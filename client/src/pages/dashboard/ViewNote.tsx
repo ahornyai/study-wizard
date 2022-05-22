@@ -9,7 +9,7 @@ import Modal from "../../elements/components/Modal"
 import Note from "../../classes/note"
 import axios from "axios"
 import InvitedUserElement from "../../elements/notes/InvitedUserElement"
-import NoteMember from "../../classes/noteMember"
+import NoteMember from "../../classes/note_member"
 import RenderedNoteEntry from "../../elements/notes/RenderedNoteEntry"
 
 const ViewNote = () => {

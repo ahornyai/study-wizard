@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Slide, toast, ToastContainer } from 'react-toastify';
-import NoteEntry from '../../classes/noteEntry';
+import NoteEntry from '../../classes/note_entry';
 import { resourceCache, useAsyncResource } from 'use-async-resource';
 import Note from '../../classes/note';
 

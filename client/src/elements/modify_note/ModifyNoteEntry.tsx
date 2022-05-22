@@ -7,7 +7,7 @@ import { SortableElement } from 'react-sortable-hoc';
 
 import CreateNoteInput from '../components/CreateNoteInput';
 import NoteEntryList from '../components/NoteEntryList';
-import NoteEntry, { EntryType } from '../../classes/noteEntry';
+import NoteEntry, { EntryType } from '../../classes/note_entry';
 
 import { t } from 'i18next';
 

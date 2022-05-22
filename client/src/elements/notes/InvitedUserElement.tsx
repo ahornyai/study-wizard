@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react"
 import { useRef, useState } from "react"
 import OutsideClickHandler from "react-outside-click-handler"
 import Note from "../../classes/note"
-import NoteMember from "../../classes/noteMember"
+import NoteMember from "../../classes/note_member"
 import { UserContext } from "../../contexts/UserContext"
 import Avatar from "../components/Avatar"
 

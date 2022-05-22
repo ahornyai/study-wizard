@@ -1,5 +1,5 @@
 import { Controller } from "../../api"
-import AuthMiddleware from "../../middlewares/authMiddleware";
+import AuthMiddleware from "../../middlewares/auth_middleware";
 import { NoteModel } from "../../db/models/noteModel";
 import SharedNoteModel from "../../db/models/sharedNote";
 

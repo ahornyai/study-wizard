@@ -1,4 +1,4 @@
-import NoteEntry, { EntryType } from "../../classes/noteEntry"
+import NoteEntry, { EntryType } from "../../classes/note_entry"
 
 const depthListStyle = [
   "disc",

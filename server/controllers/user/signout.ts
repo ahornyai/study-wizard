@@ -1,4 +1,4 @@
-import AuthMiddleware from "../../middlewares/authMiddleware"
+import AuthMiddleware from "../../middlewares/auth_middleware"
 import { Controller } from "../../api"
 
 const SignOutController = {

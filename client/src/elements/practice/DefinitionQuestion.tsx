@@ -1,7 +1,7 @@
 import { t } from "i18next"
 import { useTranslation } from "react-i18next"
 import Note from "../../classes/note"
-import NoteEntry from "../../classes/noteEntry"
+import NoteEntry from "../../classes/note_entry"
 import Button from "../components/Button"
 
 interface DefinitionQuestionProperties {

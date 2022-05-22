@@ -1,4 +1,4 @@
-import AuthMiddleware from "../../middlewares/authMiddleware"
+import AuthMiddleware from "../../middlewares/auth_middleware"
 import { Controller } from "../../api"
 import { NoteModel } from "../../db/models/noteModel"
 import UserModel from "../../db/models/userModel"

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import NoteEntry from '../../classes/noteEntry'
+import NoteEntry from '../../classes/note_entry'
 
 interface CreateNoteEntryProps {
   type: 'note' | 'term' | 'definition'

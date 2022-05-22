@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Slide, toast, ToastContainer, Zoom } from 'react-toastify';
-import NoteEntry from '../../classes/noteEntry';
+import NoteEntry from '../../classes/note_entry';
 
 const CreateNote = () => {
   const [entries, setEntries] = useState<NoteEntry[]>([])

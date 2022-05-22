@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { EntryType } from "../../classes/noteEntry"
+import { EntryType } from "../../classes/note_entry"
 import Button from "../components/Button"
 
 interface AddNoteCardProps {
