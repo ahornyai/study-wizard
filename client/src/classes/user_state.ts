@@ -1,3 +1,6 @@
+import FlashCardState from "./exercise_states/flashcardstate"
+import Note from "./note"
+
 export class ExerciseState<T> {
   public correct: number
   public incorrect: number
@@ -16,46 +19,75 @@ export class NoteState {
   public noteId: string
   public userId: number
 
-  public flashcards: ExerciseState<any> //todo: types
-  public timeline: ExerciseState<any>
+  public flashcards: ExerciseState<FlashCardState>
+  public timeline: ExerciseState<any> //todo
   public labeling: ExerciseState<any>
 
-  public constructor(noteId: string, userId: number, flashcards: ExerciseState<any>, timeline: ExerciseState<any>, labeling: ExerciseState<any>) {
-    this.noteId = noteId
+  public constructor(note: Note, userId: number) {
+    this.noteId = note.id
     this.userId = userId
-    this.flashcards = flashcards
-    this.timeline = timeline
-    this.labeling = labeling
+    this.flashcards = new ExerciseState(new FlashCardState(note), note.getDefinitions().length)
+    this.timeline = new ExerciseState(null, 0)
+    this.labeling = new ExerciseState(null, 0)
   }
 }
 
 export class UserState {
-  public id: number
-  public username: string
+  public userId: number
   public notes: NoteState[]
 
-  private constructor(id: number, username: string, notes: NoteState[]) {
-    this.id = id
-    this.username = username
+  private constructor(userId: number, notes: NoteState[]) {
+    this.userId = userId
     this.notes = notes
   }
 
-  static createOrGet(id: number, username: string, notes: NoteState[]): UserState {
+  public getNoteState(note: Note): NoteState { // or create if neccessary
+    let noteState = this.notes.find(state => state.noteId === note.id)
+
+    if (!noteState) {
+      noteState = new NoteState(note, this.userId)
+      this.notes.push(noteState)
+      this.save()
+    }
+
+    return noteState
+  }
+
+  public deleteNoteState(note: Note): boolean {
+    const index = this.notes.findIndex(state => state.noteId === note.id)
+
+    if (index !== -1) {
+      this.notes.splice(index, 1)
+      this.save()
+
+      return true
+    }
+
+    return false
+  }
+
+  public save(): UserState {
+    localStorage.setItem("state", JSON.stringify(this))
+
+    return this
+  }
+
+  static createOrGet(userId: number, notes: NoteState[] = []): UserState {
     let stateItem = localStorage.getItem("state")
 
     if (stateItem) {
       let state = JSON.parse(stateItem) as UserState
 
-      if (state.id === id) {
+      if (state.userId === userId) {
+        state = new UserState(userId, state.notes) // prototype copying
+
         return state
       } else {
         localStorage.removeItem("state")
       }
     }
 
-    let state = new UserState(id, username, notes)
-    localStorage.setItem("state", JSON.stringify(state))
-
-    return state
+    return new UserState(userId, notes).save()
   }
+
 }

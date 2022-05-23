@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Loader, { Oval } from 'react-loader-spinner'
@@ -12,7 +13,7 @@ import './i18n'
 
 import App from './elements/App'
 
-ReactDOM.render(
+createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Suspense fallback={
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -25,6 +26,5 @@ ReactDOM.render(
     >
       <App />
     </Suspense>
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
 )

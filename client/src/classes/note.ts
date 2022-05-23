@@ -65,6 +65,12 @@ export default class Note {
     return definitions
   }
 
+  public getRandomDefinition(): NoteEntry {
+    const definitions = this.getDefinitions()
+
+    return definitions[Math.floor(Math.random() * definitions.length)]
+  }
+
   static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
     return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
       .then(res => {

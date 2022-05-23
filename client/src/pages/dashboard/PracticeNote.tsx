@@ -6,10 +6,14 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Slide, ToastContainer } from "react-toastify"
 import Note from "../../classes/note"
 import DefinitionQuestion from "../../elements/practice/DefinitionQuestion"
+import { UserState } from "../../classes/user_state"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/UserContext"
 
 const PracticeNote = () => {
   const { t } = useTranslation()
   const { id, type } = useParams()
+  const { user, setUser } = useContext(UserContext)
   const [noteResource] = useAsyncResource(Note.fetch, id || "")
   const navigate = useNavigate()
   const note = noteResource()
@@ -23,8 +27,11 @@ const PracticeNote = () => {
     )
   }
 
+  const userState = UserState.createOrGet(user.id)
+  const noteState = userState.getNoteState(note)
+
   if (type === "definitions") {
-    const definition = null
+    const { definition } = noteState.flashcards.current
 
     if (!definition) {
       return (
