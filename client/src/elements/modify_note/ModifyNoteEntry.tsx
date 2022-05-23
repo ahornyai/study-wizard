@@ -18,7 +18,7 @@ interface ModifyNoteEntryProps {
   onSortChildren: (oldIndex: number, newIndex: number, parent?: NoteEntry) => void
 }
 
-const ModifyNoteEntry = SortableElement(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }: ModifyNoteEntryProps) => {
+const ModifyNoteEntry = SortableElement<ModifyNoteEntryProps>(({ className = "", data, addNoteEntry, removeNoteEntry, onSortChildren }: ModifyNoteEntryProps) => {
   const { id, type, depth, children } = data
   const [dropdownShow, setDropdown] = useState(false)
   const [expanded, setExpanded] = useState(true)

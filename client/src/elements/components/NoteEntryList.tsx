@@ -21,7 +21,7 @@ interface NoteEntryListProps {
   onSortChildren: (oldIndex: number, newIndex: number, parent?: NoteEntry) => void
 }
 
-const NoteEntryList = SortableContainer(({ children, addNoteEntry, removeNoteEntry, depth = -1, onSortChildren }: NoteEntryListProps) => {
+const NoteEntryList = SortableContainer<NoteEntryListProps>(({ children, addNoteEntry, removeNoteEntry, depth = -1, onSortChildren }: NoteEntryListProps) => {
   return (<div 
     className={depth !== -1 ? "border-l-2 border-solid " + colorDepthArray[depth] : "grid grid-cols-1 gap-3 w-full cursor-move"} 
     style={depth !== -1 ? { marginLeft: 20, marginTop: 16 } : {}} >
