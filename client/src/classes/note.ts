@@ -43,7 +43,7 @@ export default class Note {
     for (const entry of list) {
       if (entry.id === id) {
         return entry
-      } else if (entry.children.length > 0) {
+      } else if (entry.hasChildren()) {
         const deepSearch = this.getEntry(id, entry.children)
 
         if (deepSearch) {
@@ -61,7 +61,7 @@ export default class Note {
     list.forEach(entry => {
       if (entry.type === EntryType.DEFINITION && entry.children.length === 0) {
         definitions.push(entry)
-      } else if (entry.children.length > 0) {
+      } else if (entry.hasChildren()) {
         definitions.push(...this.getDefinitions(entry.children))
       }
     })
@@ -75,13 +75,12 @@ export default class Note {
     return definitions[Math.floor(Math.random() * definitions.length)]
   }
 
-  public setContentParentIds(content = this.content): void {
+  public setContentParentIds(content = this.content, id = ""): void {
     content.forEach(entry => {
-      entry.parentId = this.id
+      entry.parentId = id
 
-      if (entry.children.length > 0) {
-        console.log("setting parent ids for children")
-        this.setContentParentIds(entry.children)
+      if (entry.hasChildren()) {
+        this.setContentParentIds(entry.children, entry.id)
       }
     })
   }
@@ -115,7 +114,6 @@ export default class Note {
         return note
       })
       .catch(err => {
-        console.error(err)
         return err.response.data.error
       })
   }

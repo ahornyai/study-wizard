@@ -13,7 +13,7 @@ import { UserContext } from "../../contexts/UserContext"
 const PracticeNote = () => {
   const { t } = useTranslation()
   const { id, type } = useParams()
-  const { user, setUser } = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const [noteResource] = useAsyncResource(Note.fetch, id || "")
   const navigate = useNavigate()
   const note = noteResource()

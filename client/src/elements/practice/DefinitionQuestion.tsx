@@ -1,9 +1,8 @@
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useTranslation } from "react-i18next"
 import Note from "../../classes/note"
 import NoteEntry from "../../classes/note_entry"
-import Button from "../components/Button"
 
 interface DefinitionQuestionProperties {
   note: Note
@@ -14,6 +13,7 @@ interface TitleProperties {
   note: Note
   node: NoteEntry
   currentTitle?: JSX.Element
+  arrow?: boolean
 }
 
 const DefinitionQuestion = ({ note, definition }: DefinitionQuestionProperties) => {
@@ -23,28 +23,32 @@ const DefinitionQuestion = ({ note, definition }: DefinitionQuestionProperties) 
     <>
       <div className="flex flex-wrap break-all">
         <div className="text-2xl font-bold text-green-400 flex-1">
-          <Title note={note} node={definition} />
+          { note.title }
         </div>
       </div>
       <hr className="border-gray-500 my-3" />
-      <div className="w-full flex space-x-3">
-        <Button text={t("practice-note.check")} size="sm" />
+      <div className="w-full flex">
+        <Title note={note} node={definition} />
       </div>
     </>
   )
 }
 
-const Title = ({note, node, currentTitle = <></>}: TitleProperties) => {
+const Title = ({note, node, currentTitle = <></>, arrow = false}: TitleProperties) => {
   const parent = note.getEntry(node.parentId)
 
   if (parent) {
     return <Title 
       node={parent} 
-      currentTitle={<>{parent.values[0]} <FontAwesomeIcon className="text-gray-400 mx-1" icon={faArrowRight} size="xs" /> {currentTitle}</>} 
+      currentTitle={<> 
+        { node.values[0] } 
+        { node.children.length > 0 ? <FontAwesomeIcon className="mt-1 mx-1 text-gray-400" icon={ faChevronRight } /> : <></> }
+        { currentTitle }
+       </>} 
       note={note} />
   }
 
-  return <>{ note.title }</>
+  return <>{ currentTitle }</>
 }
 
 export default DefinitionQuestion

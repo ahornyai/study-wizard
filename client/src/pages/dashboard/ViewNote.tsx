@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAsyncResource, resourceCache } from "use-async-resource"
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faTrash, faShareAlt, faPen } from "@fortawesome/free-solid-svg-icons"
 import { Slide, toast, ToastContainer } from "react-toastify"
@@ -11,6 +11,8 @@ import axios from "axios"
 import InvitedUserElement from "../../elements/notes/InvitedUserElement"
 import NoteMember from "../../classes/note_member"
 import RenderedNoteEntry from "../../elements/notes/RenderedNoteEntry"
+import { UserState } from "../../classes/user_state"
+import { UserContext } from "../../contexts/UserContext"
 
 const ViewNote = () => {
   const { t } = useTranslation()
@@ -21,6 +23,7 @@ const ViewNote = () => {
   const deleteButton = useRef<HTMLDivElement>(null)
   const shareButton = useRef<HTMLDivElement>(null)
   const [sharedWith, setSharedWith] = useState<NoteMember[]>(typeof note === "string" ? [] : note.sharedWith || [])
+  const { user } = useContext(UserContext)
 
   if (typeof note === "string") {
     return (
@@ -35,6 +38,7 @@ const ViewNote = () => {
     axios.post("/api/notes/modify/delete", {
       id: note.id
     }).then(() => {
+      UserState.createOrGet(user.id).deleteNoteState(note)
       resourceCache(Note.fetch).delete(note.id)
       navigate("/notes")
     }).catch(err => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { arrayMoveImmutable } from 'array-move';
 
 import ModifyNoteHeader from "../../elements/modify_note/ModifyNoteHeader"
@@ -11,6 +11,8 @@ import { Slide, toast, ToastContainer } from 'react-toastify';
 import NoteEntry, { EntryType } from '../../classes/note_entry';
 import { resourceCache, useAsyncResource } from 'use-async-resource';
 import Note from '../../classes/note';
+import { UserState } from '../../classes/user_state';
+import { UserContext } from '../../contexts/UserContext';
 
 const EditNote = () => {
   const { t } = useTranslation()
@@ -19,6 +21,7 @@ const EditNote = () => {
   const note = resource()
   const [entries, setEntries] = useState<NoteEntry[]>(typeof note === "string" ? [] : note.content || [])
   const [lastAdded, setLastAdded] = useState<NoteEntry | null>(null)
+  const { user } = useContext(UserContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -48,6 +51,7 @@ const EditNote = () => {
           return v
       })
     }).then(() => {
+      UserState.createOrGet(user.id).deleteNoteState(note)
       resourceCache(Note.fetch).delete(note.id)
       navigate("/notes/" + note.id)
     }).catch(err => {
