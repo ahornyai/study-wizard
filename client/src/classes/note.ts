@@ -35,7 +35,11 @@ export default class Note {
     this.perms = perms
   }
 
-  public getEntry(id: string, list: NoteEntry[] = this.content): NoteEntry | undefined {
+  public getEntry(id: string | undefined, list: NoteEntry[] = this.content): NoteEntry | undefined {
+    if (!id) {
+      return undefined
+    }
+
     for (const entry of list) {
       if (entry.id === id) {
         return entry
@@ -71,10 +75,21 @@ export default class Note {
     return definitions[Math.floor(Math.random() * definitions.length)]
   }
 
+  public setContentParentIds(content = this.content): void {
+    content.forEach(entry => {
+      entry.parentId = this.id
+
+      if (entry.children.length > 0) {
+        console.log("setting parent ids for children")
+        this.setContentParentIds(entry.children)
+      }
+    })
+  }
+
   static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
     return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
       .then(res => {
-        const note = res.data.note as Note
+        let note = res.data.note as Note
 
         if (!note) {
           return "not-found"
@@ -94,9 +109,13 @@ export default class Note {
           note.sharedWith = note.sharedWith.map(s => new NoteMember(s.user.id, s.user.username, s.canWrite, s.canManagePerms))
         }
 
-        return new Note(note.id, note.inviteId, note.title, note.author, note.updatedAt, note.createdAt, note.content, new Permissions(note.perms.write, note.perms.managePerms))
+        note = new Note(note.id, note.inviteId, note.title, note.author, note.updatedAt, note.createdAt, note.content, new Permissions(note.perms.write, note.perms.managePerms))
+        note.setContentParentIds()
+
+        return note
       })
       .catch(err => {
+        console.error(err)
         return err.response.data.error
       })
   }

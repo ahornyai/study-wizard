@@ -53,7 +53,7 @@ const CreateNote = () => {
           axis="y"
           shouldCancelStart={(e: any) => ['input', 'textarea', 'select', 'option', 'button', 'path', 'svg', 'span'].indexOf(e.target.tagName.toLowerCase()) !== -1 || e.target.onclick}
           addNoteEntry={(type: EntryType, depth: number, parent: NoteEntry) => {
-            const newNote = new NoteEntry(type, depth, [], parent);
+            const newNote = new NoteEntry(type, depth, [], parent, [], parent.id);
             setLastAdded(newNote)
 
             parent.children.push(newNote)

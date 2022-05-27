@@ -5,7 +5,14 @@ export default class FlashCardState {
   public definition: NoteEntry
 
   public constructor(note: Note) {
-    this.definition = note.getRandomDefinition()
+    let definition = note.getRandomDefinition();
+
+    this.definition = new NoteEntry(definition.type, 
+        definition.depth, 
+        definition.children, 
+        undefined, // delete parent, because of circular reference
+        definition.values, 
+        definition.parentId);
   }
 
 }

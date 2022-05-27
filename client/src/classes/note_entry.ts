@@ -11,15 +11,17 @@ export default class NoteEntry {
   depth: number
   children: NoteEntry[]
   values: string[]
-  parent?: NoteEntry
+  parent?: NoteEntry //for temporary usage
+  parentId?: string //persistent
   created: boolean = false
 
-  constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = [], parent?: NoteEntry, values: string[] = []) {
+  constructor(type: EntryType, depth: number = 0, children: NoteEntry[] = [], parent?: NoteEntry, values: string[] = [], parentId?: string) {
     this.type = type
     this.depth = depth
     this.children = children
     this.id = nanoid()
     this.parent = parent
+    this.parentId = parentId
     this.values = values
   }
 

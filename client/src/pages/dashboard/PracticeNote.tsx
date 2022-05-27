@@ -31,7 +31,7 @@ const PracticeNote = () => {
   const noteState = userState.getNoteState(note)
 
   if (type === "definitions") {
-    const { definition } = noteState.flashcards.current
+    let { definition } = noteState.flashcards.current
 
     if (!definition) {
       return (
@@ -44,8 +44,6 @@ const PracticeNote = () => {
 
     return (
       <div className="container py-16 text-gray-100 lg:flex">
-        <ToastContainer className="lg:mt-20 mt-5" theme="dark" transition={Slide} />
-
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-9/12 mx-auto lg:flex-nowrap flex-wrap -translate-x-10">
           <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block mr-5" onClick={() => navigate(`/notes/${id}`)} icon={faArrowLeft} size="3x" />
 
