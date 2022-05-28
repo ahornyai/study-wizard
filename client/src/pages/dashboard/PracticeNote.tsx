@@ -47,7 +47,7 @@ const PracticeNote = () => {
         <div className="flex lg:space-x-3 lg:space-y-0 space-y-3 lg:w-9/12 mx-auto lg:flex-nowrap flex-wrap -translate-x-10">
           <FontAwesomeIcon className="text-gray-100 hover:text-blue-400 cursor-pointer hidden lg:inline-block mr-5" onClick={() => navigate(`/notes/${id}`)} icon={faArrowLeft} size="3x" />
 
-          <div className="card flex flex-col lg:w-7/12 w-full h-fit">
+          <div className="card flex flex-col lg:w-7/12 w-full h-fit p-0">
             <DefinitionQuestion note={note} definition={definition} />
           </div>
 
