@@ -17,7 +17,7 @@ import { UserContext } from '../../contexts/UserContext';
 const EditNote = () => {
   const { t } = useTranslation()
   const { id } = useParams()
-  const [resource] = useAsyncResource(Note.fetch, id || "")
+  const [resource] = useAsyncResource(Note.fetch, id || "", false, true)
   const note = resource()
   const [entries, setEntries] = useState<NoteEntry[]>(typeof note === "string" ? [] : note.content || [])
   const [lastAdded, setLastAdded] = useState<NoteEntry | null>(null)
@@ -29,7 +29,7 @@ const EditNote = () => {
       return
 
     document.getElementById(lastAdded.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [lastAdded])
+  }, [lastAdded, resource])
 
   if (typeof note === "string" || !note.perms.write) {
     return (
@@ -80,8 +80,10 @@ const EditNote = () => {
             setEntries([...entries])
           }}
           removeNoteEntry={(entry: NoteEntry) => {
-            if (entry.parent) {
-              entry.parent.children.splice(entry.parent.children.indexOf(entry), 1)
+            const parent = note.getEntry(entry.parentId)
+
+            if (parent) {
+              parent.children.splice(parent.children.indexOf(entry), 1)
             } else {
               entries.splice(entries.indexOf(entry), 1)
             }

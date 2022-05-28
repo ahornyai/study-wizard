@@ -85,7 +85,7 @@ export default class Note {
     })
   }
 
-  static async fetch(id: string, invite: boolean = false): Promise<Note | string> {
+  static async fetch(id: string, invite = false, edit = false): Promise<Note | string> {
     return await axios.get("/api/notes/view/" + id + "?invite=" + invite)
       .then(res => {
         let note = res.data.note as Note
